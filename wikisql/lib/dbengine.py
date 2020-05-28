@@ -38,8 +38,8 @@ class DBEngine:
                 val = val.lower()
             if schema['col{}'.format(col_index)] == 'real' and not isinstance(val, (int, float)):
                 try:
-                    val = float(parse_decimal(val))
-                except NumberFormatError as e:
+                    val = float(parse_decimal(val, locale='en_US'))
+                except Exception as e:
                     val = float(num_re.findall(val)[0])
             where_clause.append('col{} {} :col{}'.format(col_index, Query.cond_ops[op], col_index))
             where_map['col{}'.format(col_index)] = val

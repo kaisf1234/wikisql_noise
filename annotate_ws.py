@@ -5,7 +5,12 @@ from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 import os
 import records
 import ujson as json
-from stanza.nlp.corenlp import CoreNLPClient
+import corenlp
+import os
+
+os.environ["CORENLP_HOME"] = './models/stanford-corenlp-4.0.0'
+
+client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
 from tqdm import tqdm
 import copy
 from wikisql.lib.common import count_lines, detokenize
@@ -18,10 +23,10 @@ client = None
 def annotate(sentence, lower=True):
     global client
     if client is None:
-        client = CoreNLPClient(default_annotators='ssplit,tokenize'.split(','))
+        client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
     words, gloss, after = [], [], []
-    for s in client.annotate(sentence):
-        for t in s:
+    for s in client.annotate(sentence).sentence:
+        for t in s.token:
             words.append(t.word)
             gloss.append(t.originalText)
             after.append(t.after)
@@ -153,9 +158,9 @@ def is_valid_example(e):
 
 if __name__ == '__main__':
     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--din', default='/Users/wonseok/data/WikiSQL-1.1/data', help='data directory')
-    parser.add_argument('--dout', default='/Users/wonseok/data/wikisql_tok', help='output directory')
-    parser.add_argument('--split', default='train,dev,test', help='comma=separated list of splits to process')
+    parser.add_argument('--din', default='./data/WikiSQL-1.1/data', help='data directory')
+    parser.add_argument('--dout', default='./data/wikisql_tok', help='output directory')
+    parser.add_argument('--split', default='dev', help='comma=separated list of splits to process')
     args = parser.parse_args()
 
     answer_toy = not True
