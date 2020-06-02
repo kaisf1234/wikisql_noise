@@ -746,9 +746,8 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
     all_input_ids = torch.tensor(input_ids, dtype=torch.long).to(device)
     all_input_mask = torch.tensor(input_mask, dtype=torch.long).to(device)
     all_segment_ids = torch.tensor(segment_ids, dtype=torch.long).to(device)
-
     # 4. Generate BERT output.
-    all_encoder_layer, pooled_output = model_bert(all_input_ids, all_segment_ids, all_input_mask)
+    _, pooled_output, all_encoder_layer = model_bert(all_input_ids, all_segment_ids, all_input_mask)
 
     # 5. generate l_hpu from i_hds
     l_hpu = gen_l_hpu(i_hds)
@@ -820,7 +819,6 @@ def get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length
     # tokens: BERT intput tokens
     # i_nlu: start and end indices of question in tokens
     # i_hds: start and end indices of headers
-
 
     # get the wemb
     wemb_n = get_wemb_n(i_nlu, l_n, bert_config.hidden_size, bert_config.num_hidden_layers, all_encoder_layer,

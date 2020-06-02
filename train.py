@@ -16,8 +16,8 @@ import random as python_random
 
 # BERT
 import bert.tokenization as tokenization
-from bert.modeling import BertConfig, BertModel
-
+# from bert.modeling import BertConfig, BertModel
+from transformers import BertModel, BertTokenizer, BertConfig
 from sqlova.utils.utils_wikisql import *
 from sqlova.utils.utils import load_jsonl
 from sqlova.model.nl2sql.wikisql_models import *
@@ -118,16 +118,18 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
     vocab_file = os.path.join(BERT_PT_PATH, f'vocab_{bert_type}.txt')
     init_checkpoint = os.path.join(BERT_PT_PATH, f'pytorch_model_{bert_type}.bin')
 
-    bert_config = BertConfig.from_json_file(bert_config_file)
-    tokenizer = tokenization.FullTokenizer(
-        vocab_file=vocab_file, do_lower_case=do_lower_case)
-    bert_config.print_status()
+    # bert_config = BertConfig.from_json_file(bert_config_file)
+    # tokenizer = tokenization.FullTokenizer(
+    #     vocab_file=vocab_file, do_lower_case=do_lower_case)
+    # bert_config.print_status()
+    bert_config = BertConfig.from_pretrained("bert-base-uncased", output_hidden_states = True)
 
-    model_bert = BertModel(bert_config)
+    model_bert = BertModel.from_pretrained("bert-base-uncased", config = bert_config)
+    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
     if no_pretraining:
         pass
     else:
-        model_bert.load_state_dict(torch.load(init_checkpoint, map_location='cpu'))
+        #model_bert.load_state_dict(torch.load(init_checkpoint, map_location='cpu'))
         print("Load pre-trained parameters.")
     model_bert.to(device)
 
@@ -228,7 +230,6 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
 
     for iB, t in enumerate(train_loader):
         cnt += len(t)
-
         if cnt < st_pos:
             continue
         # Get fields
@@ -645,8 +646,8 @@ if __name__ == '__main__':
     args = construct_hyper_param(parser)
 
     ## 2. Paths
-    path_h = './data_and_model'  # '/home/wonseok'
-    path_wikisql = './data_and_model'  # os.path.join(path_h, 'data', 'wikisql_tok')
+    path_h = './data/WikiSQL-1.1/data'  # '/home/wonseok'
+    path_wikisql = './data/WikiSQL-1.1/data'  # os.path.join(path_h, 'data', 'wikisql_tok')
     BERT_PT_PATH = path_wikisql
 
     path_save_for_evaluation = './'
@@ -680,7 +681,7 @@ if __name__ == '__main__':
         acc_lx_t_best = -1
         epoch_best = -1
         for epoch in range(args.tepoch):
-            # train
+            # trainBERT-type
             acc_train, aux_out_train = train(train_loader,
                                              train_table,
                                              model,
