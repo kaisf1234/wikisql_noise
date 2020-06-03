@@ -227,8 +227,11 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
 
     # Engine for SQL querying.
     engine = DBEngine(os.path.join(path_db, f"{dset_name}.db"))
+    start = time.time()
 
     for iB, t in enumerate(train_loader):
+        if iB % 100 == 0:
+            print("Done with ", iB, " out of ", len(train_loader), " approx time left ", ((time.time()-start)*len(train_loader)/(iB+1)))
         cnt += len(t)
         if cnt < st_pos:
             continue
@@ -317,7 +320,7 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         # lx stands for logical form accuracy
 
         # Execution accuracy test.
-        cnt_x1_list, g_ans, pr_ans = get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
+        cnt_x1_list, g_ans, pr_ans = cnt_lx1_list, [],  [], #get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
 
         # statistics
         ave_loss += loss.item()
@@ -507,7 +510,7 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
         # lx stands for logical form accuracy
 
         # Execution accuracy test.
-        cnt_x1_list, g_ans, pr_ans = get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
+        cnt_x1_list, g_ans, pr_ans = cnt_lx1_list, [], [] #get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
 
         # stat
         ave_loss += loss.item()
@@ -650,7 +653,7 @@ if __name__ == '__main__':
     path_wikisql = './data/WikiSQL-1.1/data'  # os.path.join(path_h, 'data', 'wikisql_tok')
     BERT_PT_PATH = path_wikisql
 
-    path_save_for_evaluation = './'
+    path_save_for_evaluation = '/content/drive/My Drive/sf'
 
     ## 3. Load data
 
@@ -726,10 +729,10 @@ if __name__ == '__main__':
                 epoch_best = epoch
                 # save best model
                 state = {'model': model.state_dict()}
-                torch.save(state, os.path.join('.', 'model_best.pt'))
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', 'model_best.pt'))
 
                 state = {'model_bert': model_bert.state_dict()}
-                torch.save(state, os.path.join('.', 'model_bert_best.pt'))
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', 'model_bert_best.pt'))
 
             print(f" Best Dev lx acc: {acc_lx_t_best} at epoch: {epoch_best}")
 
