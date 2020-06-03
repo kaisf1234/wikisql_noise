@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     # Set path
     path_h = './' # change to your home folder
-    path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
+    # path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
     path_save_analysis = './results/'
 
     # Path for evaluation results.

@@ -136,7 +136,7 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
     return model_bert, tokenizer, bert_config
 
 
-def get_opt(model, model_bert, fine_tune):
+def get_opt(model, model_bert, fine_tune, pre_trained_path = None):
     if fine_tune:
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
                                lr=args.lr, weight_decay=0)
@@ -147,7 +147,10 @@ def get_opt(model, model_bert, fine_tune):
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
                                lr=args.lr, weight_decay=0)
         opt_bert = None
-
+    if pre_trained_path:
+        opt.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_best.pt"])))
+        if opt_bert is not None:
+            opt_bert.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_bert_best.pt"])))
     return opt, opt_bert
 
 
@@ -228,10 +231,10 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
     # Engine for SQL querying.
     engine = DBEngine(os.path.join(path_db, f"{dset_name}.db"))
     start = time.time()
-
+    l = len(train_loader)
     for iB, t in enumerate(train_loader):
-        if iB % 100 == 0:
-            print("Done with ", iB, " out of ", len(train_loader), " approx time left ", ((time.time()-start)*len(train_loader)/(iB+1)))
+        if iB % 100 == 99:
+            print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB), " ave loss ", ave_loss/cnt)
         cnt += len(t)
         if cnt < st_pos:
             continue
@@ -423,8 +426,11 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
 
     engine = DBEngine(os.path.join(path_db, f"{dset_name}.db"))
     results = []
+    start = time.time()
+    l = len(data_loader)
     for iB, t in enumerate(data_loader):
-
+        if iB % 100 == 99:
+            print("Done with ", iB, " out of ", l, " time left ", ((time.time()-start)/iB)*(l-iB))
         cnt += len(t)
         if cnt < st_pos:
             continue
@@ -671,14 +677,18 @@ if __name__ == '__main__':
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH)
     else:
         # To start from the pre-trained models, un-comment following lines.
-        path_model_bert = './data_and_model/model_bert_best.pt'
-        path_model = './data_and_model/model_best.pt'
+        print("Loading pretrained models")
+        path_model_bert = '/content/drive/My Drive/sf/model_bert_best.pt'
+        path_model = '/content/drive/My Drive/sf/model_best.pt'
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 
     ## 5. Get optimizers
     if args.do_train:
-        opt, opt_bert = get_opt(model, model_bert, args.fine_tune)
+        pre_trained_path = None
+        if args.trained:
+            pre_trained_path = "/content/drive/My Drive/sf"
+        opt, opt_bert = get_opt(model, model_bert, args.fine_tune, pre_trained_path = pre_trained_path)
 
         ## 6. Train
         acc_lx_t_best = -1
@@ -715,9 +725,10 @@ if __name__ == '__main__':
                                                       st_pos=0,
                                                       dset_name='dev', EG=args.EG)
 
-            print_result(epoch, acc_train, 'train')
+            #print_result(epoch, acc_train, 'train')
             print_result(epoch, acc_dev, 'dev')
-
+            acc_lx_t = acc_dev[-2]
+            print(acc_lx_t)
             # save results for the official evaluation
             save_for_evaluation(path_save_for_evaluation, results_dev, 'dev')
 
