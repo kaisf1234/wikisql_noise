@@ -680,8 +680,8 @@ if __name__ == '__main__':
     else:
         # To start from the pre-trained models, un-comment following lines.
         print("Loading pretrained models...")
-        path_model_bert = '/content/drive/My Drive/sf/model_bert_best.pt'
-        path_model = '/content/drive/My Drive/sf/model_best.pt'
+        path_model_bert = './models/model_bert_best.pt'
+        path_model = './models/model_best.pt'
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 

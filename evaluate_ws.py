@@ -47,10 +47,16 @@ if __name__ == '__main__':
     exact_match = []
     with open(args.source_file) as fs, open(args.pred_file) as fp:
         grades = []
+        c = 0
         for ls, lp in tqdm(zip(fs, fp), total=count_lines(args.source_file)):
             eg = json.loads(ls)
             ep = json.loads(lp)
+            if not eg.get("is_real", False):
+                continue
+            c += 1
+
             qg = Query.from_dict(eg['sql'], ordered=args.ordered)
+
             gold = engine.execute_query(eg['table_id'], qg, lower=True)
             pred = ep.get('error', None)
             qp = None
@@ -61,7 +67,22 @@ if __name__ == '__main__':
                 except Exception as e:
                     pred = repr(e)
             correct = pred == gold
+            if not correct:
+                print(pred)
+                print(gold)
+                print(ep["query"])
+                print(eg["table_id"])
+                print(eg["question"])
+                print("-"*100)
             match = qp == qg
+
+            # print(eg.get("is_real", False))
+            # print(ep["nlu"])
+            # print(ep["sql"])
+            # print(eg["sql"])
+            # print(correct)
+            # print(match)
+            # print("-"*100)
             grades.append(correct)
             exact_match.append(match)
 
@@ -69,5 +90,6 @@ if __name__ == '__main__':
             'ex_accuracy': sum(grades) / len(grades),
             'lf_accuracy': sum(exact_match) / len(exact_match),
             }, indent=2))
+        print(c)
 
 
