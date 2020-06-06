@@ -5,30 +5,31 @@ from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 import os
 import records
 import ujson as json
-import corenlp
+from stanza.nlp.corenlp import CoreNLPClient
 import os
 
-os.environ["CORENLP_HOME"] = './models/stanford-corenlp-4.0.0'
 
-client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
+
+os.environ["CORENLP_HOME"] = './models/stanford-corenlp-full-2018-02-27'
+
+client = CoreNLPClient(default_annotators='ssplit,tokenize'.split(','))
 from tqdm import tqdm
 import copy
 from wikisql.lib.common import count_lines, detokenize
 from wikisql.lib.query import Query
 
 
-client = None
-
-
 def annotate(sentence, lower=True):
+    sentence = sentence.replace("-", "AAARRRAAARRR")
+    sentence = sentence.replace("/", "BBBRRRAAARRR")
     global client
     if client is None:
-        client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
+        client = CoreNLPClient(default_annotators='ssplit,tokenize'.split(','))
     words, gloss, after = [], [], []
     for s in client.annotate(sentence).sentence:
         for t in s.token:
             words.append(t.word)
-            gloss.append(t.originalText)
+            gloss.append(t.originalText.replace("AAARRRAAARRR", "-").replace("BBBRRRAAARRR", "/"))
             after.append(t.after)
     if lower:
         words = [w.lower() for w in words]
@@ -129,7 +130,7 @@ def annotate_example_ws(example, table):
     try:
         wvi1_corenlp = check_wv_tok_in_nlu_tok(wv_ann1, ann['question_tok'])
         ann['wvi_corenlp'] = wvi1_corenlp
-    except:
+    except Exception as e:
         ann['wvi_corenlp'] = None
         ann['tok_error'] = 'SQuAD style st, ed are not found under CoreNLP.'
 
@@ -160,7 +161,7 @@ if __name__ == '__main__':
     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument('--din', default='./data/WikiSQL-1.1/data', help='data directory')
     parser.add_argument('--dout', default='./data/wikisql_tok', help='output directory')
-    parser.add_argument('--split', default='train,dev,test', help='comma=separated list of splits to process')
+    parser.add_argument('--split', default='train,dev', help='comma=separated list of splits to process')
     args = parser.parse_args()
 
     answer_toy = not True
@@ -192,6 +193,8 @@ if __name__ == '__main__':
                 d = json.loads(line)
                 # a = annotate_example(d, tables[d['table_id']])
                 a = annotate_example_ws(d, tables[d['table_id']])
+                if a["wvi_corenlp"] is None:
+                    continue
                 fo.write(json.dumps(a) + '\n')
                 n_written += 1
 
