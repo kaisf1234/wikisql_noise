@@ -723,6 +723,10 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
         # The mask has 1 for real tokens and 0 for padding tokens. Only real
         # tokens are attended to.
         input_mask1 = [1] * len(input_ids1)
+        if len(input_ids1) > max_seq_length:
+            input_ids1 = input_ids1[:max_seq_length]
+            input_mask1 = input_mask1[:max_seq_length]
+            segment_ids1 = segment_ids1[:max_seq_length]
 
         # 3. Zero-pad up to the sequence length.
         while len(input_ids1) < max_seq_length:
