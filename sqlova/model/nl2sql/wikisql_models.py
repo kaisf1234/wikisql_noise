@@ -248,6 +248,8 @@ class Seq2SQL_v1(nn.Module):
                 # test execution
                 # print(nlu[b])
                 # print(tb[b]['id'], tb[b]['types'], pr_sc[b], pr_sa[b], [conds11])
+                print("Executing : ")
+                print("Select ")
                 pr_ans = engine.execute(tb[b]['id'], pr_sc[b], pr_sa[b], [conds11])
                 if bool(pr_ans):
                     # pr_ans is not empty!

@@ -24,7 +24,7 @@ def annotate(sentence, lower=True):
     sentence = sentence.replace("/", "BBBRRRAAARRR")
     global client
     if client is None:
-        client = CoreNLPClient(default_annotators='ssplit,tokenize'.split(','))
+        client = CoreNLPClient(default_annotators='tokenize'.split(','))
     words, gloss, after = [], [], []
     for s in client.annotate(sentence).sentence:
         for t in s.token:

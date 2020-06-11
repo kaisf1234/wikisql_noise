@@ -775,7 +775,8 @@ if __name__ == '__main__':
         while True:
             nlu1 = input("Enter query to be executed : ")
             table_name = input("Enter table name : ")
-
+            if table_name == "":
+                table_name = "2-12601141-999"
             pr_sql_i, pr_ans = infer(
                 nlu1,
                 table_name, data_table, path_db, db_name,

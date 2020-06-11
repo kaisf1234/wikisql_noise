@@ -52,7 +52,7 @@ if __name__ == '__main__':
             eg = json.loads(ls)
             ep = json.loads(lp)
             if not eg.get("is_real", False):
-                continue
+                pass
             c += 1
 
             qg = Query.from_dict(eg['sql'], ordered=args.ordered)
@@ -74,6 +74,7 @@ if __name__ == '__main__':
                 print(eg["table_id"])
                 print(eg["question"])
                 print("-"*100)
+                pass
             match = qp == qg
 
             # print(eg.get("is_real", False))

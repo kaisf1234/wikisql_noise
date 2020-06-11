@@ -139,10 +139,10 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
 def get_opt(model, model_bert, fine_tune, pre_trained_path=None):
     if fine_tune:
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
-                               lr=args.lr, weight_decay=0)
+                               lr=args.lr, weight_decay=3e-5)
 
         opt_bert = torch.optim.Adam(filter(lambda p: p.requires_grad, model_bert.parameters()),
-                                    lr=args.lr_bert, weight_decay=0)
+                                    lr=args.lr_bert, weight_decay=3e-5)
     else:
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
                                lr=args.lr, weight_decay=0)

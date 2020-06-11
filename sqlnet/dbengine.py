@@ -29,7 +29,10 @@ class DBEngine:
         table_info = self.db.query('SELECT sql from sqlite_master WHERE tbl_name = :name', name=table_id).all()[0].sql.replace('\n','')
         schema_str = schema_re.findall(table_info)[0]
         schema = {}
-        for tup in schema_str.split(', '):
+        split = schema_str.split(', ')
+        if len(split) == 1:
+            split = schema_str.split(',\t')
+        for tup in split:
             c, t = tup.split()
             schema[c] = t
         select = 'col{}'.format(select_index)
@@ -61,6 +64,8 @@ class DBEngine:
             where_str = 'WHERE ' + ' AND '.join(where_clause)
         query = 'SELECT {} AS result FROM {} {}'.format(select, table_id, where_str)
         #print query
+        print("Executing - ", query, "With params - ", where_map)
+
         out = self.db.query(query, **where_map)
 
 
