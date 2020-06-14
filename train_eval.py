@@ -609,12 +609,14 @@ def infer(nlu1,
                                                                                     beam_size=beam_size)
 
     # sort and generate
+
     pr_wc, pr_wo, pr_wv, pr_sql_i = sort_and_generate_pr_w(pr_sql_i)
     if len(pr_sql_i) != 1:
         raise EnvironmentError
     pr_sql_q1 = generate_sql_q(pr_sql_i, [tb1])
     pr_sql_q = [pr_sql_q1]
-
+    print("PR" , pr_sql_i)
+    print("Prob", pr_wn)
     try:
         pr_ans, _ = engine.execute_return_query(tb[0]['id'], pr_sc[0], pr_sa[0], pr_sql_i[0]['conds'])
     except:
@@ -680,8 +682,8 @@ if __name__ == '__main__':
     else:
         # To start from the pre-trained models, un-comment following lines.
         print("Loading pretrained models...")
-        path_model_bert = './models/model_bert_best.pt'
-        path_model = './models/model_best.pt'
+        path_model_bert = './models/model_bert_best6.pt'
+        path_model = './models/model_best6.pt'
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 
@@ -782,5 +784,5 @@ if __name__ == '__main__':
                 table_name, data_table, path_db, db_name,
                 model, model_bert, bert_config, max_seq_length=args.max_seq_length,
                 num_target_layers=args.num_target_layers,
-                beam_size=1, show_table=False, show_answer_only=False
+                beam_size=4, show_table=False, show_answer_only=False
             )

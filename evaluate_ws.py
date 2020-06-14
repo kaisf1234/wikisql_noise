@@ -43,6 +43,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
     args.ordered=ordered
 
+    all_meta = {}
+    fm = open(path_wikisql0+"/"+"dev.tables.jsonl")
+    for line in fm:
+        meta = json.loads(line)
+        all_meta[meta["id"]] = meta
+    fm.close()
     engine = DBEngine(args.db_file)
     exact_match = []
     with open(args.source_file) as fs, open(args.pred_file) as fp:
@@ -51,8 +57,10 @@ if __name__ == '__main__':
         for ls, lp in tqdm(zip(fs, fp), total=count_lines(args.source_file)):
             eg = json.loads(ls)
             ep = json.loads(lp)
-            if not eg.get("is_real", False):
-                pass
+            if eg["question"] != ep["nlu"]:
+                print("DIFF")
+            if eg["is_real"] == False:
+                continue
             c += 1
 
             qg = Query.from_dict(eg['sql'], ordered=args.ordered)
@@ -68,12 +76,15 @@ if __name__ == '__main__':
                     pred = repr(e)
             correct = pred == gold
             if not correct:
-                print(pred)
-                print(gold)
-                print(ep["query"])
-                print(eg["table_id"])
-                print(eg["question"])
-                print("-"*100)
+                # print("PRED: ", pred)
+                # print("GOLD: ", gold)
+                # print("PRED SQL: ", ep["query"])
+                # print("GOLD SQL: ", eg["sql"])
+                # print("TABLE ID: ", eg["table_id"])
+                # print("QUERY: ", eg["question"])
+                # print("HEADER: ", all_meta[eg["table_id"]]["header"])
+                # print("REAL: ", eg["is_real"])
+                # print("-"*100)
                 pass
             match = qp == qg
 

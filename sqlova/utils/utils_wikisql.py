@@ -115,13 +115,13 @@ def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False):
     tid1 = t1['table_id']
     sql_i1 = t1['sql']
     sql_q1 = t1['query']
-    if no_sql_t:
+    if no_sql_t: # true
         sql_t1 = None
     else:
         sql_t1 = t1['query_tok']
 
     tb1 = tables[tid1]
-    if not no_hs_t:
+    if not no_hs_t: # True
         hs_t1 = tb1['header_tok']
     else:
         hs_t1 = []
@@ -797,9 +797,12 @@ def get_wemb_h(i_hds, l_hpu, l_hs, hS, num_hidden_layers, all_encoder_layer, num
     num_of_all_hds = sum(l_hs)
     wemb_h = torch.zeros([num_of_all_hds, l_hpu_max, hS * num_out_layers_h]).to(device)
     b_pu = -1
+    # For all elements in batch
     for b, i_hds1 in enumerate(i_hds):
+        # For all headers for one example
         for b1, i_hds11 in enumerate(i_hds1):
             b_pu += 1
+            # Concat the last n layers and give that as output
             for i_nolh in range(num_out_layers_h):
                 i_layer = num_hidden_layers - 1 - i_nolh
                 st = i_nolh * hS
@@ -825,8 +828,10 @@ def get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length
     # i_hds: start and end indices of headers
 
     # get the wemb
+    # Concats embedding from num_out_layers_n into one vector for each token in the input query
     wemb_n = get_wemb_n(i_nlu, l_n, bert_config.hidden_size, bert_config.num_hidden_layers, all_encoder_layer,
                         num_out_layers_n)
+    # Only max is needed from l_hpu to create array of that size. (Max size of one header across all batches)
 
     wemb_h = get_wemb_h(i_hds, l_hpu, l_hs, bert_config.hidden_size, bert_config.num_hidden_layers, all_encoder_layer,
                         num_out_layers_h)
