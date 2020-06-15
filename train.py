@@ -13,7 +13,7 @@ import torch
 import torch.nn.functional as F
 import random as python_random
 # import torchvision.datasets as dsets
-
+import zipfile
 # BERT
 import bert.tokenization as tokenization
 # from bert.modeling import BertConfig, BertModel
@@ -33,6 +33,8 @@ def construct_hyper_param(parser):
 
     parser.add_argument("--trained", default=False, action='store_true')
     parser.add_argument("--key", type=str, help="run_key")
+
+    parser.add_argument("--data_path", type=str, help="contains all tok and data files and such")
 
     parser.add_argument('--tepoch', default=200, type=int)
     parser.add_argument("--bS", default=32, type=int,
@@ -660,8 +662,21 @@ if __name__ == '__main__':
     args = construct_hyper_param(parser)
 
     ## 2. Paths
-    path_h = './data/WikiSQL-1.1/data'  # '/home/wonseok'
-    path_wikisql = './data/WikiSQL-1.1/data'  # os.path.join(path_h, 'data', 'wikisql_tok')
+    path_main = args.data_path
+    if path_main == '':
+        path_main = './data/WikiSQL-1.1/data'
+
+    print("USING : ", path_main)
+
+    if not os.path.exists(path_main+os.path.sep+"train.tables.jsonl"):
+        print("tables not found, extracting, hopefully zip will be found")
+        with zipfile.ZipFile(path_main+os.path.sep+"train.tables.jsonl.zip", 'r') as zip_ref:
+            zip_ref.extractall(path_main+os.path.sep)
+
+
+
+    path_h = path_main  # '/home/wonseok'
+    path_wikisql = path_main  # os.path.join(path_h, 'data', 'wikisql_tok')
     BERT_PT_PATH = path_wikisql
 
     path_save_for_evaluation = '/content/drive/My Drive/sf'
