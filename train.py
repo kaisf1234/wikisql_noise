@@ -32,6 +32,7 @@ def construct_hyper_param(parser):
     parser.add_argument('--infer_loop', default=False, action='store_true')
 
     parser.add_argument("--trained", default=False, action='store_true')
+    parser.add_argument("--key", type=str, help="run_key")
 
     parser.add_argument('--tepoch', default=200, type=int)
     parser.add_argument("--bS", default=32, type=int,
@@ -90,6 +91,8 @@ def construct_hyper_param(parser):
                          'cL': 'cased_L-24_H-1024_A-16',
                          'mcS': 'multi_cased_L-12_H-768_A-12'}
     args.bert_type = map_bert_type_abb[args.bert_type_abb]
+
+
     print(f"BERT-type: {args.bert_type}")
 
     # Decide whether to use lower_case.
@@ -109,7 +112,7 @@ def construct_hyper_param(parser):
     # args.toy_model = not torch.cuda.is_available()
     args.toy_model = False
     args.toy_size = 12
-
+    args.run_key = args.key + str(args.seed)
     return args
 
 
@@ -680,8 +683,8 @@ if __name__ == '__main__':
     else:
         # To start from the pre-trained models, un-comment following lines.
         print("Loading pretrained models...")
-        path_model_bert = '/content/drive/My Drive/sf/model_bert_best_orig.pt'
-        path_model = '/content/drive/My Drive/sf/model_best_orig.pt'
+        path_model_bert = '/content/drive/My Drive/sf/' + args.run_key + 'model_bert_best_orig.pt'
+        path_model = '/content/drive/My Drive/sf/'+ args.run_key +'model_best_orig.pt'
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 
@@ -742,13 +745,26 @@ if __name__ == '__main__':
                 epoch_best = epoch
                 # save best model
                 state = {'model': model.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', 'model_best_orig.pt'))
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key +'model_best_orig.pt'))
 
                 state = {'model_bert': model_bert.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', 'model_bert_best_orig.pt'))
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key +'model_bert_best_orig.pt'))
 
-                torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf', 'opt_best_orig.pt'))
-                torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', 'opt_bert_best_orig.pt'))
+                torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf',  args.run_key +'opt_best_orig.pt'))
+                torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', args.run_key + 'opt_bert_best_orig.pt'))
+
+                #----------------------------------------
+
+                state = {'model': model.state_dict()}
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key + str(epoch) + 'model_best_orig.pt'))
+
+                state = {'model_bert': model_bert.state_dict()}
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key + str(epoch) + 'model_bert_best_orig.pt'))
+
+                torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf', args.run_key +str(epoch) + 'opt_best_orig.pt'))
+                torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', args.run_key + str(epoch) + 'opt_bert_best_orig.pt'))
+
+
 
             print(f" Best Dev lx acc: {acc_lx_t_best} at epoch: {epoch_best}")
 
