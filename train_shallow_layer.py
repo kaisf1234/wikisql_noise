@@ -11,8 +11,8 @@ import torch.nn.functional as F
 
 # BERT
 import bert.tokenization as tokenization
-from bert.modeling import BertConfig, BertModel
-
+# from bert.modeling import BertConfig, BertModel
+from transformers import BertModel, BertTokenizer, BertConfig
 from sqlova.utils.utils_wikisql import *
 from sqlova.model.nl2sql.wikisql_models import *
 from sqlnet.dbengine import DBEngine
@@ -130,18 +130,14 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
     vocab_file = os.path.join(BERT_PT_PATH, f'vocab_{bert_type}.txt')
     init_checkpoint = os.path.join(BERT_PT_PATH, f'pytorch_model_{bert_type}.bin')
 
+    bert_config = BertConfig.from_pretrained("bert-base-uncased", output_hidden_states=True)
 
-
-    bert_config = BertConfig.from_json_file(bert_config_file)
-    tokenizer = tokenization.FullTokenizer(
-        vocab_file=vocab_file, do_lower_case=do_lower_case)
-    bert_config.print_status()
-
-    model_bert = BertModel(bert_config)
+    model_bert = BertModel.from_pretrained("bert-base-uncased", config=bert_config)
+    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
     if no_pretraining:
         pass
     else:
-        model_bert.load_state_dict(torch.load(init_checkpoint, map_location='cpu'))
+        # model_bert.load_state_dict(torch.load(init_checkpoint, map_location='cpu'))
         print("Load pre-trained parameters.")
     model_bert.to(device)
 
@@ -241,9 +237,13 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
 
     # Engine for SQL querying.
     engine = DBEngine(os.path.join(path_db, f"{dset_name}.db"))
-
+    start = time.time()
+    l = len(train_loader)
     for iB, t in enumerate(train_loader):
         cnt += len(t)
+        if iB % 100 == 99:
+            print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB), " ave loss ",
+                  ave_loss / cnt)
 
         if cnt < st_pos:
             continue
@@ -339,7 +339,7 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
 
         # Execution accuracy test.
         if not aug:
-            cnt_x1_list, g_ans, pr_ans = get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
+            cnt_x1_list, g_ans, pr_ans = cnt_lx1_list, ['N/A (data augmented'] * len(t), ['N/A (data augmented'] * len(t) #get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
         else:
             cnt_x1_list = [0] * len(t)
             g_ans = ['N/A (data augmented'] * len(t)
@@ -444,8 +444,11 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
 
     engine = DBEngine(os.path.join(path_db, f"{dset_name}.db"))
     results = []
+    start = time.time()
+    l = len(data_loader)
     for iB, t in enumerate(data_loader):
-
+        if iB % 100 == 99:
+            print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB))
         cnt += len(t)
         if cnt < st_pos:
             continue
@@ -558,12 +561,8 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
         # lx stands for logical form accuracy
 
         # Execution accuracy test.
-        if not aug:
-            cnt_x1_list, g_ans, pr_ans = get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
-        else:
-            cnt_x1_list = [0] * len(t)
-            g_ans = ['N/A (data augmented'] * len(t)
-            pr_ans = ['N/A (data augmented'] * len(t)
+        cnt_x1_list, g_ans, pr_ans = cnt_lx1_list, ['N/A (data augmented'] * len(t), ['N/A (data augmented'] * len(t)  # get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
+
         # stat
         ave_loss += loss.item()
 
@@ -627,11 +626,11 @@ if __name__ == '__main__':
     args = construct_hyper_param(parser)
 
     ## 2. Paths
-    path_h = '/home/wonseok'
-    path_wikisql = os.path.join(path_h, 'data', 'wikisql_tok')
+    path_h = './data/WikiSQL-1.1/data'  # '/home/wonseok'
+    path_wikisql = './data/WikiSQL-1.1/data'  # os.path.join(path_h, 'data', 'wikisql_tok')
     BERT_PT_PATH = path_wikisql
 
-    path_save_for_evaluation = './'
+    path_save_for_evaluation = '/content/drive/My Drive/sf'
 
     ## 3. Load data
     train_data, train_table, dev_data, dev_table, train_loader, dev_loader = get_data(path_wikisql, args)
@@ -698,10 +697,14 @@ if __name__ == '__main__':
             acc_lx_t_best = acc_lx_t
             epoch_best = epoch
             # save best model
+            key = 'shallow' + str(epoch)
             state = {'model': model.state_dict()}
-            torch.save(state, os.path.join('.', 'model_best.pt'))
+            torch.save(state, os.path.join('/content/drive/My Drive/sf', key+'model_best.pt'))
 
             state = {'model_bert': model_bert.state_dict()}
-            torch.save(state, os.path.join('.', 'model_bert_best.pt'))
+            torch.save(state, os.path.join('/content/drive/My Drive/sf', key+'model_bert_best.pt'))
+
+            torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf', key+'opt_best.pt'))
+            torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', key+'opt_bert_best.pt'))
 
         print(f" Best Dev lx acc: {acc_lx_t_best} at epoch: {epoch_best}")

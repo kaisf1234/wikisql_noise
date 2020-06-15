@@ -748,7 +748,7 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
     all_segment_ids = torch.tensor(segment_ids, dtype=torch.long).to(device)
 
     # 4. Generate BERT output.
-    all_encoder_layer, pooled_output = model_bert(all_input_ids, all_segment_ids, all_input_mask)
+    _, pooled_output, all_encoder_layer = model_bert(all_input_ids, all_segment_ids, all_input_mask)
 
     # 5. generate l_hpu from i_hds
     l_hpu = gen_l_hpu(i_hds)

@@ -16,8 +16,8 @@ import random as python_random
 
 # BERT
 import bert.tokenization as tokenization
-from bert.modeling import BertConfig, BertModel
-
+# from bert.modeling import BertConfig, BertModel
+from transformers import BertModel, BertTokenizer, BertConfig
 from sqlova.utils.utils_wikisql import *
 from sqlova.utils.utils import load_jsonl
 from sqlova.model.nl2sql.wikisql_models import *
@@ -118,23 +118,25 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
     vocab_file = os.path.join(BERT_PT_PATH, f'vocab_{bert_type}.txt')
     init_checkpoint = os.path.join(BERT_PT_PATH, f'pytorch_model_{bert_type}.bin')
 
-    bert_config = BertConfig.from_json_file(bert_config_file)
-    tokenizer = tokenization.FullTokenizer(
-        vocab_file=vocab_file, do_lower_case=do_lower_case)
-    bert_config.print_status()
+    # bert_config = BertConfig.from_json_file(bert_config_file)
+    # tokenizer = tokenization.FullTokenizer(
+    #     vocab_file=vocab_file, do_lower_case=do_lower_case)
+    # bert_config.print_status()
+    bert_config = BertConfig.from_pretrained("bert-base-uncased", output_hidden_states=True)
 
-    model_bert = BertModel(bert_config)
+    model_bert = BertModel.from_pretrained("bert-base-uncased", config=bert_config)
+    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
     if no_pretraining:
         pass
     else:
-        model_bert.load_state_dict(torch.load(init_checkpoint, map_location='cpu'))
+        # model_bert.load_state_dict(torch.load(init_checkpoint, map_location='cpu'))
         print("Load pre-trained parameters.")
     model_bert.to(device)
 
     return model_bert, tokenizer, bert_config
 
 
-def get_opt(model, model_bert, fine_tune):
+def get_opt(model, model_bert, fine_tune, pre_trained_path=None):
     if fine_tune:
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
                                lr=args.lr, weight_decay=0)
@@ -145,7 +147,11 @@ def get_opt(model, model_bert, fine_tune):
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
                                lr=args.lr, weight_decay=0)
         opt_bert = None
-
+    if pre_trained_path:
+        print("Loading opt...", pre_trained_path)
+        opt.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_best_orig.pt"])))
+        if opt_bert is not None:
+            opt_bert.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_bert_best_orig.pt"])))
     return opt, opt_bert
 
 
@@ -225,10 +231,13 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
 
     # Engine for SQL querying.
     engine = DBEngine(os.path.join(path_db, f"{dset_name}.db"))
-
+    start = time.time()
+    l = len(train_loader)
     for iB, t in enumerate(train_loader):
+        if iB % 100 == 99:
+            print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB), " ave loss ",
+                  ave_loss / cnt)
         cnt += len(t)
-
         if cnt < st_pos:
             continue
         # Get fields
@@ -316,7 +325,7 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         # lx stands for logical form accuracy
 
         # Execution accuracy test.
-        cnt_x1_list, g_ans, pr_ans = get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
+        cnt_x1_list, g_ans, pr_ans = cnt_lx1_list, [], [],  # get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
 
         # statistics
         ave_loss += loss.item()
@@ -419,8 +428,11 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
 
     engine = DBEngine(os.path.join(path_db, f"{dset_name}.db"))
     results = []
+    start = time.time()
+    l = len(data_loader)
     for iB, t in enumerate(data_loader):
-
+        if iB % 100 == 99:
+            print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB))
         cnt += len(t)
         if cnt < st_pos:
             continue
@@ -506,7 +518,7 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
         # lx stands for logical form accuracy
 
         # Execution accuracy test.
-        cnt_x1_list, g_ans, pr_ans = get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
+        cnt_x1_list, g_ans, pr_ans = cnt_lx1_list, [], []  # get_cnt_x_list(engine, tb, g_sc, g_sa, sql_i, pr_sc, pr_sa, pr_sql_i)
 
         # stat
         ave_loss += loss.item()
@@ -579,7 +591,7 @@ def infer(nlu1,
     nlu_t1 = tokenize_corenlp_direct_version(client, nlu1)
     nlu_t = [nlu_t1]
 
-    tb1 = data_table[0]
+    tb1 = [x for x in data_table if x["id"] == table_name][0]
     hds1 = tb1['header']
     tb = [tb1]
     hds = [hds1]
@@ -645,11 +657,11 @@ if __name__ == '__main__':
     args = construct_hyper_param(parser)
 
     ## 2. Paths
-    path_h = './data_and_model'  # '/home/wonseok'
-    path_wikisql = './data_and_model'  # os.path.join(path_h, 'data', 'wikisql_tok')
+    path_h = './data/WikiSQL-1.1/data'  # '/home/wonseok'
+    path_wikisql = './data/WikiSQL-1.1/data'  # os.path.join(path_h, 'data', 'wikisql_tok')
     BERT_PT_PATH = path_wikisql
 
-    path_save_for_evaluation = './'
+    path_save_for_evaluation = '/content/drive/My Drive/sf'
 
     ## 3. Load data
 
@@ -667,20 +679,24 @@ if __name__ == '__main__':
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH)
     else:
         # To start from the pre-trained models, un-comment following lines.
-        path_model_bert = './data_and_model/model_bert_best.pt'
-        path_model = './data_and_model/model_best.pt'
+        print("Loading pretrained models...")
+        path_model_bert = '/content/drive/My Drive/sf/model_bert_best_orig.pt'
+        path_model = '/content/drive/My Drive/sf/model_best_orig.pt'
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 
     ## 5. Get optimizers
     if args.do_train:
-        opt, opt_bert = get_opt(model, model_bert, args.fine_tune)
+        pre_trained_path = None
+        if args.trained:
+            pre_trained_path = "/content/drive/My Drive/sf"
+        opt, opt_bert = get_opt(model, model_bert, args.fine_tune, pre_trained_path=pre_trained_path)
 
         ## 6. Train
         acc_lx_t_best = -1
         epoch_best = -1
         for epoch in range(args.tepoch):
-            # train
+            # trainBERT-type
             acc_train, aux_out_train = train(train_loader,
                                              train_table,
                                              model,
@@ -711,9 +727,10 @@ if __name__ == '__main__':
                                                       st_pos=0,
                                                       dset_name='dev', EG=args.EG)
 
-            print_result(epoch, acc_train, 'train')
+            # print_result(epoch, acc_train, 'train')
             print_result(epoch, acc_dev, 'dev')
-
+            acc_lx_t = acc_dev[-2]
+            print(acc_lx_t)
             # save results for the official evaluation
             save_for_evaluation(path_save_for_evaluation, results_dev, 'dev')
 
@@ -725,10 +742,13 @@ if __name__ == '__main__':
                 epoch_best = epoch
                 # save best model
                 state = {'model': model.state_dict()}
-                torch.save(state, os.path.join('.', 'model_best.pt'))
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', 'model_best_orig.pt'))
 
                 state = {'model_bert': model_bert.state_dict()}
-                torch.save(state, os.path.join('.', 'model_bert_best.pt'))
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', 'model_bert_best_orig.pt'))
+
+                torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf', 'opt_best_orig.pt'))
+                torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', 'opt_bert_best_orig.pt'))
 
             print(f" Best Dev lx acc: {acc_lx_t_best} at epoch: {epoch_best}")
 
@@ -742,18 +762,20 @@ if __name__ == '__main__':
         # client = CoreNLPClient(server='http://localhost:9000', default_annotators='ssplit,tokenize'.split(','))
 
         import corenlp
+        import corenlp
+        import os
 
+        os.environ["CORENLP_HOME"] = './models/stanford-corenlp-4.0.0'
         client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
 
-        nlu1 = "Which company have more than 100 employees?"
-        path_db = './data_and_model'
-        db_name = 'ctable'
-        data_table = load_jsonl('./data_and_model/ctable.tables.jsonl')
-        table_name = 'ftable1'
-        n_Q = 100000 if args.infer_loop else 1
-        for i in range(n_Q):
-            if n_Q > 1:
-                nlu1 = input('Type question: ')
+
+        path_db = './data/WikiSQL-1.1/data'
+        db_name = 'dev'
+        data_table = load_jsonl('./data/WikiSQL-1.1/data/dev.tables.jsonl')
+        while True:
+            nlu1 = input("Enter query to be executed : ")
+            table_name = input("Enter table name : ")
+
             pr_sql_i, pr_ans = infer(
                 nlu1,
                 table_name, data_table, path_db, db_name,
