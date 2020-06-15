@@ -130,10 +130,13 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
     vocab_file = os.path.join(BERT_PT_PATH, f'vocab_{bert_type}.txt')
     init_checkpoint = os.path.join(BERT_PT_PATH, f'pytorch_model_{bert_type}.bin')
 
-    bert_config = BertConfig.from_pretrained("bert-base-uncased", output_hidden_states=True)
+    bert_config = BertConfig.from_pretrained("bert-large-uncased", output_hidden_states=True)
 
-    model_bert = BertModel.from_pretrained("bert-base-uncased", config=bert_config)
-    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+    model_bert = BertModel.from_pretrained("bert-large-uncased", config=bert_config)
+
+    model_bert.load_state_dict(torch.load("./model_bert_shallow_layer.pt"))
+
+    tokenizer = BertTokenizer.from_pretrained("bert-large-uncased")
     if no_pretraining:
         pass
     else:
@@ -648,22 +651,22 @@ if __name__ == '__main__':
     epoch_best = -1
     for epoch in range(args.tepoch):
         # train
-        acc_train, aux_out_train = train(train_loader,
-                                         train_table,
-                                         model,
-                                         model_bert,
-                                         opt,
-                                         bert_config,
-                                         tokenizer,
-                                         args.max_seq_length,
-                                         args.num_target_layers,
-                                         args.accumulate_gradients,
-                                         opt_bert=opt_bert,
-                                         st_pos=0,
-                                         path_db=path_wikisql,
-                                         dset_name='train',
-                                         col_pool_type=args.col_pool_type,
-                                         aug=args.aug)
+        # acc_train, aux_out_train = train(train_loader,
+        #                                  train_table,
+        #                                  model,
+        #                                  model_bert,
+        #                                  opt,
+        #                                  bert_config,
+        #                                  tokenizer,
+        #                                  args.max_seq_length,
+        #                                  args.num_target_layers,
+        #                                  args.accumulate_gradients,
+        #                                  opt_bert=opt_bert,
+        #                                  st_pos=0,
+        #                                  path_db=path_wikisql,
+        #                                  dset_name='train',
+        #                                  col_pool_type=args.col_pool_type,
+        #                                  aug=args.aug)
 
         # check DEV
         with torch.no_grad():
@@ -684,7 +687,7 @@ if __name__ == '__main__':
                                                 aug=args.aug)
 
 
-        print_result(epoch, acc_train, 'train')
+        # print_result(epoch, acc_train, 'train')
         print_result(epoch, acc_dev, 'dev')
 
         # save results for the offical evaluation

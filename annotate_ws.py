@@ -17,14 +17,16 @@ client = None
 
 
 def annotate(sentence, lower=True):
+    sentence = sentence.replace("-", "AAARRRAAARRR")
+    sentence = sentence.replace("/", "BBBRRRAAARRR")
     global client
     if client is None:
-        client = CoreNLPClient(default_annotators='ssplit,tokenize'.split(','))
+        client = CoreNLPClient(default_annotators='tokenize'.split(','))
     words, gloss, after = [], [], []
-    for s in client.annotate(sentence):
-        for t in s:
+    for s in client.annotate(sentence).sentence:
+        for t in s.token:
             words.append(t.word)
-            gloss.append(t.originalText)
+            gloss.append(t.originalText.replace("AAARRRAAARRR", "-").replace("BBBRRRAAARRR", "/"))
             after.append(t.after)
     if lower:
         words = [w.lower() for w in words]
@@ -125,7 +127,7 @@ def annotate_example_ws(example, table):
     try:
         wvi1_corenlp = check_wv_tok_in_nlu_tok(wv_ann1, ann['question_tok'])
         ann['wvi_corenlp'] = wvi1_corenlp
-    except:
+    except Exception as e:
         ann['wvi_corenlp'] = None
         ann['tok_error'] = 'SQuAD style st, ed are not found under CoreNLP.'
 
@@ -188,6 +190,8 @@ if __name__ == '__main__':
                 d = json.loads(line)
                 # a = annotate_example(d, tables[d['table_id']])
                 a = annotate_example_ws(d, tables[d['table_id']])
+                if a["wvi_corenlp"] is None:
+                    continue
                 fo.write(json.dumps(a) + '\n')
                 n_written += 1
 

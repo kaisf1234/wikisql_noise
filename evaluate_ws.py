@@ -22,13 +22,15 @@ if __name__ == '__main__':
 
     # Set path
     path_h = './' # change to your home folder
-    path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
-    path_save_analysis = './results'
+    # path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
+    path_save_analysis = './results/'
 
     # Path for evaluation results.
     path_wikisql0 = os.path.join(path_h,'data/WikiSQL-1.1/data')
     path_source = os.path.join(path_wikisql0, f'{mode}.jsonl')
     path_db = os.path.join(path_wikisql0, f'{mode}.db')
+    print(path_db)
+    print(os.getcwd())
     path_pred = os.path.join(path_save_analysis, f'results_{mode}.jsonl')
 
 
@@ -45,10 +47,16 @@ if __name__ == '__main__':
     exact_match = []
     with open(args.source_file) as fs, open(args.pred_file) as fp:
         grades = []
+        c = 0
         for ls, lp in tqdm(zip(fs, fp), total=count_lines(args.source_file)):
             eg = json.loads(ls)
             ep = json.loads(lp)
+            if not eg.get("is_real", False):
+                pass
+            c += 1
+
             qg = Query.from_dict(eg['sql'], ordered=args.ordered)
+
             gold = engine.execute_query(eg['table_id'], qg, lower=True)
             pred = ep.get('error', None)
             qp = None
@@ -67,5 +75,6 @@ if __name__ == '__main__':
             'ex_accuracy': sum(grades) / len(grades),
             'lf_accuracy': sum(exact_match) / len(exact_match),
             }, indent=2))
+        print(c)
 
 

@@ -31,9 +31,13 @@
 # Results will be in a file called results_<split>.jsonl in the result_path.
 
 import argparse, os
+
+import torch as torch
+
 from sqlnet.dbengine import DBEngine
 from sqlova.utils.utils_wikisql import *
 from train import construct_hyper_param, get_models
+import time
 
 # This is a stripped down version of the test() method in train.py - identical, except:
 #   - does not attempt to measure accuracy and indeed does not expect the data to be labelled.
@@ -49,9 +53,9 @@ def predict(data_loader, data_table, model, model_bert, bert_config, tokenizer,
 
     engine = DBEngine(os.path.join(path_db, f"{dset_name}.db"))
     results = []
+    start = time.time()
+    print("Starting predict")
     for iB, t in enumerate(data_loader):
-        if iB % 1 == 0:
-            print("Done with - ", iB, " out of ", len(data_loader))
         nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, data_table, no_hs_t=True, no_sql_t=True)
         g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
         g_wvi_corenlp = get_g_wvi_corenlp(t)
@@ -88,7 +92,10 @@ def predict(data_loader, data_table, model, model_bert, bert_config, tokenizer,
             results1["nlu"] = nlu[b]
             results1["sql"] = pr_sql_q1
             results.append(results1)
-
+        if iB % 10 == 0:
+            print("Done with - ", iB, " out of ", len(data_loader))
+    end = time.time()
+    print("Time taken for predict : ", end-start)
     return results
 
 ## Set up hyper parameters and paths
