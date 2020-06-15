@@ -13,7 +13,7 @@ import torch
 import torchvision.datasets as dsets
 import torch.nn as nn
 import torch.nn.functional as F
-
+from .util_wiki_config import config
 
 from .utils import generate_perm_inv
 from .utils import json_default_type_checker
@@ -126,6 +126,8 @@ def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False):
     else:
         hs_t1 = []
     hs1 = tb1['header']
+    if config["use_types_concat"]:
+        hs1 = [x+" | " + y for x,y in zip(tb1["header"], tb1["types"])]
 
     return nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1
 
