@@ -690,6 +690,7 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
 
     t_to_tt_idx = []
     tt_to_t_idx = []
+    max_length_in_batch = 0
     for b, nlu_t1 in enumerate(nlu_t):
 
         hds1 = hds[b]
@@ -713,32 +714,15 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
 
         l_n.append(len(nlu_tt1))
         #         hds1_all_tok = tokenize_hds1(tokenizer, hds1)
-
-
-
         # [CLS] nlu [SEP] col1 [SEP] col2 [SEP] ...col-n [SEP]
         # 2. Generate BERT inputs & indices.
         tokens1, segment_ids1, i_nlu1, i_hds1 = generate_inputs(tokenizer, nlu_tt1, hds1)
         input_ids1 = tokenizer.convert_tokens_to_ids(tokens1)
-
+        max_length_in_batch = max(max_length_in_batch, len(input_ids1))
         # Input masks
         # The mask has 1 for real tokens and 0 for padding tokens. Only real
         # tokens are attended to.
         input_mask1 = [1] * len(input_ids1)
-        if len(input_ids1) > max_seq_length:
-            input_ids1 = input_ids1[:max_seq_length]
-            input_mask1 = input_mask1[:max_seq_length]
-            segment_ids1 = segment_ids1[:max_seq_length]
-
-        # 3. Zero-pad up to the sequence length.
-        while len(input_ids1) < max_seq_length:
-            input_ids1.append(0)
-            input_mask1.append(0)
-            segment_ids1.append(0)
-
-        assert len(input_ids1) == max_seq_length
-        assert len(input_mask1) == max_seq_length
-        assert len(segment_ids1) == max_seq_length
 
         input_ids.append(input_ids1)
         tokens.append(tokens1)
@@ -747,6 +731,15 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
 
         i_nlu.append(i_nlu1)
         i_hds.append(i_hds1)
+
+    if max_length_in_batch > 512:
+        print("ALERT : Long batch")
+
+    for i in range(len(input_ids)):
+        diff = max_length_in_batch - len(input_ids[i])
+        input_ids[i] = input_ids[i] + [0]*diff
+        input_mask[i] = input_mask[i] + [0]*diff
+        segment_ids[i] = segment_ids[i] + [0]*diff
 
     # Convert to tensor
     all_input_ids = torch.tensor(input_ids, dtype=torch.long).to(device)
