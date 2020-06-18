@@ -10,12 +10,17 @@ from matplotlib.pylab import *
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+from torch.nn.utils.rnn import pad_sequence
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 from sqlova.utils.utils import topk_multi_dim
 from sqlova.utils.utils_wikisql import *
+
+
+def oprint(*args, **kwargs):
+    # print(*args, **kwargs)
+    pass
 
 class Seq2SQL_v1(nn.Module):
     def __init__(self, iS, hS, lS, dr, n_cond_ops, n_agg_ops, old=False):
@@ -40,10 +45,22 @@ class Seq2SQL_v1(nn.Module):
     def forward(self, wemb_n, l_n, wemb_hpu, l_hpu, l_hs,
                 g_sc=None, g_sa=None, g_wn=None, g_wc=None, g_wo=None, g_wvi=None,
                 show_p_sc=False, show_p_sa=False,
-                show_p_wn=False, show_p_wc=False, show_p_wo=False, show_p_wv=False):
+                show_p_wn=False, show_p_wc=False, show_p_wo=False, show_p_wv=False, column_rep_vectors = None):
 
+        if column_rep_vectors is not None:
+            oprint(len(column_rep_vectors))
+            column_rep_vectors = ([torch.Tensor([y for y in x.values()]) for x in column_rep_vectors])
+            # Will be [Bs, l, dim] (l varies)
+            column_rep_vectors = pad_sequence(column_rep_vectors, batch_first = True).to(device)
+            # Will be [Bs, max_l, dim]
+            oprint("col_rep", column_rep_vectors.shape)
+            oprint(column_rep_vectors)
+            oprint(wemb_hpu.shape)
+            oprint(l_hpu)
+            oprint(l_hs)
+            oprint("*"*100)
         # sc
-        s_sc = self.scp(wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_sc=show_p_sc)
+        s_sc = self.scp(wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_sc=show_p_sc, column_rep_vectors = column_rep_vectors)
 
         if g_sc:
             pr_sc = g_sc
@@ -68,7 +85,7 @@ class Seq2SQL_v1(nn.Module):
             pr_wn = pred_wn(s_wn)
 
         # wc
-        s_wc = self.wcp(wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_wc=show_p_wc, penalty=True)
+        s_wc = self.wcp(wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_wc=show_p_wc, penalty=True, column_rep_vectors = column_rep_vectors)
 
         if g_wc:
             pr_wc = g_wc
@@ -286,7 +303,8 @@ class SCP(nn.Module):
         self.hS = hS
         self.lS = lS
         self.dr = dr
-
+        self.column_rep_size = 5
+        # TODO: Try configuring it
 
         self.enc_h = nn.LSTM(input_size=iS, hidden_size=int(hS / 2),
                              num_layers=lS, batch_first=True,
@@ -296,15 +314,15 @@ class SCP(nn.Module):
                              num_layers=lS, batch_first=True,
                              dropout=dr, bidirectional=True)
 
-        self.W_att = nn.Linear(hS, hS)
+        self.W_att = nn.Linear(hS, hS + self.column_rep_size)
         self.W_c = nn.Linear(hS, hS)
-        self.W_hs = nn.Linear(hS, hS)
-        self.sc_out = nn.Sequential(nn.Tanh(), nn.Linear(2 * hS, 1))
+        self.W_hs = nn.Linear(hS + self.column_rep_size, hS + self.column_rep_size)
+        self.sc_out = nn.Sequential(nn.Tanh(), nn.Linear(2 * hS + self.column_rep_size, 1))
 
         self.softmax_dim1 = nn.Softmax(dim=1)
         self.softmax_dim2 = nn.Softmax(dim=2)
 
-    def forward(self, wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_sc=False):
+    def forward(self, wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_sc=False, column_rep_vectors = None):
         # Encode
         wenc_n = encode(self.enc_n, wemb_n, l_n,
                         return_hidden=False,
@@ -313,6 +331,9 @@ class SCP(nn.Module):
 
         wenc_hs = encode_hpu(self.enc_h, wemb_hpu, l_hpu, l_hs)  # [b, hs, dim]
 
+        if column_rep_vectors is not None:
+            wenc_hs = torch.cat([wenc_hs, column_rep_vectors], dim=2)
+            print("adding", wenc_hs.shape)
         bS = len(l_hs)
         mL_n = max(l_n)
 
@@ -555,6 +576,8 @@ class WCP(nn.Module):
         self.hS = hS
         self.lS = lS
         self.dr = dr
+        self.column_rep_size = 5
+        # TODO: Try configuring it
 
         self.enc_h = nn.LSTM(input_size=iS, hidden_size=int(hS / 2),
                              num_layers=lS, batch_first=True,
@@ -564,17 +587,17 @@ class WCP(nn.Module):
                              num_layers=lS, batch_first=True,
                              dropout=dr, bidirectional=True)
 
-        self.W_att = nn.Linear(hS, hS)
+        self.W_att = nn.Linear(hS, hS + self.column_rep_size)
         self.W_c = nn.Linear(hS, hS)
-        self.W_hs = nn.Linear(hS, hS)
+        self.W_hs = nn.Linear(hS + self.column_rep_size, hS + self.column_rep_size)
         self.W_out = nn.Sequential(
-            nn.Tanh(), nn.Linear(2 * hS, 1)
+            nn.Tanh(), nn.Linear(2 * hS + self.column_rep_size, 1)
         )
 
         self.softmax_dim1 = nn.Softmax(dim=1)
         self.softmax_dim2 = nn.Softmax(dim=2)
 
-    def forward(self, wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_wc, penalty=True):
+    def forward(self, wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_wc, penalty=True, column_rep_vectors = None):
         # Encode
         wenc_n = encode(self.enc_n, wemb_n, l_n,
                         return_hidden=False,
@@ -583,6 +606,8 @@ class WCP(nn.Module):
 
         wenc_hs = encode_hpu(self.enc_h, wemb_hpu, l_hpu, l_hs)  # [b, hs, dim]
 
+        if column_rep_vectors is not None:
+            wenc_hs = torch.cat([wenc_hs, column_rep_vectors], dim=2)
         # attention
         # wenc = [bS, mL, hS]
         # att = [bS, mL_hs, mL_n]

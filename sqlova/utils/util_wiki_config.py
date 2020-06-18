@@ -1,3 +1,3 @@
 config = {
-    "use_types_concat" : True
+    "use_types_concat" : False
 }
