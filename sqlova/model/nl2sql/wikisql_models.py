@@ -33,7 +33,7 @@ class Seq2SQL_v1(nn.Module):
         self.max_wn = 4
         self.n_cond_ops = n_cond_ops
         self.n_agg_ops = n_agg_ops
-
+        self.fc1 = nn.Linear(1024, 100)
         self.scp = SCP(iS, hS, lS, dr)
         self.sap = SAP(iS, hS, lS, dr, n_agg_ops, old=old)
         self.wnp = WNP(iS, hS, lS, dr)
@@ -52,6 +52,7 @@ class Seq2SQL_v1(nn.Module):
             column_rep_vectors = ([torch.Tensor([y for y in x.values()]) for x in column_rep_vectors])
             # Will be [Bs, l, dim] (l varies)
             column_rep_vectors = pad_sequence(column_rep_vectors, batch_first = True).to(device)
+            column_rep_vectors = self.fc1(column_rep_vectors)
             # Will be [Bs, max_l, dim]
             oprint("col_rep", column_rep_vectors.shape)
             oprint(column_rep_vectors)
@@ -303,7 +304,7 @@ class SCP(nn.Module):
         self.hS = hS
         self.lS = lS
         self.dr = dr
-        self.column_rep_size = 5
+        self.column_rep_size = 100
         # TODO: Try configuring it
 
         self.enc_h = nn.LSTM(input_size=iS, hidden_size=int(hS / 2),
@@ -333,7 +334,6 @@ class SCP(nn.Module):
 
         if column_rep_vectors is not None:
             wenc_hs = torch.cat([wenc_hs, column_rep_vectors], dim=2)
-            print("adding", wenc_hs.shape)
         bS = len(l_hs)
         mL_n = max(l_n)
 
@@ -576,7 +576,7 @@ class WCP(nn.Module):
         self.hS = hS
         self.lS = lS
         self.dr = dr
-        self.column_rep_size = 5
+        self.column_rep_size = 100
         # TODO: Try configuring it
 
         self.enc_h = nn.LSTM(input_size=iS, hidden_size=int(hS / 2),

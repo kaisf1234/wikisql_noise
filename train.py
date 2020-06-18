@@ -736,21 +736,21 @@ if __name__ == '__main__':
 
         for epoch in range(args.tepoch):
             # trainBERT-type
-            # acc_train, aux_out_train = train(train_loader,
-            #                                  train_table,
-            #                                  model,
-            #                                  model_bert,
-            #                                  opt,
-            #                                  bert_config,
-            #                                  tokenizer,
-            #                                  args.max_seq_length,
-            #                                  args.num_target_layers,
-            #                                  args.accumulate_gradients,
-            #                                  opt_bert=opt_bert,
-            #                                  st_pos=0,
-            #                                  path_db=path_wikisql,
-            #                                  dset_name='train',
-            #                                  column_vectors = train_column_vectors)
+            acc_train, aux_out_train = train(train_loader,
+                                             train_table,
+                                             model,
+                                             model_bert,
+                                             opt,
+                                             bert_config,
+                                             tokenizer,
+                                             args.max_seq_length,
+                                             args.num_target_layers,
+                                             args.accumulate_gradients,
+                                             opt_bert=opt_bert,
+                                             st_pos=0,
+                                             path_db=path_wikisql,
+                                             dset_name='train',
+                                             column_vectors = train_column_vectors)
 
             # check DEV
             with torch.no_grad():
