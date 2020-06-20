@@ -220,7 +220,7 @@ def get_data(path_wikisql, args):
 
 def train(train_loader, train_table, model, model_bert, opt, bert_config, tokenizer,
           max_seq_length, num_target_layers, accumulate_gradients=1, check_grad=True,
-          st_pos=0, opt_bert=None, path_db=None, dset_name='train', column_vectors = None):
+          st_pos=0, opt_bert=None, path_db=None, dset_name='train', column_vectors = None, penalize_all = True):
     model.train()
     model_bert.train()
 
@@ -251,7 +251,6 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         # Get fields
         # nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, train_table, no_hs_t=True, no_sql_t=True)
         nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds, column_rep_vectors = get_fields_with_column_vectors(t, train_table, column_vectors, no_hs_t=True, no_sql_t=True)
-        print(column_rep_vectors)
         # nlu  : natural language utterance
         # nlu_t: tokenized nlu
         # sql_i: canonical form of SQL query
@@ -750,7 +749,8 @@ if __name__ == '__main__':
                                              st_pos=0,
                                              path_db=path_wikisql,
                                              dset_name='train',
-                                             column_vectors = train_column_vectors)
+                                             column_vectors = train_column_vectors,
+                                             penalize_all= False if epoch < 10 else True)
 
             # check DEV
             with torch.no_grad():

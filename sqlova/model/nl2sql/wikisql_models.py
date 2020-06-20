@@ -19,7 +19,7 @@ from sqlova.utils.utils_wikisql import *
 
 
 def oprint(*args, **kwargs):
-    # print(*args, **kwargs)
+    #print(*args, **kwargs)
     pass
 
 class Seq2SQL_v1(nn.Module):
@@ -33,7 +33,7 @@ class Seq2SQL_v1(nn.Module):
         self.max_wn = 4
         self.n_cond_ops = n_cond_ops
         self.n_agg_ops = n_agg_ops
-        self.fc1 = nn.Linear(1024, 100)
+        self.fc1 = nn.Linear(1024, 250)
         self.scp = SCP(iS, hS, lS, dr)
         self.sap = SAP(iS, hS, lS, dr, n_agg_ops, old=old)
         self.wnp = WNP(iS, hS, lS, dr)
@@ -48,18 +48,18 @@ class Seq2SQL_v1(nn.Module):
                 show_p_wn=False, show_p_wc=False, show_p_wo=False, show_p_wv=False, column_rep_vectors = None):
 
         if column_rep_vectors is not None:
-            oprint(len(column_rep_vectors))
+            # oprint(len(column_rep_vectors))
             column_rep_vectors = ([torch.Tensor([y for y in x.values()]) for x in column_rep_vectors])
             # Will be [Bs, l, dim] (l varies)
             column_rep_vectors = pad_sequence(column_rep_vectors, batch_first = True).to(device)
             column_rep_vectors = self.fc1(column_rep_vectors)
             # Will be [Bs, max_l, dim]
-            oprint("col_rep", column_rep_vectors.shape)
-            oprint(column_rep_vectors)
-            oprint(wemb_hpu.shape)
-            oprint(l_hpu)
-            oprint(l_hs)
-            oprint("*"*100)
+            # oprint("col_rep", column_rep_vectors.shape)
+            # oprint(column_rep_vectors)
+            # oprint(wemb_hpu.shape)
+            # oprint(l_hpu)
+            # oprint(l_hs)
+            # oprint("*"*100)
         # sc
         s_sc = self.scp(wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_sc=show_p_sc, column_rep_vectors = column_rep_vectors)
 
@@ -315,10 +315,12 @@ class SCP(nn.Module):
                              num_layers=lS, batch_first=True,
                              dropout=dr, bidirectional=True)
 
-        self.W_att = nn.Linear(hS, hS + self.column_rep_size)
+        self.fc1 = nn.Linear(hS + 250, 250)
+        self.fc2 = nn.Linear(250, hS )
+        self.W_att = nn.Linear(hS, hS )
         self.W_c = nn.Linear(hS, hS)
-        self.W_hs = nn.Linear(hS + self.column_rep_size, hS + self.column_rep_size)
-        self.sc_out = nn.Sequential(nn.Tanh(), nn.Linear(2 * hS + self.column_rep_size, 1))
+        self.W_hs = nn.Linear(hS , hS)
+        self.sc_out = nn.Sequential(nn.Tanh(), nn.Dropout(0.3), nn.Linear(2 * hS, 1))
 
         self.softmax_dim1 = nn.Softmax(dim=1)
         self.softmax_dim2 = nn.Softmax(dim=2)
@@ -329,17 +331,19 @@ class SCP(nn.Module):
                         return_hidden=False,
                         hc0=None,
                         last_only=False)  # [b, n, dim]
-
+        oprint("WENC_N", wenc_n.shape)
         wenc_hs = encode_hpu(self.enc_h, wemb_hpu, l_hpu, l_hs)  # [b, hs, dim]
-
+        oprint("WENC_BEFORE", wenc_hs.shape)
         if column_rep_vectors is not None:
             wenc_hs = torch.cat([wenc_hs, column_rep_vectors], dim=2)
+            wenc_hs = self.fc2(F.tanh(self.fc1(wenc_hs)))
+            oprint("WENC_AFTER", wenc_hs.shape)
         bS = len(l_hs)
         mL_n = max(l_n)
 
         #   [bS, mL_hs, 100] * [bS, 100, mL_n] -> [bS, mL_hs, mL_n]
         att_h = torch.bmm(wenc_hs, self.W_att(wenc_n).transpose(1, 2))
-
+        oprint("ATT_H", att_h.shape)
         #   Penalty on blank parts
         for b, l_n1 in enumerate(l_n):
             if l_n1 < mL_n:
@@ -371,11 +375,14 @@ class SCP(nn.Module):
         #   p_n [ bS, mL_hs, mL_n]  -> [ bS, mL_hs, mL_n, 1]
         #   wenc_n [ bS, mL_n, 100] -> [ bS, 1, mL_n, 100]
         #   -> [bS, mL_hs, mL_n, 100] -> [bS, mL_hs, 100]
+        oprint("P_N", p_n.shape)
         c_n = torch.mul(p_n.unsqueeze(3), wenc_n.unsqueeze(1)).sum(dim=2)
-
+        oprint("CN", c_n.shape)
         vec = torch.cat([self.W_c(c_n), self.W_hs(wenc_hs)], dim=2)
+        oprint("VEC", vec.shape)
         s_sc = self.sc_out(vec).squeeze(2) # [bS, mL_hs, 1] -> [bS, mL_hs]
-
+        oprint("S_SC", s_sc.shape)
+        oprint("-"*100)
         # Penalty
         mL_hs = max(l_hs)
         for b, l_hs1 in enumerate(l_hs):
@@ -405,6 +412,7 @@ class SAP(nn.Module):
         self.W_att = nn.Linear(hS, hS)
         self.sa_out = nn.Sequential(nn.Linear(hS, hS),
                                     nn.Tanh(),
+                                    nn.Dropout(0.3),
                                     nn.Linear(hS, n_agg_ops))  # Fixed number of aggregation operator.
 
         self.softmax_dim1 = nn.Softmax(dim=1)
@@ -485,6 +493,7 @@ class WNP(nn.Module):
         self.W_att_n = nn.Linear(hS, 1)
         self.wn_out = nn.Sequential(nn.Linear(hS, hS),
                                     nn.Tanh(),
+                                    nn.Dropout(0.3),
                                     nn.Linear(hS, self.mL_w + 1))  # max number (4 + 1)
 
         self.softmax_dim1 = nn.Softmax(dim=1)
@@ -587,12 +596,12 @@ class WCP(nn.Module):
                              num_layers=lS, batch_first=True,
                              dropout=dr, bidirectional=True)
 
-        self.W_att = nn.Linear(hS, hS + self.column_rep_size)
+        self.fc1 = nn.Linear(hS + 250, 250)
+        self.fc2 = nn.Linear(250, hS )
+        self.W_att = nn.Linear(hS, hS )
         self.W_c = nn.Linear(hS, hS)
-        self.W_hs = nn.Linear(hS + self.column_rep_size, hS + self.column_rep_size)
-        self.W_out = nn.Sequential(
-            nn.Tanh(), nn.Linear(2 * hS + self.column_rep_size, 1)
-        )
+        self.W_hs = nn.Linear(hS , hS)
+        self.W_out = nn.Sequential(nn.Tanh(), nn.Dropout(0.3), nn.Linear(2 * hS, 1))
 
         self.softmax_dim1 = nn.Softmax(dim=1)
         self.softmax_dim2 = nn.Softmax(dim=2)
@@ -608,6 +617,7 @@ class WCP(nn.Module):
 
         if column_rep_vectors is not None:
             wenc_hs = torch.cat([wenc_hs, column_rep_vectors], dim=2)
+            wenc_hs = self.fc2(F.tanh(self.fc1(wenc_hs)))
         # attention
         # wenc = [bS, mL, hS]
         # att = [bS, mL_hs, mL_n]
@@ -682,6 +692,7 @@ class WOP(nn.Module):
         self.wo_out = nn.Sequential(
             nn.Linear(2*hS, hS),
             nn.Tanh(),
+            nn.Dropout(0.3),
             nn.Linear(hS, n_cond_ops)
         )
 
@@ -801,6 +812,7 @@ class WVP_se(nn.Module):
             self.wv_out = nn.Sequential(
                 nn.Linear(4 * hS, hS),
                 nn.Tanh(),
+                nn.Dropout(0.3),
                 nn.Linear(hS, 2)
             )
         # self.wv_out = nn.Sequential(
@@ -927,7 +939,7 @@ class WVP_se(nn.Module):
                 s_wv[b, :, l_n1:, :] = -10000000000
         return s_wv
 
-def Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi):
+def Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi, penalize_all = True):
     """
 
     :param s_wv: score  [ B, n_conds, T, score]
@@ -937,11 +949,12 @@ def Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo,
     """
     loss = 0
     loss += Loss_sc(s_sc, g_sc)
-    loss += Loss_sa(s_sa, g_sa)
-    loss += Loss_wn(s_wn, g_wn)
     loss += Loss_wc(s_wc, g_wc)
-    loss += Loss_wo(s_wo, g_wn, g_wo)
-    loss += Loss_wv_se(s_wv, g_wn, g_wvi)
+    if penalize_all:
+        loss += Loss_sa(s_sa, g_sa)
+        loss += Loss_wn(s_wn, g_wn)
+        loss += Loss_wo(s_wo, g_wn, g_wo)
+        loss += Loss_wv_se(s_wv, g_wn, g_wvi)
 
     return loss
 
