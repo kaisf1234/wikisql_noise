@@ -16,8 +16,8 @@ import random as python_random
 import zipfile
 # BERT
 import bert.tokenization as tokenization
-# from bert.modeling import BertConfig, BertModel
-from transformers import BertModel, BertTokenizer, BertConfig
+from bert.modeling import BertConfig, BertModel
+
 from sqlova.utils.utils_wikisql import *
 from sqlova.utils.utils import load_jsonl
 from sqlova.model.nl2sql.wikisql_models import *
@@ -35,6 +35,7 @@ def construct_hyper_param(parser):
     parser.add_argument("--key", type=str, help="run_key")
 
     parser.add_argument("--data_path", type=str, help="contains all tok and data files and such")
+    parser.add_argument("--shelf_bert_path", type=str, help="contains all tok and data files and such")
 
     parser.add_argument('--tepoch', default=200, type=int)
     parser.add_argument("--bS", default=32, type=int,
@@ -123,19 +124,13 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
     vocab_file = os.path.join(BERT_PT_PATH, f'vocab_{bert_type}.txt')
     init_checkpoint = os.path.join(BERT_PT_PATH, f'pytorch_model_{bert_type}.bin')
 
-    # bert_config = BertConfig.from_json_file(bert_config_file)
-    # tokenizer = tokenization.FullTokenizer(
-    #     vocab_file=vocab_file, do_lower_case=do_lower_case)
-    # bert_config.print_status()
-    bert_config = BertConfig.from_pretrained("bert-base-uncased", output_hidden_states=True)
+    bert_config = BertConfig.from_json_file(bert_config_file)
+    tokenizer = tokenization.FullTokenizer(
+        vocab_file=vocab_file, do_lower_case=do_lower_case)
+    bert_config.print_status()
 
-    model_bert = BertModel.from_pretrained("bert-base-uncased", config=bert_config)
-    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-    if no_pretraining:
-        pass
-    else:
-        # model_bert.load_state_dict(torch.load(init_checkpoint, map_location='cpu'))
-        print("Load pre-trained parameters.")
+    model_bert = BertModel(bert_config)
+    model_bert.load_state_dict(torch.load(init_checkpoint, map_location='cpu'))
     model_bert.to(device)
 
     return model_bert, tokenizer, bert_config
@@ -677,7 +672,8 @@ if __name__ == '__main__':
 
     path_h = path_main  # '/home/wonseok'
     path_wikisql = path_main  # os.path.join(path_h, 'data', 'wikisql_tok')
-    BERT_PT_PATH = path_wikisql
+    BERT_PT_PATH = args.shelf_bert_path
+
 
     path_save_for_evaluation = '/content/drive/My Drive/sf'
 

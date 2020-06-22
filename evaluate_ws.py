@@ -26,8 +26,8 @@ if __name__ == '__main__':
 
     dset_name = 'wikisql_tok'
     saved_epoch = 'best'  # 30-162
-    key_data = '/gtlt_noisy_data/'
-    key_results = '/type'
+    key_data = '/data/'
+    key_results = '/nl2sql'
     # Set path
     path_h = './' # change to your home folder
     # path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
