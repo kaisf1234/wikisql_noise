@@ -603,7 +603,9 @@ def infer(nlu1,
     flag = True
     if flag:
         # No Execution guided decoding
-        s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs, column_rep_vectors = column_rep_vectors)
+        s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs,
+                                                   column_rep_vectors=column_rep_vectors)
+        # )
 
         # get loss & step
         #loss = Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi)
@@ -626,7 +628,7 @@ def infer(nlu1,
         raise EnvironmentError
     pr_sql_q1 = generate_sql_q(pr_sql_i, [tb1])
     pr_sql_q = [pr_sql_q1]
-
+    print(pr_sql_q)
     try:
         pr_ans, _ = engine.execute_return_query(tb[0]['id'], pr_sc[0], pr_sa[0], pr_sql_i[0]['conds'])
     except:
@@ -696,8 +698,9 @@ if __name__ == '__main__':
     else:
         # To start from the pre-trained models, un-comment following lines.
         print("Loading pretrained models...")
-        path_model_bert = './models/model_bert_best.pt'
-        path_model = './models/model_best.pt'
+        model_folder = 'where_col'
+        path_model_bert = 'models/%s/model_bert_best.pt' % model_folder
+        path_model = 'models/%s/model_best.pt' % model_folder
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 

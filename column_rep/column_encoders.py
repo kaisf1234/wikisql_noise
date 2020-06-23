@@ -15,9 +15,9 @@ class ColumnEncoder():
         return encoding
 
     def encode_batch(self, samples):
-        samples = ["The values in this column are " + " , ".join(sample) for sample in samples]
-        encodings = self.model.encode(samples, batch_size=self.batch_size, show_progress_bar=True)
-        return encodings
+        # samples = ["The values in this column are " + " , ".join(sample) for sample in samples]
+        # encodings = self.model.encode(samples, batch_size=self.batch_size, show_progress_bar=True)
+        return samples
 
 
 class DummyColumnEncoder():

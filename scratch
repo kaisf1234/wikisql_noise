@@ -1,0 +1,34 @@
+Q : who is the player number 42?
+table = player name,  no,  nationality, position, team
+
+
+player number 42
+
+no 42 player
+
+
+player numbar 42
+
+kyle lowry player
+
+minnesota player
+
+player 42
+
+
+
+Q [SEP] player name | kyle | john | martin[SEP] no [SEP] nationality [SEP] location [SEP]
+
+
+Encoding schemes:
+    1. Average [CLS] embedding
+    2. Give a dummy sentence
+    3. Nullify positional embedding
+
+
+
+Enter query to be executed : democratic candidates
+Enter table name : 1-1342338-3
+
+Enter query to be executed : players from India
+Enter table name : 1-10015132-11
