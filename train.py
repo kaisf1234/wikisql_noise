@@ -236,7 +236,7 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
     start = time.time()
     # column_vectors = {table_id : {header_name : np.random.randn(5,) for header_name in train_table[table_id]["header"]} for table_id in train_table}
     for iB, t in enumerate(train_loader):
-        if iB % 5 == 4:
+        if iB % 100 == 99:
             print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB), " ave loss ",
                   ave_loss / cnt)
         cnt += len(t)
