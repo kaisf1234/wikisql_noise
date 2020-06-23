@@ -279,6 +279,13 @@ class Seq2SQL_v1(nn.Module):
         # s_wv = [B, max_wn, max_nlu_tokens, 2]
         return prob_sca, prob_w, prob_wn_w, pr_sc_best, pr_sa_best, pr_wn_based_on_prob, pr_sql_i
 
+def ps(n, v):
+    #print(n,  " - ", v.shape)
+    pass
+def oprint(*args, **kwargs):
+    # print(*args, **kwargs)
+    pass
+
 class SCP(nn.Module):
     def __init__(self, iS=300, hS=100, lS=2, dr=0.3):
         super(SCP, self).__init__()
@@ -310,21 +317,28 @@ class SCP(nn.Module):
                         return_hidden=False,
                         hc0=None,
                         last_only=False)  # [b, n, dim]
-
+        ps("wemb_n", wemb_n)
+        ps("wemb_hpu", wemb_hpu)
+        oprint("l_hpu", l_hpu)
+        oprint("l_n", l_n)
+        oprint("l_hs", l_hs)
+        ps("wenc_n", wenc_n)
         wenc_hs = encode_hpu(self.enc_h, wemb_hpu, l_hpu, l_hs)  # [b, hs, dim]
-
+        ps("wenc_hs", wenc_hs)
         bS = len(l_hs)
         mL_n = max(l_n)
 
         #   [bS, mL_hs, 100] * [bS, 100, mL_n] -> [bS, mL_hs, mL_n]
         att_h = torch.bmm(wenc_hs, self.W_att(wenc_n).transpose(1, 2))
-
+        ps("attn_h", att_h)
         #   Penalty on blank parts
         for b, l_n1 in enumerate(l_n):
             if l_n1 < mL_n:
                 att_h[b, :, l_n1:] = -10000000000
 
         p_n = self.softmax_dim2(att_h)
+        ps("p_n", p_n)
+        oprint(p_n.sum(dim=2), p_n.sum(dim=2).shape)
         if show_p_sc:
             # p = [b, hs, n]
             if p_n.shape[0] != 1:
@@ -351,16 +365,17 @@ class SCP(nn.Module):
         #   wenc_n [ bS, mL_n, 100] -> [ bS, 1, mL_n, 100]
         #   -> [bS, mL_hs, mL_n, 100] -> [bS, mL_hs, 100]
         c_n = torch.mul(p_n.unsqueeze(3), wenc_n.unsqueeze(1)).sum(dim=2)
-
+        ps("c_n", c_n)
         vec = torch.cat([self.W_c(c_n), self.W_hs(wenc_hs)], dim=2)
         s_sc = self.sc_out(vec).squeeze(2) # [bS, mL_hs, 1] -> [bS, mL_hs]
-
+        ps("vec", vec)
+        ps("s_sc", s_sc)
         # Penalty
         mL_hs = max(l_hs)
         for b, l_hs1 in enumerate(l_hs):
             if l_hs1 < mL_hs:
                 s_sc[b, l_hs1:] = -10000000000
-
+        oprint("-"*100)
         return s_sc
 
 

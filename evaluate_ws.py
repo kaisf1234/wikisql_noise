@@ -26,8 +26,8 @@ if __name__ == '__main__':
 
     dset_name = 'wikisql_tok'
     saved_epoch = 'best'  # 30-162
-    key_data = '/data/'
-    key_results = '/nl2sql'
+    key_data = '/gtlt_noisy_data/'
+    key_results = '/gtlt_nl2sql'
     # Set path
     path_h = './' # change to your home folder
     # path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
@@ -143,4 +143,15 @@ rep_val :  0.03081803761613415
 2-14227676-2
 Location super parka Wrestler 2 Reign
 
+'''
+
+'''
+8419
+sel :  0.03563368571089203
+agg :  0.09229124599121036
+col :  0.06069604466088609
+op :  0.016629053331749615
+val :  0.0660410975175199
+sub_val :  0.02470602209288514
+rep_val :  0.029813517044779664
 '''
