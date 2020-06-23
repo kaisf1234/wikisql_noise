@@ -4,3 +4,5 @@ sqlnet/__pycache__
 bert/__pycache__
 .idea
 *.swp
+/models/model_best.pt
+/models/model_bert_best.pt

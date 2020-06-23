@@ -623,8 +623,9 @@ class WCP(nn.Module):
         self.W_att = nn.Linear(hS, hS)
         self.W_c = nn.Linear(hS, hS)
         self.W_hs = nn.Linear(hS, hS)
+        self.attn_column_vector = AttentionHead(self.column_rep_size)
         self.W_out = nn.Sequential(
-            nn.Tanh(), nn.Linear(2 * hS, 1)
+            nn.Tanh(), nn.Linear(2 * hS + self.column_rep_size, 1)
         )
 
         self.softmax_dim1 = nn.Softmax(dim=1)
@@ -643,7 +644,8 @@ class WCP(nn.Module):
         # wenc = [bS, mL, hS]
         # att = [bS, mL_hs, mL_n]
         # att[b, i_h, j_n] = p(j_n| i_h)
-        att = torch.bmm(wenc_hs, self.W_att(wenc_n).transpose(1, 2))
+        wenc_n_transformed = self.W_att(wenc_n)
+        att = torch.bmm(wenc_hs, wenc_n_transformed.transpose(1, 2))
 
         # penalty to blank part.
         mL_n = max(l_n)
@@ -675,11 +677,13 @@ class WCP(nn.Module):
             show()
         # max nlu context vectors
         # [bS, mL_hs, mL_n]*[bS, mL_hs, mL_n]
+        context_column = self.attn_column_vector.forward(wenc_n, wenc_n_transformed, column_rep_vectors, l_n)
+
         wenc_n = wenc_n.unsqueeze(1)  # [ b, n, dim] -> [b, 1, n, dim]
         p = p.unsqueeze(3)  # [b, hs, n] -> [b, hs, n, 1]
         c_n = torch.mul(wenc_n, p).sum(2)  # -> [b, hs, dim], c_n for each header.
 
-        y = torch.cat([self.W_c(c_n), self.W_hs(wenc_hs)], dim=2)  # [b, hs, 2*dim]
+        y = torch.cat([context_column, self.W_c(c_n), self.W_hs(wenc_hs)], dim=2)
         score = self.W_out(y).squeeze(2)  # [b, hs]
 
         if penalty:
