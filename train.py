@@ -20,7 +20,7 @@ from bert.modeling import BertConfig, BertModel
 
 from sqlova.utils.utils_wikisql import *
 from sqlova.utils.utils import load_jsonl
-from sqlova.model.nl2sql.wikisql_models import *
+from sqlova.model.nl2sql.wikisql_models_mha import *
 from sqlnet.dbengine import DBEngine
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
