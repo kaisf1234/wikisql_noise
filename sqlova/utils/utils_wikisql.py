@@ -153,6 +153,32 @@ def get_fields(t1s, tables, no_hs_t=False, no_sql_t=False):
 
     return nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hs
 
+def get_fields_with_column_vectors(t1s, tables, column_vectors, no_hs_t=False, no_sql_t=False):
+
+    nlu, nlu_t, tid, sql_i, sql_q, sql_t, tb, hs_t, hs = [], [], [], [], [], [], [], [], []
+    rep_vectors = [] if column_vectors is not None else None
+    for t1 in t1s:
+        if no_hs_t:
+            nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1 = get_fields_1(t1, tables, no_hs_t, no_sql_t)
+        else:
+            nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1 = get_fields_1(t1, tables, no_hs_t, no_sql_t)
+        if column_vectors is not None:
+            rep_vectors.append(column_vectors[t1["table_id"]])
+
+        nlu.append(nlu1)
+        nlu_t.append(nlu_t1)
+        tid.append(tid1)
+        sql_i.append(sql_i1)
+        sql_q.append(sql_q1)
+        sql_t.append(sql_t1)
+
+        tb.append(tb1)
+
+        hs_t.append(hs_t1)
+        hs.append(hs1)
+
+    return nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hs, rep_vectors
+
 
 # Embedding -------------------------------------------------------------------------
 

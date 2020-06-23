@@ -35,6 +35,7 @@ def construct_hyper_param(parser):
     parser.add_argument("--key", type=str, help="run_key")
 
     parser.add_argument("--data_path", type=str, help="contains all tok and data files and such")
+    parser.add_argument("--column_vector_path", type=str, help="column_rep")
     parser.add_argument("--shelf_bert_path", type=str, help="contains all tok and data files and such")
 
     parser.add_argument('--tepoch', default=200, type=int)
@@ -213,7 +214,7 @@ def get_data(path_wikisql, args):
 
 def train(train_loader, train_table, model, model_bert, opt, bert_config, tokenizer,
           max_seq_length, num_target_layers, accumulate_gradients=1, check_grad=True,
-          st_pos=0, opt_bert=None, path_db=None, dset_name='train'):
+          st_pos=0, opt_bert=None, path_db=None, dset_name='train', column_vectors = None):
     model.train()
     model_bert.train()
 
@@ -230,18 +231,20 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
     cnt_x = 0  # of execution acc
 
     # Engine for SQL querying.
+    l = len(train_loader)
     engine = DBEngine(os.path.join(path_db, f"{dset_name}.db"))
     start = time.time()
-    l = len(train_loader)
+    # column_vectors = {table_id : {header_name : np.random.randn(5,) for header_name in train_table[table_id]["header"]} for table_id in train_table}
     for iB, t in enumerate(train_loader):
-        if iB % 100 == 99:
+        if iB % 5 == 4:
             print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB), " ave loss ",
                   ave_loss / cnt)
         cnt += len(t)
         if cnt < st_pos:
             continue
         # Get fields
-        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, train_table, no_hs_t=True, no_sql_t=True)
+        # nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, train_table, no_hs_t=True, no_sql_t=True)
+        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds, column_rep_vectors = get_fields_with_column_vectors(t, train_table, column_vectors, no_hs_t=True, no_sql_t=True)
         # nlu  : natural language utterance
         # nlu_t: tokenized nlu
         # sql_i: canonical form of SQL query
@@ -249,7 +252,6 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         # sql_t: tokenized SQL query
         # tb   : table
         # hs_t : tokenized headers. Not used.
-
         g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
         # get ground truth where-value index under CoreNLP tokenization scheme. It's done already on trainset.
         g_wvi_corenlp = get_g_wvi_corenlp(t)
@@ -276,7 +278,7 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
 
         # score
         s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs,
-                                                   g_sc=g_sc, g_sa=g_sa, g_wn=g_wn, g_wc=g_wc, g_wvi=g_wvi)
+                                                   g_sc=g_sc, g_sa=g_sa, g_wn=g_wn, g_wc=g_wc, g_wvi=g_wvi, column_rep_vectors = column_rep_vectors)
 
         # Calculate loss & step
         loss = Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi)
@@ -408,7 +410,7 @@ def report_detail(hds, nlu,
 def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
          max_seq_length,
          num_target_layers, detail=False, st_pos=0, cnt_tot=1, EG=False, beam_size=4,
-         path_db=None, dset_name='test'):
+         path_db=None, dset_name='test', column_vectors = None):
     model.eval()
     model_bert.eval()
 
@@ -437,7 +439,12 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
         if cnt < st_pos:
             continue
         # Get fields
-        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, data_table, no_hs_t=True, no_sql_t=True)
+        #nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, data_table, no_hs_t=True, no_sql_t=True)
+        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds, column_rep_vectors = get_fields_with_column_vectors(t,
+                                                                                                            data_table,
+                                                                                                            column_vectors,
+                                                                                                            no_hs_t=True,
+                                                                                                            no_sql_t=True)
 
         g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
         g_wvi_corenlp = get_g_wvi_corenlp(t)
@@ -466,7 +473,7 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
         # score
         if not EG:
             # No Execution guided decoding
-            s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs)
+            s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs, column_rep_vectors = column_rep_vectors)
 
             # get loss & step
             loss = Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi)
@@ -709,6 +716,18 @@ if __name__ == '__main__':
         ## 6. Train
         acc_lx_t_best = -1
         epoch_best = -1
+        train_column_vectors, dev_column_vectors = None, None
+
+
+
+        if args.column_vector_path:
+            print("Attempting to use column vectors from : ", args.column_vector_path)
+
+            with open(args.column_vector_path + "/train_vecs.json") as f:
+                train_column_vectors = json.load(f)
+            with open(args.column_vector_path + "/dev_vecs.json") as f:
+                dev_column_vectors = json.load(f)
+
         for epoch in range(args.tepoch):
             # trainBERT-type
             acc_train, aux_out_train = train(train_loader,
@@ -724,7 +743,8 @@ if __name__ == '__main__':
                                              opt_bert=opt_bert,
                                              st_pos=0,
                                              path_db=path_wikisql,
-                                             dset_name='train')
+                                             dset_name='train',
+                                             column_vectors = train_column_vectors)
 
             # check DEV
             with torch.no_grad():
@@ -739,7 +759,8 @@ if __name__ == '__main__':
                                                       detail=False,
                                                       path_db=path_wikisql,
                                                       st_pos=0,
-                                                      dset_name='dev', EG=args.EG)
+                                                      dset_name='dev', EG=args.EG,
+                                                      column_vectors = dev_column_vectors)
 
             # print_result(epoch, acc_train, 'train')
             print_result(epoch, acc_dev, 'dev')
