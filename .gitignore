@@ -4,3 +4,6 @@ sqlnet/__pycache__
 bert/__pycache__
 .idea
 *.swp
+/models/noise_plain/
+/models/sel_col/
+/models/where_col/

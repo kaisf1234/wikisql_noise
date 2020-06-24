@@ -29,6 +29,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 def construct_hyper_param(parser):
     parser.add_argument("--do_train", default=False, action='store_true')
     parser.add_argument('--do_infer', default=False, action='store_true')
+    parser.add_argument("--column_vector_path", type=str, help="column_rep")
+
     parser.add_argument('--infer_loop', default=False, action='store_true')
 
     parser.add_argument("--trained", default=False, action='store_true')
@@ -213,7 +215,7 @@ def get_data(path_wikisql, args):
 
 def train(train_loader, train_table, model, model_bert, opt, bert_config, tokenizer,
           max_seq_length, num_target_layers, accumulate_gradients=1, check_grad=True,
-          st_pos=0, opt_bert=None, path_db=None, dset_name='train'):
+          st_pos=0, opt_bert=None, path_db=None, dset_name='train', column_samples = None):
     model.train()
     model_bert.train()
 
@@ -234,14 +236,14 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
     start = time.time()
     l = len(train_loader)
     for iB, t in enumerate(train_loader):
-        if iB % 100 == 99:
+        if iB % 10 == 9:
             print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB), " ave loss ",
                   ave_loss / cnt)
         cnt += len(t)
         if cnt < st_pos:
             continue
         # Get fields
-        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, train_table, no_hs_t=True, no_sql_t=True)
+        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, train_table, no_hs_t=True, no_sql_t=True, column_samples=column_samples, tokenizer = tokenizer)
         # nlu  : natural language utterance
         # nlu_t: tokenized nlu
         # sql_i: canonical form of SQL query
@@ -253,7 +255,6 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
         # get ground truth where-value index under CoreNLP tokenization scheme. It's done already on trainset.
         g_wvi_corenlp = get_g_wvi_corenlp(t)
-
         wemb_n, wemb_h, l_n, l_hpu, l_hs, \
         nlu_tt, t_to_tt_idx, tt_to_t_idx \
             = get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length,
@@ -408,7 +409,7 @@ def report_detail(hds, nlu,
 def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
          max_seq_length,
          num_target_layers, detail=False, st_pos=0, cnt_tot=1, EG=False, beam_size=4,
-         path_db=None, dset_name='test'):
+         path_db=None, dset_name='test', column_samples = None):
     model.eval()
     model_bert.eval()
 
@@ -437,11 +438,10 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
         if cnt < st_pos:
             continue
         # Get fields
-        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, data_table, no_hs_t=True, no_sql_t=True)
+        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, data_table, no_hs_t=True, no_sql_t=True, column_samples=column_samples)
 
         g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
         g_wvi_corenlp = get_g_wvi_corenlp(t)
-
         wemb_n, wemb_h, l_n, l_hpu, l_hs, \
         nlu_tt, t_to_tt_idx, tt_to_t_idx \
             = get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length,
@@ -709,6 +709,18 @@ if __name__ == '__main__':
         ## 6. Train
         acc_lx_t_best = -1
         epoch_best = -1
+
+        train_column_vectors, dev_column_vectors = None, None
+
+        if args.column_vector_path:
+            print("Attempting to use column vectors from : ", args.column_vector_path)
+
+            with open(args.column_vector_path + "/train_vecs.json") as f:
+                train_column_vectors = json.load(f)
+            with open(args.column_vector_path + "/dev_vecs.json") as f:
+                dev_column_vectors = json.load(f)
+
+
         for epoch in range(args.tepoch):
             # trainBERT-type
             acc_train, aux_out_train = train(train_loader,
@@ -724,7 +736,8 @@ if __name__ == '__main__':
                                              opt_bert=opt_bert,
                                              st_pos=0,
                                              path_db=path_wikisql,
-                                             dset_name='train')
+                                             dset_name='train',
+                                             column_samples=train_column_vectors)
 
             # check DEV
             with torch.no_grad():
@@ -739,9 +752,9 @@ if __name__ == '__main__':
                                                       detail=False,
                                                       path_db=path_wikisql,
                                                       st_pos=0,
-                                                      dset_name='dev', EG=args.EG)
+                                                      dset_name='dev', EG=args.EG, column_samples=dev_column_vectors)
 
-            # print_result(epoch, acc_train, 'train')
+            print_result(epoch, acc_train, 'train')
             print_result(epoch, acc_dev, 'dev')
             acc_lx_t = acc_dev[-2]
             print(acc_lx_t)

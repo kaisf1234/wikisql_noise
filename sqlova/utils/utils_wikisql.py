@@ -109,7 +109,7 @@ def get_loader_wikisql(data_train, data_dev, bS, shuffle_train=True, shuffle_dev
     return train_loader, dev_loader
 
 
-def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False):
+def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False, column_samples = None):
     nlu1 = t1['question']
     nlu_t1 = t1['question_tok']
     tid1 = t1['table_id']
@@ -128,28 +128,45 @@ def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False):
     hs1 = tb1['header']
     if config["use_types_concat"]:
         hs1 = [x+" | " + y for x,y in zip(tb1["header"], tb1["types"])]
+    if config["use_values_concat"]:
+        hs1 = [x + " ‖ " + " | ".join([val for val in column_samples[tid1][x]]) for x in tb1["header"]]
 
     return nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1
 
-def get_fields(t1s, tables, no_hs_t=False, no_sql_t=False):
+def tokenized_len(nlu_t1, hds1, tokenizer):
+    nlu_tt1 = []
+    for (i, token) in enumerate(nlu_t1):
+        sub_tokens = tokenizer.tokenize(token)
+        for sub_token in sub_tokens:
+            nlu_tt1.append(sub_token)
+    tokens1, segment_ids1, i_nlu1, i_hds1 = generate_inputs(tokenizer, nlu_tt1, hds1)
+    input_ids1 = tokenizer.convert_tokens_to_ids(tokens1)
+    return len(input_ids1)
+
+def get_fields(t1s, tables, no_hs_t=False, no_sql_t=False, column_samples = None, tokenizer = None):
 
     nlu, nlu_t, tid, sql_i, sql_q, sql_t, tb, hs_t, hs = [], [], [], [], [], [], [], [], []
     for t1 in t1s:
         if no_hs_t:
-            nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1 = get_fields_1(t1, tables, no_hs_t, no_sql_t)
+            nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1 = get_fields_1(t1, tables, no_hs_t, no_sql_t, column_samples=column_samples)
         else:
-            nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1 = get_fields_1(t1, tables, no_hs_t, no_sql_t)
+            nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1 = get_fields_1(t1, tables, no_hs_t, no_sql_t, column_samples=column_samples)
 
-        nlu.append(nlu1)
-        nlu_t.append(nlu_t1)
-        tid.append(tid1)
-        sql_i.append(sql_i1)
-        sql_q.append(sql_q1)
-        sql_t.append(sql_t1)
+        # TODO: Optimize
+        if tokenized_len(nlu_t1, hs1, tokenizer) < 510:
+            nlu.append(nlu1)
+            nlu_t.append(nlu_t1)
+            tid.append(tid1)
+            sql_i.append(sql_i1)
+            sql_q.append(sql_q1)
+            sql_t.append(sql_t1)
+            tb.append(tb1)
+            hs_t.append(hs_t1)
+            hs.append(hs1)
+        else:
+            #print("Skipping 1")
+            pass
 
-        tb.append(tb1)
-        hs_t.append(hs_t1)
-        hs.append(hs1)
 
     return nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hs
 
@@ -652,7 +669,6 @@ def get_bert_output_s2s(model_bert, tokenizer, nlu_t, hds, sql_vocab, max_seq_le
            l_n, l_hpu, l_hs, l_input, \
            nlu_tt, t_to_tt_idx, tt_to_t_idx
 
-
 def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
     """
     Here, input is toknized further by WordPiece (WP) tokenizer and fed into BERT.
@@ -673,7 +689,6 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
     tok_to_orig_index: inverse map.
 
     """
-
     l_n = []
     l_hs = []  # The length of columns for each batch
 
@@ -732,15 +747,15 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
         i_nlu.append(i_nlu1)
         i_hds.append(i_hds1)
 
-    if max_length_in_batch > 512:
-        print("ALERT : Long batch")
+    if max_length_in_batch >= 510:
+        cnt = len([x for x in input_ids if len(x) >= 510])
+        print("ALERT : Long batch : ", cnt)
 
     for i in range(len(input_ids)):
         diff = max_length_in_batch - len(input_ids[i])
         input_ids[i] = input_ids[i] + [0]*diff
         input_mask[i] = input_mask[i] + [0]*diff
         segment_ids[i] = segment_ids[i] + [0]*diff
-
     # Convert to tensor
     all_input_ids = torch.tensor(input_ids, dtype=torch.long).to(device)
     all_input_mask = torch.tensor(input_mask, dtype=torch.long).to(device)
