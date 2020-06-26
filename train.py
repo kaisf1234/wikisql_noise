@@ -15,6 +15,8 @@ import random as python_random
 # import torchvision.datasets as dsets
 import zipfile
 # BERT
+from transformers import get_linear_schedule_with_warmup
+
 import bert.tokenization as tokenization
 from bert.modeling import BertConfig, BertModel
 
@@ -141,19 +143,19 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
 def get_opt(model, model_bert, fine_tune, pre_trained_path=None):
     if fine_tune:
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
-                               lr=args.lr, weight_decay=0)
+                               lr=args.lr, weight_decay=1e-4)
 
-        opt_bert = torch.optim.Adam(filter(lambda p: p.requires_grad, model_bert.parameters()),
-                                    lr=args.lr_bert, weight_decay=0)
+        opt_bert = torch.optim.AdamW(filter(lambda p: p.requires_grad, model_bert.parameters()),
+                                    lr=args.lr_bert)
     else:
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
                                lr=args.lr, weight_decay=0)
         opt_bert = None
     if pre_trained_path:
         print("Loading opt...", pre_trained_path)
-        opt.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_best_orig.pt"])))
+        opt.load_state_dict(torch.load(pre_trained_path + "opt_best_orig.pt"))
         if opt_bert is not None:
-            opt_bert.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_bert_best_orig.pt"])))
+            opt_bert.load_state_dict(torch.load(pre_trained_path, "opt_bert_best_orig.pt"))
     return opt, opt_bert
 
 
@@ -216,6 +218,7 @@ def get_data(path_wikisql, args):
 def train(train_loader, train_table, model, model_bert, opt, bert_config, tokenizer,
           max_seq_length, num_target_layers, accumulate_gradients=1, check_grad=True,
           st_pos=0, opt_bert=None, path_db=None, dset_name='train', column_samples = None):
+    global scheduler
     model.train()
     model_bert.train()
 
@@ -281,8 +284,8 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
 
         # Calculate loss & step
         loss = Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi)
-
         # Calculate gradient
+
         if iB % accumulate_gradients == 0:  # mode
             # at start, perform zero_grad
             opt.zero_grad()
@@ -293,15 +296,19 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
                 opt.step()
                 if opt_bert:
                     opt_bert.step()
+                    scheduler.step()
         elif iB % accumulate_gradients == (accumulate_gradients - 1):
             # at the final, take step with accumulated graident
             loss.backward()
             opt.step()
             if opt_bert:
                 opt_bert.step()
+                scheduler.step()
         else:
             # at intermediate stage, just accumulates the gradients
             loss.backward()
+        torch.nn.utils.clip_grad_norm_(filter(lambda p: p.requires_grad, model_bert.parameters()), 1.0)
+        torch.nn.utils.clip_grad_norm_(filter(lambda p: p.requires_grad, model.parameters()), 1.0)
 
         # Prediction
         pr_sc, pr_sa, pr_wn, pr_wc, pr_wo, pr_wvi = pred_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, )
@@ -432,7 +439,7 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
     start = time.time()
     l = len(data_loader)
     for iB, t in enumerate(data_loader):
-        if iB % 100 == 99:
+        if iB % 10 == 9:
             print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB))
         cnt += len(t)
         if cnt < st_pos:
@@ -703,8 +710,13 @@ if __name__ == '__main__':
     if args.do_train:
         pre_trained_path = None
         if args.trained:
-            pre_trained_path = "/content/drive/My Drive/sf"
+            pre_trained_path = "/content/drive/My Drive/sf/" + args.run_key
         opt, opt_bert = get_opt(model, model_bert, args.fine_tune, pre_trained_path=pre_trained_path)
+        num_training_steps = 1000
+        num_warmup_steps = 100
+        warmup_proportion = float(num_warmup_steps) / float(num_training_steps)  # 0.1
+        scheduler = get_linear_schedule_with_warmup(opt_bert, num_warmup_steps=num_warmup_steps,
+                                                    num_training_steps=num_training_steps)  # PyTorch scheduler
 
         ## 6. Train
         acc_lx_t_best = -1
