@@ -41,7 +41,7 @@ class ErrorLogger():
     def display(self):
         col_to_avg = ['sel', 'agg', 'col', 'op', 'val', 'sub_val', 'rep_val']
         for col in col_to_avg:
-            print(col, ": ", self.__avg_col(col))
+            print(col, ": ", 1 - self.__avg_col(col))
 
 
     def __avg_col(self, col):

@@ -13,11 +13,10 @@ import torch
 import torch.nn.functional as F
 import random as python_random
 # import torchvision.datasets as dsets
-import zipfile
+
 # BERT
 import bert.tokenization as tokenization
 from bert.modeling import BertConfig, BertModel
-
 from sqlova.utils.utils_wikisql import *
 from sqlova.utils.utils import load_jsonl
 from sqlova.model.nl2sql.wikisql_models import *
@@ -29,21 +28,19 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 def construct_hyper_param(parser):
     parser.add_argument("--do_train", default=False, action='store_true')
     parser.add_argument('--do_infer', default=False, action='store_true')
+    parser.add_argument('--infer_loop', default=False, action='store_true')
     parser.add_argument("--column_vector_path", type=str, help="column_rep")
 
-    parser.add_argument('--infer_loop', default=False, action='store_true')
-
     parser.add_argument("--trained", default=False, action='store_true')
-    parser.add_argument("--key", type=str, help="run_key")
-
     parser.add_argument("--data_path", type=str, help="contains all tok and data files and such")
-    parser.add_argument("--shelf_bert_path", type=str, help="contains all tok and data files and such")
 
     parser.add_argument('--tepoch', default=200, type=int)
     parser.add_argument("--bS", default=32, type=int,
                         help="Batch size")
     parser.add_argument("--accumulate_gradients", default=1, type=int,
                         help="The number of accumulation of backpropagation to effectivly increase the batch size.")
+    parser.add_argument("--shelf_bert_path", type=str, help="contains all tok and data files and such")
+
     parser.add_argument('--fine_tune',
                         default=False,
                         action='store_true',
@@ -96,8 +93,6 @@ def construct_hyper_param(parser):
                          'cL': 'cased_L-24_H-1024_A-16',
                          'mcS': 'multi_cased_L-12_H-768_A-12'}
     args.bert_type = map_bert_type_abb[args.bert_type_abb]
-
-
     print(f"BERT-type: {args.bert_type}")
 
     # Decide whether to use lower_case.
@@ -117,7 +112,7 @@ def construct_hyper_param(parser):
     # args.toy_model = not torch.cuda.is_available()
     args.toy_model = False
     args.toy_size = 12
-    args.run_key = args.key + str(args.seed)
+
     return args
 
 
@@ -151,9 +146,9 @@ def get_opt(model, model_bert, fine_tune, pre_trained_path=None):
         opt_bert = None
     if pre_trained_path:
         print("Loading opt...", pre_trained_path)
-        opt.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_best_orig.pt"])))
+        opt.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_best.pt"])))
         if opt_bert is not None:
-            opt_bert.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_bert_best_orig.pt"])))
+            opt_bert.load_state_dict(torch.load(os.path.sep.join([pre_trained_path, "opt_bert_best.pt"])))
     return opt, opt_bert
 
 
@@ -215,7 +210,7 @@ def get_data(path_wikisql, args):
 
 def train(train_loader, train_table, model, model_bert, opt, bert_config, tokenizer,
           max_seq_length, num_target_layers, accumulate_gradients=1, check_grad=True,
-          st_pos=0, opt_bert=None, path_db=None, dset_name='train', column_samples = None):
+          st_pos=0, opt_bert=None, path_db=None, dset_name='train'):
     model.train()
     model_bert.train()
 
@@ -243,7 +238,7 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         if cnt < st_pos:
             continue
         # Get fields
-        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, train_table, no_hs_t=True, no_sql_t=True, column_samples=column_samples, tokenizer = tokenizer)
+        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, train_table, no_hs_t=True, no_sql_t=True)
         # nlu  : natural language utterance
         # nlu_t: tokenized nlu
         # sql_i: canonical form of SQL query
@@ -255,6 +250,7 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
         # get ground truth where-value index under CoreNLP tokenization scheme. It's done already on trainset.
         g_wvi_corenlp = get_g_wvi_corenlp(t)
+
         wemb_n, wemb_h, l_n, l_hpu, l_hs, \
         nlu_tt, t_to_tt_idx, tt_to_t_idx \
             = get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length,
@@ -409,7 +405,7 @@ def report_detail(hds, nlu,
 def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
          max_seq_length,
          num_target_layers, detail=False, st_pos=0, cnt_tot=1, EG=False, beam_size=4,
-         path_db=None, dset_name='test', column_samples = None):
+         path_db=None, dset_name='test'):
     model.eval()
     model_bert.eval()
 
@@ -438,10 +434,11 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
         if cnt < st_pos:
             continue
         # Get fields
-        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, data_table, no_hs_t=True, no_sql_t=True, column_samples=column_samples, tokenizer=tokenizer)
+        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, data_table, no_hs_t=True, no_sql_t=True)
 
         g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
         g_wvi_corenlp = get_g_wvi_corenlp(t)
+
         wemb_n, wemb_h, l_n, l_hpu, l_hs, \
         nlu_tt, t_to_tt_idx, tt_to_t_idx \
             = get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length,
@@ -579,7 +576,7 @@ def tokenize_corenlp_direct_version(client, nlu1):
 def infer(nlu1,
           table_name, data_table, path_db, db_name,
           model, model_bert, bert_config, max_seq_length, num_target_layers,
-          beam_size=4, show_table=False, show_answer_only=False):
+          beam_size=4, show_table=False, show_answer_only=False, column_rep_vectors=None):
     # I know it is of against the DRY principle but to minimize the risk of introducing bug w, the infer function introuced.
     model.eval()
     model_bert.eval()
@@ -593,6 +590,7 @@ def infer(nlu1,
 
     tb1 = [x for x in data_table if x["id"] == table_name][0]
     hds1 = tb1['header']
+    hds1 = [x + " ‖ " + " | ".join(column_rep_vectors[0][x]) for x in tb1['header']]
     tb = [tb1]
     hds = [hds1]
     hs_t = [[]]
@@ -601,12 +599,26 @@ def infer(nlu1,
     nlu_tt, t_to_tt_idx, tt_to_t_idx \
         = get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length,
                         num_out_layers_n=num_target_layers, num_out_layers_h=num_target_layers)
+    flag = True
+    if flag:
+        # No Execution guided decoding
+        s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs)
+        # )
 
-    prob_sca, prob_w, prob_wn_w, pr_sc, pr_sa, pr_wn, pr_sql_i = model.beam_forward(wemb_n, l_n, wemb_h, l_hpu,
-                                                                                    l_hs, engine, tb,
-                                                                                    nlu_t, nlu_tt,
-                                                                                    tt_to_t_idx, nlu,
-                                                                                    beam_size=beam_size)
+        # get loss & step
+        # loss = Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi)
+
+        # prediction
+        pr_sc, pr_sa, pr_wn, pr_wc, pr_wo, pr_wvi = pred_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, )
+        pr_wv_str, pr_wv_str_wp = convert_pr_wvi_to_string(pr_wvi, nlu_t, nlu_tt, tt_to_t_idx, nlu)
+        # g_sql_i = generate_sql_i(g_sc, g_sa, g_wn, g_wc, g_wo, g_wv_str, nlu)
+        pr_sql_i = generate_sql_i(pr_sc, pr_sa, pr_wn, pr_wc, pr_wo, pr_wv_str, nlu)
+    else:
+        prob_sca, prob_w, prob_wn_w, pr_sc, pr_sa, pr_wn, pr_sql_i = model.beam_forward(wemb_n, l_n, wemb_h, l_hpu,
+                                                                                        l_hs, engine, tb,
+                                                                                        nlu_t, nlu_tt,
+                                                                                        tt_to_t_idx, nlu,
+                                                                                        beam_size=1)
 
     # sort and generate
     pr_wc, pr_wo, pr_wv, pr_sql_i = sort_and_generate_pr_w(pr_sql_i)
@@ -614,7 +626,7 @@ def infer(nlu1,
         raise EnvironmentError
     pr_sql_q1 = generate_sql_q(pr_sql_i, [tb1])
     pr_sql_q = [pr_sql_q1]
-
+    print(pr_sql_q)
     try:
         pr_ans, _ = engine.execute_return_query(tb[0]['id'], pr_sc[0], pr_sa[0], pr_sql_i[0]['conds'])
     except:
@@ -656,25 +668,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     args = construct_hyper_param(parser)
 
-    ## 2. Paths
     path_main = args.data_path
     if path_main == '':
         path_main = './data/WikiSQL-1.1/data'
 
-    print("USING : ", path_main)
-
-    if not os.path.exists(path_main+os.path.sep+"train.tables.jsonl"):
-        print("tables not found, extracting, hopefully zip will be found")
-        with zipfile.ZipFile(path_main+os.path.sep+"train.tables.jsonl.zip", 'r') as zip_ref:
-            zip_ref.extractall(path_main+os.path.sep)
-
-
-
+    ## 2. Paths
     path_h = path_main  # '/home/wonseok'
     path_wikisql = path_main  # os.path.join(path_h, 'data', 'wikisql_tok')
     BERT_PT_PATH = args.shelf_bert_path
-
-
     path_save_for_evaluation = '/content/drive/My Drive/sf'
 
     ## 3. Load data
@@ -694,8 +695,9 @@ if __name__ == '__main__':
     else:
         # To start from the pre-trained models, un-comment following lines.
         print("Loading pretrained models...")
-        path_model_bert = '/content/drive/My Drive/sf/' + args.run_key + 'model_bert_best_orig.pt'
-        path_model = '/content/drive/My Drive/sf/'+ args.run_key +'model_best_orig.pt'
+        model_folder = 'col_sample'
+        path_model_bert = 'models/%s/model_bert_best.pt' % model_folder
+        path_model = 'models/%s/model_best.pt' % model_folder
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 
@@ -709,18 +711,6 @@ if __name__ == '__main__':
         ## 6. Train
         acc_lx_t_best = -1
         epoch_best = -1
-
-        train_column_vectors, dev_column_vectors = None, None
-
-        if args.column_vector_path:
-            print("Attempting to use column vectors from : ", args.column_vector_path)
-
-            with open(args.column_vector_path + "/train_vecs.json") as f:
-                train_column_vectors = json.load(f)
-            with open(args.column_vector_path + "/dev_vecs.json") as f:
-                dev_column_vectors = json.load(f)
-
-
         for epoch in range(args.tepoch):
             # trainBERT-type
             acc_train, aux_out_train = train(train_loader,
@@ -736,8 +726,7 @@ if __name__ == '__main__':
                                              opt_bert=opt_bert,
                                              st_pos=0,
                                              path_db=path_wikisql,
-                                             dset_name='train',
-                                             column_samples=train_column_vectors)
+                                             dset_name='train')
 
             # check DEV
             with torch.no_grad():
@@ -752,9 +741,9 @@ if __name__ == '__main__':
                                                       detail=False,
                                                       path_db=path_wikisql,
                                                       st_pos=0,
-                                                      dset_name='dev', EG=args.EG, column_samples=dev_column_vectors)
+                                                      dset_name='dev', EG=args.EG)
 
-            print_result(epoch, acc_train, 'train')
+            # print_result(epoch, acc_train, 'train')
             print_result(epoch, acc_dev, 'dev')
             acc_lx_t = acc_dev[-2]
             print(acc_lx_t)
@@ -769,26 +758,13 @@ if __name__ == '__main__':
                 epoch_best = epoch
                 # save best model
                 state = {'model': model.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key +'model_best_orig.pt'))
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', 'model_best.pt'))
 
                 state = {'model_bert': model_bert.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key +'model_bert_best_orig.pt'))
+                torch.save(state, os.path.join('/content/drive/My Drive/sf', 'model_bert_best.pt'))
 
-                torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf',  args.run_key +'opt_best_orig.pt'))
-                torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', args.run_key + 'opt_bert_best_orig.pt'))
-
-                #----------------------------------------
-
-                state = {'model': model.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key + str(epoch) + 'model_best_orig.pt'))
-
-                state = {'model_bert': model_bert.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key + str(epoch) + 'model_bert_best_orig.pt'))
-
-                torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf', args.run_key +str(epoch) + 'opt_best_orig.pt'))
-                torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', args.run_key + str(epoch) + 'opt_bert_best_orig.pt'))
-
-
+                torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf', 'opt_best.pt'))
+                torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', 'opt_bert_best.pt'))
 
             print(f" Best Dev lx acc: {acc_lx_t_best} at epoch: {epoch_best}")
 
@@ -808,18 +784,27 @@ if __name__ == '__main__':
         os.environ["CORENLP_HOME"] = './models/stanford-corenlp-4.0.0'
         client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
 
-
         path_db = './data/WikiSQL-1.1/data'
         db_name = 'dev'
         data_table = load_jsonl('./data/WikiSQL-1.1/data/dev.tables.jsonl')
+        if args.column_vector_path:
+            print("Attempting to use column vectors from : ", args.column_vector_path)
+
+            with open(args.column_vector_path + "/train_vecs.json") as f:
+                train_column_vectors = json.load(f)
+            with open(args.column_vector_path + "/dev_vecs.json") as f:
+                dev_column_vectors = json.load(f)
+
         while True:
             nlu1 = input("Enter query to be executed : ")
             table_name = input("Enter table name : ")
-
+            if table_name == "":
+                table_name = "2-12601141-999"
+            column_rep_vectors = dev_column_vectors[table_name]
             pr_sql_i, pr_ans = infer(
                 nlu1,
                 table_name, data_table, path_db, db_name,
                 model, model_bert, bert_config, max_seq_length=args.max_seq_length,
                 num_target_layers=args.num_target_layers,
-                beam_size=1, show_table=False, show_answer_only=False
+                beam_size=1, show_table=False, show_answer_only=False, column_rep_vectors=[column_rep_vectors]
             )

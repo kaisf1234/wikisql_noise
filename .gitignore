@@ -7,3 +7,5 @@ bert/__pycache__
 /models/noise_plain/
 /models/sel_col/
 /models/where_col/
+/models/col_sample/
+data/WikiSQL-1.1/.DS_Store

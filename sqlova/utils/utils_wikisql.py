@@ -13,6 +13,7 @@ import torch
 import torchvision.datasets as dsets
 import torch.nn as nn
 import torch.nn.functional as F
+from torch.utils.data.dataloader import DataLoader
 from .util_wiki_config import config
 
 from .utils import generate_perm_inv
@@ -90,7 +91,7 @@ def load_w2i_wemb(path_wikisql, bert=False):
     return w2i, wemb
 
 def get_loader_wikisql(data_train, data_dev, bS, shuffle_train=True, shuffle_dev=False):
-    train_loader = torch.utils.data.DataLoader(
+    train_loader = DataLoader(
         batch_size=bS,
         dataset=data_train,
         shuffle=shuffle_train,
@@ -98,7 +99,7 @@ def get_loader_wikisql(data_train, data_dev, bS, shuffle_train=True, shuffle_dev
         collate_fn=lambda x: x  # now dictionary values are not merged!
     )
 
-    dev_loader = torch.utils.data.DataLoader(
+    dev_loader = DataLoader(
         batch_size=bS,
         dataset=data_dev,
         shuffle=shuffle_dev,

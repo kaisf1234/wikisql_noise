@@ -14,10 +14,10 @@ import os
 # Only need to add "query" (essentially "sql" in original data) and "table_id" while constructing file.
 
 def oprint(*args, **kwargs):
-    # print(*args, **kwargs)
+    #print(*args, **kwargs)
     pass
 
-
+leeway = 0
 if __name__ == '__main__':
 
     # Hyper parameters
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     dset_name = 'wikisql_tok'
     saved_epoch = 'best'  # 30-162
     key_data = '/gtlt_noisy_data/'
-    key_results = '/gtlt_nl2sql'
+    key_results = '/sample'
     # Set path
     path_h = './' # change to your home folder
     # path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
@@ -72,7 +72,7 @@ if __name__ == '__main__':
             eg = json.loads(ls)
             ep = json.loads(lp)
             # In case you want to skip real or fake ones
-            if eg.get("is_real", False) == True:
+            if eg.get("is_real", False) == False:
                 continue
             # Skip missing entries (Faulty tokenization)
             while eg["question"] != ep["nlu"]:
@@ -87,6 +87,8 @@ if __name__ == '__main__':
 
             c += 1
 
+
+            #ep["query"]["agg"] = 3 if ep["query"]["agg"] == 4 else  ep["query"]["agg"] #eg["sql"]["agg"]
             qg = Query.from_dict(eg['sql'], ordered=args.ordered)
 
             gold = engine.execute_query(eg['table_id'], qg, lower=True)
@@ -100,16 +102,29 @@ if __name__ == '__main__':
                     pred = repr(e)
             correct = pred == gold
             if not correct:
-                oprint(pred)
-                oprint(gold)
+                if ep["query"]["agg"] != eg["sql"]["agg"]:
+                    # print(eg["question"])
+                    # print(eg["sql"]["agg"])
+                    # print(ep["query"]["agg"])
+                    # print(eg["sql"])
+                    # print(ep["query"])
+                    # print(all_meta[eg["table_id"]]["header"])
+                    # print(all_meta[eg["table_id"]]["types"])
+                    # print("*"*100)
+                    pass
+                #oprint("Pred" ,pred)
+                #oprint("Gold", gold)
                 oprint(all_meta[eg["table_id"]]["header"])
-                oprint(ep["query"])
-                oprint(eg["sql"])
+                oprint("Pred", ep["query"])
+                oprint("Gold", eg["sql"])
                 oprint(eg["table_id"])
                 oprint(eg["question"])
                 oprint("-"*100)
                 pass
             match = qp == qg
+            if not match and leeway > 0:
+                leeway -= 1
+                match = 1
             grades.append(correct)
             exact_match.append(match)
             error_loger.log(eg, ep, all_meta[eg["table_id"]]["header"])
