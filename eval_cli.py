@@ -590,6 +590,7 @@ def infer(nlu1,
 
     tb1 = [x for x in data_table if x["id"] == table_name][0]
     hds1 = tb1['header']
+    hds_no_val = [hds1]
     hds1 = [x + " ‖ " + " | ".join(column_rep_vectors[0][x]) for x in tb1['header']]
     tb = [tb1]
     hds = [hds1]
@@ -604,7 +605,7 @@ def infer(nlu1,
         # No Execution guided decoding
         s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs)
         # )
-
+        print(s_wc)
         # get loss & step
         # loss = Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi)
 
@@ -640,7 +641,8 @@ def infer(nlu1,
 
     else:
         print(f'START ============================================================= ')
-        print(f'{hds}')
+        print('Headers : ', f'{hds_no_val}')
+        print('Augmented : ', f'{hds}')
         if show_table:
             print(engine.show_table(table_name))
         print(f'nlu: {nlu}')
