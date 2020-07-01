@@ -11,7 +11,7 @@ from sqlova.utils.utils_wikisql import load_wikisql
 def construct_args(parser):
     parser.add_argument("--data_root", default="./data/WikiSQL-1.1/data")
     parser.add_argument("--num_rows", type=int, default=5)
-    parser.add_argument("--out_root", default="./column_rep/outs")
+    parser.add_argument("--out_root", default="./column_rep/outs_all")
     args = parser.parse_args()
     return args
 
@@ -30,7 +30,7 @@ def get_column_reps(tables):
         for col_idx, header_name in enumerate((table["header"])):
             col = [x[col_idx] for x in rows]
             col = set(col)
-            sample = col if len(col) < num_sample else random.sample(col, num_sample)
+            sample = col #if len(col) < num_sample else random.sample(col, num_sample)
             sample = [str(x) for x in sample]
             samples_to_be_encoded.append(sample)
             # vector = column_encoder.encode_sample([str(x) for x in sample])

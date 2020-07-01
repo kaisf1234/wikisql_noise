@@ -130,7 +130,11 @@ def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False, column_samples = Non
     if config["use_types_concat"]:
         hs1 = [x+" | " + y for x,y in zip(tb1["header"], tb1["types"])]
     if config["use_values_concat"]:
-        hs1 = [x + " ‖ " + " | ".join([val for val in random.sample(column_samples[tid1][x], min(len(column_samples[tid1][x]), 3))]) for x in tb1["header"]]
+        hs1 = [x + " ‖ " + " | ".join([val for val in random.sample(column_samples[tid1][x], min(len(column_samples[tid1][x]), 1))]) for x in tb1["header"]]
+        for cond in sql_i1["conds"]:
+            col_idx = cond[0]
+            col_val = cond[-1]
+            hs1[col_idx] = (hs1[col_idx].split(" ‖ ")[0]) + " ‖ " + str(col_val)
 
     return nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1
 
