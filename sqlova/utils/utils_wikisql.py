@@ -110,6 +110,39 @@ def get_loader_wikisql(data_train, data_dev, bS, shuffle_train=True, shuffle_dev
     return train_loader, dev_loader
 import random
 
+
+query_memo = {}
+table_memo = {}
+
+from flashtext import KeywordProcessor
+
+
+def build_flash_table(samples):
+    keyword_processor = KeywordProcessor(case_sensitive=False)
+    keyword_processor.add_keywords_from_list([value for col in samples.values() for value in col])
+    col_sets = {col : set(samples[col]) for col in samples}
+    return (col_sets, keyword_processor)
+
+
+def get_best_samples(query, samples, table_id):
+    if (query, table_id) in query_memo:
+        return query_memo[(query, table_id)]
+    if table_id in table_memo:
+        flash_table = table_memo[table_id]
+    else:
+        flash_table = build_flash_table(samples)
+        table_memo[table_id] = flash_table
+    col_sets, keyword_processor = flash_table
+    keywords = keyword_processor.extract_keywords(query)
+    best_samples = {name : set() for name in samples}
+    for keyword in keywords:
+        for header in col_sets:
+            if keyword in col_sets[header]:
+                best_samples[header].add(keyword)
+    query_memo[(query, table_id)] = best_samples
+    return best_samples
+
+
 def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False, column_samples = None):
     nlu1 = t1['question']
     nlu_t1 = t1['question_tok']
@@ -130,12 +163,15 @@ def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False, column_samples = Non
     if config["use_types_concat"]:
         hs1 = [x+" | " + y for x,y in zip(tb1["header"], tb1["types"])]
     if config["use_values_concat"]:
-        hs1 = [x + " ‖ " + " | ".join([val for val in random.sample(column_samples[tid1][x], min(len(column_samples[tid1][x]), 1))]) for x in tb1["header"]]
-        for cond in sql_i1["conds"]:
-            col_idx = cond[0]
-            col_val = cond[-1]
-            hs1[col_idx] = (hs1[col_idx].split(" ‖ ")[0]) + " ‖ " + str(col_val)
-
+        #print(t1)
+        # print(column_samples[tid1])
+        best_samples = get_best_samples(nlu1, column_samples[tid1], tid1)
+        #print("%"*100)
+        sampled_headers = {x:random.sample(best_samples[x], min(len(best_samples[x]), 3)) + [val for val in random.sample(set(column_samples[tid1][x]) - best_samples[x], min(len(set(column_samples[tid1][x]) - best_samples[x]), max(0, 3 - len(best_samples[x]))))]
+                                      for x in tb1["header"]}
+        _ = {x:random.shuffle(sampled_headers[x]) for x in sampled_headers}
+        hs1 = [x + " ‖ " + " | ".join(sampled_headers[x]) for x in sampled_headers]
+        #print(hs1)
     return nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1
 
 def tokenized_len(nlu_t1, hds1, tokenizer):
