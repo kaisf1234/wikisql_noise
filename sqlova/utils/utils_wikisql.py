@@ -162,7 +162,7 @@ def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False, column_samples = Non
     hs1 = tb1['header']
     if config["use_types_concat"]:
         hs1 = [x+" | " + y for x,y in zip(tb1["header"], tb1["types"])]
-    if config["use_values_concat"]:
+    if config["use_search_concat"]:
         #print(t1)
         # print(column_samples[tid1])
         best_samples = get_best_samples(nlu1, column_samples[tid1], tid1)
@@ -172,6 +172,8 @@ def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False, column_samples = Non
         _ = {x:random.shuffle(sampled_headers[x]) for x in sampled_headers}
         hs1 = [x + " ‖ " + " | ".join(sampled_headers[x]) for x in sampled_headers]
         #print(hs1)
+    if config["use_samples_concat"]:
+        hs1 = [x + " ‖ " + " | ".join([val for val in random.sample(column_samples[tid1][x], min(len(column_samples[tid1][x]), 3))]) for x in tb1["header"]]
     return nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1
 
 def tokenized_len(nlu_t1, hds1, tokenizer):

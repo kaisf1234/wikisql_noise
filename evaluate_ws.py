@@ -17,7 +17,7 @@ def oprint(*args, **kwargs):
     #print(*args, **kwargs)
     pass
 
-leeway = 100
+leeway = 0
 if __name__ == '__main__':
 
     # Hyper parameters
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     dset_name = 'wikisql_tok'
     saved_epoch = 'best'  # 30-162
     key_data = '/gtlt_noisy_data/'
-    key_results = '/sample_3_more'
+    key_results = '/sample'
     # Set path
     path_h = './' # change to your home folder
     # path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
@@ -108,20 +108,20 @@ if __name__ == '__main__':
                 if ep["query"]["agg"] != eg["sql"]["agg"] :
                 # if  all_meta[eg["table_id"]]["types"][ep["query"]["sel"]] == "real" and eg["sql"]["agg"] == 3 :
                     cc += 1
-                    print(eg["question"])
-                    print("GOLD", Query.agg_ops[eg["sql"]["agg"]])
-                    print("PRED", Query.agg_ops[ep["query"]["agg"]])
-                    print("GOLD", eg["sql"])
-                    print("PRED", ep["query"])
-                    print(all_meta[eg["table_id"]]["header"])
-                    print(all_meta[eg["table_id"]]["types"])
-                    print(pred, gold)
-                    print("table_" + eg["table_id"].replace("-", "_"))
-                    print("^"*100)
-                    values = engine.execute_sel_star(eg["table_id"])
-
-                    print(tabulate(values, headers=all_meta[eg["table_id"]]["header"], tablefmt='fancy_grid'))
-                    print("*"*100)
+                    # print(eg["question"])
+                    # print("GOLD", Query.agg_ops[eg["sql"]["agg"]])
+                    # print("PRED", Query.agg_ops[ep["query"]["agg"]])
+                    # print("GOLD", eg["sql"])
+                    # print("PRED", ep["query"])
+                    # print(all_meta[eg["table_id"]]["header"])
+                    # print(all_meta[eg["table_id"]]["types"])
+                    # print(pred, gold)
+                    # print("table_" + eg["table_id"].replace("-", "_"))
+                    # print("^"*100)
+                    # values = engine.execute_sel_star(eg["table_id"])
+                    #
+                    # print(tabulate(values, headers=all_meta[eg["table_id"]]["header"], tablefmt='fancy_grid'))
+                    # print("*"*100)
                     pass
                 #oprint("Pred" ,pred)
                 #oprint("Gold", gold)

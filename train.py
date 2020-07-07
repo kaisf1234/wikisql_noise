@@ -53,6 +53,8 @@ def construct_hyper_param(parser):
 
     parser.add_argument("--model_type", default='Seq2SQL_v1', type=str,
                         help="Type of model.")
+    parser.add_argument("--model_store_root", default='/content/drive/My Drive/sf', type=str,
+                        help="Type of model.")
 
     # 1.2 BERT Parameters
     parser.add_argument("--vocab_file",
@@ -143,10 +145,10 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
 def get_opt(model, model_bert, fine_tune, pre_trained_path=None):
     if fine_tune:
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
-                               lr=args.lr)
+                               lr=args.lr, amsgrad=True)
 
         opt_bert = torch.optim.Adam(filter(lambda p: p.requires_grad, model_bert.parameters()),
-                                    lr=args.lr_bert)
+                                    lr=args.lr_bert, amsgrad=True)
     else:
         opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
                                lr=args.lr, weight_decay=0)
@@ -675,7 +677,7 @@ if __name__ == '__main__':
     ## 1. Hyper parameters
     parser = argparse.ArgumentParser()
     args = construct_hyper_param(parser)
-
+    model_store_root = args.model_store_root
     ## 2. Paths
     path_main = args.data_path
     if path_main == '':
@@ -714,8 +716,8 @@ if __name__ == '__main__':
     else:
         # To start from the pre-trained models, un-comment following lines.
         print("Loading pretrained models...")
-        path_model_bert = './models/col_search_sample_3/' + 'model_bert_best.pt'
-        path_model = './models/col_search_sample_3/' +'model_best.pt'
+        path_model_bert = model_store_root + '/' + args.run_key + 'model_bert_best_orig.pt'
+        path_model = model_store_root + '/'+ args.run_key +'model_best_orig.pt'
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 
@@ -723,7 +725,7 @@ if __name__ == '__main__':
     if args.do_train:
         pre_trained_path = None
         if False and args.trained:
-            pre_trained_path = "/content/drive/My Drive/sf/" + args.run_key
+            pre_trained_path = model_store_root + "/" + args.run_key
         opt, opt_bert = get_opt(model, model_bert, args.fine_tune, pre_trained_path=pre_trained_path)
         num_training_steps = 1000
         num_warmup_steps = 100
@@ -748,21 +750,21 @@ if __name__ == '__main__':
 
         for epoch in range(args.tepoch):
             # trainBERT-type
-            # acc_train, aux_out_train = train(train_loader,
-            #                                  train_table,
-            #                                  model,
-            #                                  model_bert,
-            #                                  opt,
-            #                                  bert_config,
-            #                                  tokenizer,
-            #                                  args.max_seq_length,
-            #                                  args.num_target_layers,
-            #                                  args.accumulate_gradients,
-            #                                  opt_bert=opt_bert,
-            #                                  st_pos=0,
-            #                                  path_db=path_wikisql,
-            #                                  dset_name='train',
-            #                                  column_samples=train_column_vectors)
+            acc_train, aux_out_train = train(train_loader,
+                                             train_table,
+                                             model,
+                                             model_bert,
+                                             opt,
+                                             bert_config,
+                                             tokenizer,
+                                             args.max_seq_length,
+                                             args.num_target_layers,
+                                             args.accumulate_gradients,
+                                             opt_bert=opt_bert,
+                                             st_pos=0,
+                                             path_db=path_wikisql,
+                                             dset_name='train',
+                                             column_samples=train_column_vectors)
 
             # check DEV
             with torch.no_grad():
@@ -779,7 +781,7 @@ if __name__ == '__main__':
                                                       st_pos=0,
                                                       dset_name='dev', EG=args.EG, column_samples=dev_column_vectors)
 
-            # print_result(epoch, acc_train, 'train')
+            print_result(epoch, acc_train, 'train')
             print_result(epoch, acc_dev, 'dev')
             acc_lx_t = acc_dev[-2]
             print(acc_lx_t)
@@ -794,24 +796,25 @@ if __name__ == '__main__':
                 epoch_best = epoch
                 # save best model
                 state = {'model': model.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key +'model_best_orig.pt'))
+
+                torch.save(state, os.path.join(model_store_root, args.run_key + 'model_best_orig.pt'))
 
                 state = {'model_bert': model_bert.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key +'model_bert_best_orig.pt'))
+                torch.save(state, os.path.join(model_store_root, args.run_key + 'model_bert_best_orig.pt'))
 
-                torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf',  args.run_key +'opt_best_orig.pt'))
-                torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', args.run_key + 'opt_bert_best_orig.pt'))
+                torch.save(opt.state_dict(), os.path.join(model_store_root, args.run_key + 'opt_best_orig.pt'))
+                torch.save(opt_bert.state_dict(), os.path.join(model_store_root, args.run_key + 'opt_bert_best_orig.pt'))
 
                 #----------------------------------------
 
                 state = {'model': model.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key + str(epoch) + 'model_best_orig.pt'))
+                torch.save(state, os.path.join(model_store_root, args.run_key + str(epoch) + 'model_best_orig.pt'))
 
                 state = {'model_bert': model_bert.state_dict()}
-                torch.save(state, os.path.join('/content/drive/My Drive/sf', args.run_key + str(epoch) + 'model_bert_best_orig.pt'))
+                torch.save(state, os.path.join(model_store_root, args.run_key + str(epoch) + 'model_bert_best_orig.pt'))
 
-                torch.save(opt.state_dict(), os.path.join('/content/drive/My Drive/sf', args.run_key +str(epoch) + 'opt_best_orig.pt'))
-                torch.save(opt_bert.state_dict(), os.path.join('/content/drive/My Drive/sf', args.run_key + str(epoch) + 'opt_bert_best_orig.pt'))
+                torch.save(opt.state_dict(), os.path.join(model_store_root, args.run_key + str(epoch) + 'opt_best_orig.pt'))
+                torch.save(opt_bert.state_dict(), os.path.join(model_store_root, args.run_key + str(epoch) + 'opt_bert_best_orig.pt'))
 
 
 
