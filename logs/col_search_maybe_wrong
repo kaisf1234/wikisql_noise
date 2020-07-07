@@ -1,0 +1,1050 @@
+2020-07-02 06:03:01.673296: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+BERT-type: uncased_L-12_H-768_A-12
+USING :  /content/wikisql_noise/data/WikiSQL-1.1/gtlt_noisy_data
+tables not found, extracting, hopefully zip will be found
+Batch_size = 32
+BERT parameters:
+learning rate: 1e-05
+Fine-tune BERT: True
+vocab size: 30522
+hidden_size: 768
+num_hidden_layer: 12
+num_attention_heads: 12
+hidden_act: gelu
+intermediate_size: 3072
+hidden_dropout_prob: 0.1
+attention_probs_dropout_prob: 0.1
+max_position_embeddings: 512
+type_vocab_size: 2
+initializer_range: 0.02
+Seq-to-SQL: the number of final BERT layers to be used: 2
+Seq-to-SQL: the size of hidden dimension = 100
+Seq-to-SQL: LSTM encoding layer size = 2
+Seq-to-SQL: dropout rate = 0.3
+Seq-to-SQL: learning rate = 0.001
+Attempting to use column vectors from :  ./column_rep/outs
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+/usr/local/lib/python3.6/dist-packages/torch/nn/functional.py:1569: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+Done with  99  out of  10791  time left  5029.429856300354  ave loss  5.015860494941172
+Done with  199  out of  10791  time left  4864.709492132292  ave loss  3.760960248247463
+Done with  299  out of  10791  time left  4782.533170980753  ave loss  3.133126306095251
+Done with  399  out of  10791  time left  4758.807202217274  ave loss  2.7648380238908277
+Done with  499  out of  10791  time left  4688.827141526705  ave loss  2.497197390080454
+Done with  599  out of  10791  time left  4656.666805190913  ave loss  2.2919138986399656
+Done with  699  out of  10791  time left  4575.643738198178  ave loss  2.1193970167884157
+Done with  799  out of  10791  time left  4532.338637546544  ave loss  1.9807464318520136
+Done with  899  out of  10791  time left  4499.333465376738  ave loss  1.8690039863244312
+Done with  999  out of  10791  time left  4466.042895892719  ave loss  1.7740526598196726
+Done with  1099  out of  10791  time left  4416.697089481614  ave loss  1.6957939363561836
+Done with  1199  out of  10791  time left  4366.835105895996  ave loss  1.6218278795182457
+Done with  1299  out of  10791  time left  4319.607778535979  ave loss  1.5622343864231683
+Done with  1399  out of  10791  time left  4279.796245618579  ave loss  1.5055553259925811
+Done with  1499  out of  10791  time left  4233.627306434932  ave loss  1.453393340046164
+Done with  1599  out of  10791  time left  4194.844540293624  ave loss  1.4118645552538798
+Done with  1699  out of  10791  time left  4144.135945459897  ave loss  1.3713446026706324
+Done with  1799  out of  10791  time left  4097.731942771076  ave loss  1.3371004660931178
+Done with  1899  out of  10791  time left  4052.5555821097855  ave loss  1.303486998359221
+Done with  1999  out of  10791  time left  4011.656611323774  ave loss  1.2779197401053581
+Done with  2099  out of  10791  time left  3963.556231771781  ave loss  1.2486857696569011
+Done with  2199  out of  10791  time left  3914.113869332682  ave loss  1.2192146395379275
+Done with  2299  out of  10791  time left  3863.360752625899  ave loss  1.1937951467422467
+Done with  2399  out of  10791  time left  3818.8626185954236  ave loss  1.1692875828772546
+Done with  2499  out of  10791  time left  3774.5210542942154  ave loss  1.150334559619522
+Done with  2599  out of  10791  time left  3725.771379166266  ave loss  1.1290912026537294
+Done with  2699  out of  10791  time left  3681.075194437621  ave loss  1.1098531866435786
+Done with  2799  out of  10791  time left  3634.7391851615293  ave loss  1.0909589945853406
+Done with  2899  out of  10791  time left  3585.8289259202975  ave loss  1.073232009059198
+Done with  2999  out of  10791  time left  3546.456519457291  ave loss  1.056674165559281
+Done with  3099  out of  10791  time left  3500.97111935814  ave loss  1.0405573388720883
+Done with  3199  out of  10791  time left  3453.8648417193504  ave loss  1.0249946605607463
+Done with  3299  out of  10791  time left  3406.9450630975443  ave loss  1.007947740077557
+Done with  3399  out of  10791  time left  3358.316700166869  ave loss  0.9942855955213615
+Done with  3499  out of  10791  time left  3311.3423794222817  ave loss  0.9795537657346912
+Done with  3599  out of  10791  time left  3265.033613238874  ave loss  0.9662423974369369
+Done with  3699  out of  10791  time left  3220.272528028836  ave loss  0.9539003239017535
+Done with  3799  out of  10791  time left  3176.819863583735  ave loss  0.9423830466328773
+Done with  3899  out of  10791  time left  3129.53425875417  ave loss  0.931001856359867
+Done with  3999  out of  10791  time left  3083.948883195435  ave loss  0.9202655836670592
+Done with  4099  out of  10791  time left  3038.978337935629  ave loss  0.9102547397443066
+Done with  4199  out of  10791  time left  2992.8197930652377  ave loss  0.8997989447552743
+Done with  4299  out of  10791  time left  2947.2236267823237  ave loss  0.8900604111240593
+Done with  4399  out of  10791  time left  2901.8734135104187  ave loss  0.8815455760406239
+Done with  4499  out of  10791  time left  2856.541690884709  ave loss  0.871744665873878
+Done with  4599  out of  10791  time left  2810.8103876207206  ave loss  0.8615515815415287
+Done with  4699  out of  10791  time left  2765.0599892452487  ave loss  0.8531596845594219
+Done with  4799  out of  10791  time left  2719.4002033773377  ave loss  0.8443914579980931
+Done with  4899  out of  10791  time left  2672.4365537652775  ave loss  0.8354020227438018
+Done with  4999  out of  10791  time left  2626.024992203946  ave loss  0.8269566109664418
+Done with  5099  out of  10791  time left  2578.7241184887735  ave loss  0.8188268719677552
+Done with  5199  out of  10791  time left  2533.175990078811  ave loss  0.8115139681101419
+Done with  5299  out of  10791  time left  2486.848255798173  ave loss  0.8039205932448744
+Done with  5399  out of  10791  time left  2442.055273875282  ave loss  0.7973407831565332
+Done with  5499  out of  10791  time left  2395.717318175857  ave loss  0.7912434014188748
+Done with  5599  out of  10791  time left  2350.200024284408  ave loss  0.7840090841088184
+Done with  5699  out of  10791  time left  2305.1092809781544  ave loss  0.7776647991641171
+Done with  5799  out of  10791  time left  2259.26697584094  ave loss  0.7706947859237268
+Done with  5899  out of  10791  time left  2214.529918791581  ave loss  0.7645140393326258
+Done with  5999  out of  10791  time left  2169.7950784209806  ave loss  0.7589218173148727
+Done with  6099  out of  10791  time left  2124.5600081461143  ave loss  0.7523333599762223
+Done with  6199  out of  10791  time left  2078.9640450555294  ave loss  0.7465494052322341
+Done with  6299  out of  10791  time left  2033.1336018993354  ave loss  0.7412875862120885
+Done with  6399  out of  10791  time left  1987.2647837251216  ave loss  0.7350524671029071
+Done with  6499  out of  10791  time left  1942.2519027447586  ave loss  0.7290492829686003
+Done with  6599  out of  10791  time left  1896.9872145325437  ave loss  0.7242093163177344
+Done with  6699  out of  10791  time left  1851.8193733422038  ave loss  0.7189236407257602
+Done with  6799  out of  10791  time left  1806.8156313368074  ave loss  0.713461923788576
+Done with  6899  out of  10791  time left  1761.3827741921232  ave loss  0.7084770494077642
+Done with  6999  out of  10791  time left  1716.0114848304092  ave loss  0.7036373414914107
+Done with  7099  out of  10791  time left  1670.4042595042395  ave loss  0.6986379238003756
+Done with  7199  out of  10791  time left  1625.4016378651495  ave loss  0.6937997134350388
+Done with  7299  out of  10791  time left  1580.337707292578  ave loss  0.6888277895514094
+Done with  7399  out of  10791  time left  1536.154273107255  ave loss  0.6840637443430599
+Done with  7499  out of  10791  time left  1490.2410876029555  ave loss  0.6801430356361797
+Done with  7599  out of  10791  time left  1444.7919810152412  ave loss  0.6756154574194742
+Done with  7699  out of  10791  time left  1399.3732668984044  ave loss  0.6719649987789298
+Done with  7799  out of  10791  time left  1353.9492372854472  ave loss  0.6683840162973029
+Done with  7899  out of  10791  time left  1308.6483675985342  ave loss  0.6652621109865569
+Done with  7999  out of  10791  time left  1263.1529158542032  ave loss  0.6612710091499057
+Done with  8099  out of  10791  time left  1218.4169608555483  ave loss  0.6577063845825873
+Done with  8199  out of  10791  time left  1173.1161042683473  ave loss  0.6542214611930275
+Done with  8299  out of  10791  time left  1127.8755842401458  ave loss  0.6510617755093547
+Done with  8399  out of  10791  time left  1082.3853543407931  ave loss  0.6471081344229591
+Done with  8499  out of  10791  time left  1037.0162738557  ave loss  0.643830736780392
+Done with  8599  out of  10791  time left  991.8044582818993  ave loss  0.6399409541427432
+Done with  8699  out of  10791  time left  946.1467662574039  ave loss  0.6368621824725055
+Done with  8799  out of  10791  time left  900.623930179012  ave loss  0.6333007566929956
+Done with  8899  out of  10791  time left  855.0639302721719  ave loss  0.6303986359659948
+Done with  8999  out of  10791  time left  809.7918768182359  ave loss  0.6271959266381415
+Done with  9099  out of  10791  time left  764.7002851578649  ave loss  0.6236615441848055
+Done with  9199  out of  10791  time left  719.3950774500404  ave loss  0.6201537843123005
+Done with  9299  out of  10791  time left  674.2437968829945  ave loss  0.6167884148991433
+Done with  9399  out of  10791  time left  628.9353399462415  ave loss  0.6135707759425315
+Done with  9499  out of  10791  time left  583.9012411053099  ave loss  0.6102188039610853
+Done with  9599  out of  10791  time left  538.570762441933  ave loss  0.6069844912475452
+Done with  9699  out of  10791  time left  493.36513705272773  ave loss  0.60384148557374
+Done with  9799  out of  10791  time left  448.2253297832453  ave loss  0.6009181007949694
+Done with  9899  out of  10791  time left  403.0852319565382  ave loss  0.5989320295392347
+Done with  9999  out of  10791  time left  357.8456711721892  ave loss  0.596672126840223
+Done with  10099  out of  10791  time left  312.6765372011612  ave loss  0.5941612316651103
+Done with  10199  out of  10791  time left  267.4939995758299  ave loss  0.5912448167366243
+Done with  10299  out of  10791  time left  222.28895597432881  ave loss  0.5884953587129151
+Done with  10399  out of  10791  time left  177.0841991838348  ave loss  0.5859892030208225
+Done with  10499  out of  10791  time left  131.90706703664918  ave loss  0.5834482251455366
+Done with  10599  out of  10791  time left  86.69473734773862  ave loss  0.5810114031571728
+Done with  10699  out of  10791  time left  41.52673578801607  ave loss  0.5787801576513407
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  1604  time left  226.2198026132102
+Done with  199  out of  1604  time left  213.01909891804257
+Done with  299  out of  1604  time left  198.81194861038873
+Done with  399  out of  1604  time left  181.81221922836207
+Done with  499  out of  1604  time left  166.51230628361444
+Done with  599  out of  1604  time left  148.9080514016255
+Done with  699  out of  1604  time left  132.3024365045823
+Done with  799  out of  1604  time left  116.93701613083651
+Done with  899  out of  1604  time left  102.11345601400093
+Done with  999  out of  1604  time left  86.84495799653642
+Done with  1099  out of  1604  time left  72.3601921554909
+Done with  1199  out of  1604  time left  57.71708358318433
+Done with  1299  out of  1604  time left  43.27317103594427
+Done with  1399  out of  1604  time left  29.018400235206766
+Done with  1499  out of  1604  time left  14.817950232494981
+Done with  1599  out of  1604  time left  0.7032749733379142
+train results ------------
+ Epoch: 0, ave loss: 0.5764342305499628, acc_sc: 0.847, acc_sa: 0.910, acc_wn: 0.959,         acc_wc: 0.854, acc_wo: 0.911, acc_wvi: 0.818, acc_wv: 0.824, acc_lx: 0.629, acc_x: 0.629
+dev results ------------
+ Epoch: 0, ave loss: 1.6529970473770492, acc_sc: 0.942, acc_sa: 0.935, acc_wn: 0.990,         acc_wc: 0.938, acc_wo: 0.944, acc_wvi: 0.903, acc_wv: 0.905, acc_lx: 0.771, acc_x: 0.771
+0.7714909204270907
+ Best Dev lx acc: 0.7714909204270907 at epoch: 0
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  10791  time left  5403.708271980286  ave loss  0.29400603815612164
+Done with  199  out of  10791  time left  5067.012871478671  ave loss  0.2881811372935772
+Done with  299  out of  10791  time left  4892.361148808713  ave loss  0.30123019866944356
+Done with  399  out of  10791  time left  4797.65980676063  ave loss  0.301642661760176
+Done with  499  out of  10791  time left  4746.233463583585  ave loss  0.30070415187304195
+Done with  599  out of  10791  time left  4680.172210476832  ave loss  0.30202643797369066
+Done with  699  out of  10791  time left  4631.383759289852  ave loss  0.3087525512095146
+Done with  799  out of  10791  time left  4571.489421870741  ave loss  0.3026248952551618
+Done with  899  out of  10791  time left  4520.831039835004  ave loss  0.30438283276878864
+Done with  999  out of  10791  time left  4469.532385886252  ave loss  0.3035583492721318
+Done with  1099  out of  10791  time left  4411.2275500570895  ave loss  0.2973339164062226
+Done with  1199  out of  10791  time left  4356.308126449585  ave loss  0.29566911946429875
+Done with  1299  out of  10791  time left  4307.540956182238  ave loss  0.29596693652289113
+Done with  1399  out of  10791  time left  4263.459837242055  ave loss  0.2989882767738693
+Done with  1499  out of  10791  time left  4219.822653047079  ave loss  0.2954014334686317
+Done with  1599  out of  10791  time left  4173.087587778832  ave loss  0.2941294845866052
+Done with  1699  out of  10791  time left  4123.988080414833  ave loss  0.2936004014254623
+Done with  1799  out of  10791  time left  4079.5991093125062  ave loss  0.29521284141347925
+Done with  1899  out of  10791  time left  4032.7282493555153  ave loss  0.2941279053346466
+Done with  1999  out of  10791  time left  3984.9945489101974  ave loss  0.293943171078533
+Done with  2099  out of  10791  time left  3934.9173587650957  ave loss  0.2946304918447418
+Done with  2199  out of  10791  time left  3887.6826931587834  ave loss  0.2961570423963789
+Done with  2299  out of  10791  time left  3841.7725165015772  ave loss  0.2951168216904281
+Done with  2399  out of  10791  time left  3800.241583113772  ave loss  0.29478395404973506
+Done with  2499  out of  10791  time left  3752.5967703083124  ave loss  0.2954318937545522
+Done with  2599  out of  10791  time left  3706.917198471768  ave loss  0.2950975384941972
+Done with  2699  out of  10791  time left  3664.3838351395625  ave loss  0.2944188132841056
+Done with  2799  out of  10791  time left  3616.5445838081873  ave loss  0.2916236698307049
+Done with  2899  out of  10791  time left  3576.774753857744  ave loss  0.29079593954287875
+Done with  2999  out of  10791  time left  3530.5565714465656  ave loss  0.28839523695386315
+Done with  3099  out of  10791  time left  3484.771660181583  ave loss  0.2901203604735117
+Done with  3199  out of  10791  time left  3439.8869914144007  ave loss  0.2895071220161494
+Done with  3299  out of  10791  time left  3396.818025406291  ave loss  0.2887836898593489
+Done with  3399  out of  10791  time left  3351.2915657561957  ave loss  0.28979027275716385
+Done with  3499  out of  10791  time left  3304.866928542945  ave loss  0.28876253254622464
+Done with  3599  out of  10791  time left  3258.7662574066394  ave loss  0.28785869867836417
+Done with  3699  out of  10791  time left  3213.1170104414296  ave loss  0.2875072483465435
+Done with  3799  out of  10791  time left  3165.288522974884  ave loss  0.28825194357346945
+Done with  3899  out of  10791  time left  3119.6491836832556  ave loss  0.2873581657725979
+Done with  3999  out of  10791  time left  3075.393874821588  ave loss  0.2862354016415197
+Done with  4099  out of  10791  time left  3030.1058188692245  ave loss  0.2859416435402006
+Done with  4199  out of  10791  time left  2984.9785271808346  ave loss  0.2841662604222706
+Done with  4299  out of  10791  time left  2940.083953780223  ave loss  0.28443710614096746
+Done with  4399  out of  10791  time left  2894.070804198782  ave loss  0.2828397373956778
+Done with  4499  out of  10791  time left  2848.735023263031  ave loss  0.282069217812669
+Done with  4599  out of  10791  time left  2805.1944438986584  ave loss  0.2819348616367779
+Done with  4699  out of  10791  time left  2760.1131273000947  ave loss  0.2811979652407406
+Done with  4799  out of  10791  time left  2716.5170418031266  ave loss  0.2814015636692543
+Done with  4899  out of  10791  time left  2671.542502726796  ave loss  0.2815504419416034
+Done with  4999  out of  10791  time left  2626.457591005506  ave loss  0.28097587190870255
+Done with  5099  out of  10791  time left  2579.912715698836  ave loss  0.2805528718204469
+Done with  5199  out of  10791  time left  2534.184950476909  ave loss  0.2803591178157973
+Done with  5299  out of  10791  time left  2488.7631910132964  ave loss  0.2800104751014018
+Done with  5399  out of  10791  time left  2443.842747548572  ave loss  0.2799200867953037
+Done with  5499  out of  10791  time left  2397.331306658868  ave loss  0.27985767889126
+Done with  5599  out of  10791  time left  2351.1650427535383  ave loss  0.27912100212289886
+Done with  5699  out of  10791  time left  2305.5123248690156  ave loss  0.27826112352275983
+Done with  5799  out of  10791  time left  2259.402244666544  ave loss  0.27770627131843
+Done with  5899  out of  10791  time left  2213.4836905101615  ave loss  0.2774569734031561
+Done with  5999  out of  10791  time left  2168.0375087580337  ave loss  0.2770671979103478
+Done with  6099  out of  10791  time left  2123.8633360982353  ave loss  0.27627734213793054
+Done with  6199  out of  10791  time left  2078.0308022429085  ave loss  0.2763486957239643
+Done with  6299  out of  10791  time left  2033.7649849938446  ave loss  0.2763650051210842
+Done with  6399  out of  10791  time left  1987.9578426940532  ave loss  0.27582910899987617
+Done with  6499  out of  10791  time left  1942.3216031534266  ave loss  0.2757732954395657
+Done with  6599  out of  10791  time left  1897.3473895090713  ave loss  0.2752553586105238
+Done with  6699  out of  10791  time left  1852.2444077618604  ave loss  0.2749084433186399
+Done with  6799  out of  10791  time left  1807.8980231764106  ave loss  0.27448949619553326
+Done with  6899  out of  10791  time left  1762.1922475567658  ave loss  0.27418317592529745
+Done with  6999  out of  10791  time left  1716.9338752838146  ave loss  0.27339272297689793
+Done with  7099  out of  10791  time left  1671.8939344589098  ave loss  0.2727098816223267
+Done with  7199  out of  10791  time left  1626.2571818344725  ave loss  0.272144459214602
+Done with  7299  out of  10791  time left  1581.3042478996495  ave loss  0.27187877590506465
+Done with  7399  out of  10791  time left  1535.7484936322983  ave loss  0.271278118480947
+Done with  7499  out of  10791  time left  1490.5367066810284  ave loss  0.2701305071368132
+Done with  7599  out of  10791  time left  1445.5651006009612  ave loss  0.270112956587837
+Done with  7699  out of  10791  time left  1400.837593587347  ave loss  0.2696998728085263
+Done with  7799  out of  10791  time left  1356.0271885795216  ave loss  0.26930562242999784
+Done with  7899  out of  10791  time left  1311.042893891818  ave loss  0.2686738039585377
+Done with  7999  out of  10791  time left  1265.8506331624412  ave loss  0.2683398234688797
+Done with  8099  out of  10791  time left  1220.7594523866142  ave loss  0.2678023319356677
+Done with  8199  out of  10791  time left  1175.5993400347613  ave loss  0.26773398206356275
+Done with  8299  out of  10791  time left  1130.6791645654039  ave loss  0.2671747321033127
+Done with  8399  out of  10791  time left  1085.2022398208235  ave loss  0.2670490018066925
+Done with  8499  out of  10791  time left  1039.8280138334874  ave loss  0.2665400427635415
+Done with  8599  out of  10791  time left  994.4209980463924  ave loss  0.26625937820497886
+Done with  8699  out of  10791  time left  948.9404326949891  ave loss  0.26594981442123494
+Done with  8799  out of  10791  time left  903.5507843643172  ave loss  0.26613775088309655
+Done with  8899  out of  10791  time left  858.2501973940798  ave loss  0.266048352142074
+Done with  8999  out of  10791  time left  812.7998903835995  ave loss  0.26607889717288297
+Done with  9099  out of  10791  time left  767.4909629963272  ave loss  0.26559386421401343
+Done with  9199  out of  10791  time left  722.090639962413  ave loss  0.2653709750769109
+Done with  9299  out of  10791  time left  676.8840816228899  ave loss  0.2650572273509477
+Done with  9399  out of  10791  time left  631.4711992742914  ave loss  0.26482694929421857
+Done with  9499  out of  10791  time left  586.1342306734449  ave loss  0.2645485130880057
+Done with  9599  out of  10791  time left  540.8304507882164  ave loss  0.2642109660159933
+Done with  9699  out of  10791  time left  495.48998020884795  ave loss  0.2640849440187419
+Done with  9799  out of  10791  time left  450.1317345542997  ave loss  0.2637375862918977
+Done with  9899  out of  10791  time left  404.810233541204  ave loss  0.2633806055668118
+Done with  9999  out of  10791  time left  359.4592774646117  ave loss  0.26342487445058577
+Done with  10099  out of  10791  time left  314.0051149724674  ave loss  0.2633861665366018
+Done with  10199  out of  10791  time left  268.5893808109221  ave loss  0.262986131640619
+Done with  10299  out of  10791  time left  223.23090412496583  ave loss  0.2623024155712103
+Done with  10399  out of  10791  time left  177.82668034325815  ave loss  0.26179901075948675
+Done with  10499  out of  10791  time left  132.48508178966367  ave loss  0.26133371958109824
+Done with  10599  out of  10791  time left  87.09583545709648  ave loss  0.26131062549239276
+Done with  10699  out of  10791  time left  41.73247147827619  ave loss  0.2610983945019461
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  1604  time left  229.81913652082883
+Done with  199  out of  1604  time left  216.2001469386882
+Done with  299  out of  1604  time left  200.11060216355085
+Done with  399  out of  1604  time left  184.36244654476195
+Done with  499  out of  1604  time left  168.95247647423065
+Done with  599  out of  1604  time left  150.60638464352922
+Done with  699  out of  1604  time left  133.85065121200464
+Done with  799  out of  1604  time left  118.13409602388423
+Done with  899  out of  1604  time left  103.07112058092146
+Done with  999  out of  1604  time left  87.70359064723637
+Done with  1099  out of  1604  time left  73.0987930666652
+Done with  1199  out of  1604  time left  58.36095859946759
+Done with  1299  out of  1604  time left  43.841069086043994
+Done with  1399  out of  1604  time left  29.331776269254213
+Done with  1499  out of  1604  time left  14.973621141759454
+Done with  1599  out of  1604  time left  0.7100626175816616
+train results ------------
+ Epoch: 1, ave loss: 0.2608073712067391, acc_sc: 0.937, acc_sa: 0.937, acc_wn: 0.987,         acc_wc: 0.931, acc_wo: 0.948, acc_wvi: 0.915, acc_wv: 0.917, acc_lx: 0.775, acc_x: 0.775
+dev results ------------
+ Epoch: 1, ave loss: 2.0298303416424957, acc_sc: 0.956, acc_sa: 0.939, acc_wn: 0.988,         acc_wc: 0.947, acc_wo: 0.953, acc_wvi: 0.921, acc_wv: 0.922, acc_lx: 0.805, acc_x: 0.805
+0.8050035071311668
+ Best Dev lx acc: 0.8050035071311668 at epoch: 1
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  10791  time left  5038.395240783691  ave loss  0.21259248661197194
+Done with  199  out of  10791  time left  4917.177973148212  ave loss  0.21630861225477116
+Done with  299  out of  10791  time left  4836.7402428081605  ave loss  0.22771352774504086
+Done with  399  out of  10791  time left  4785.119801399403  ave loss  0.23448221880317033
+Done with  499  out of  10791  time left  4709.372045927869  ave loss  0.2358120624843858
+Done with  599  out of  10791  time left  4662.06454220041  ave loss  0.24205235387268592
+Done with  699  out of  10791  time left  4609.28726882689  ave loss  0.23900481083301112
+Done with  799  out of  10791  time left  4567.158153431287  ave loss  0.2325089708470666
+Done with  899  out of  10791  time left  4525.004654088726  ave loss  0.2270201430293432
+Done with  999  out of  10791  time left  4474.856869671796  ave loss  0.22476136324147847
+Done with  1099  out of  10791  time left  4422.446541187435  ave loss  0.22234250628071633
+Done with  1199  out of  10791  time left  4385.977373123169  ave loss  0.21942896770586798
+Done with  1299  out of  10791  time left  4339.626837739217  ave loss  0.2184585908745445
+Done with  1399  out of  10791  time left  4286.034561598957  ave loss  0.21695281567352906
+Done with  1499  out of  10791  time left  4239.6328705239885  ave loss  0.21574336705773478
+Done with  1599  out of  10791  time left  4194.426073339151  ave loss  0.216135431166821
+Done with  1699  out of  10791  time left  4151.20433083894  ave loss  0.21471091517737315
+Done with  1799  out of  10791  time left  4105.737967562715  ave loss  0.21569714916695537
+Done with  1899  out of  10791  time left  4053.335673937865  ave loss  0.21708735158549755
+Done with  1999  out of  10791  time left  4011.7967510280637  ave loss  0.21570777835004337
+Done with  2099  out of  10791  time left  3964.0596559732626  ave loss  0.2152853606294498
+Done with  2199  out of  10791  time left  3916.3921944174563  ave loss  0.21671258854896183
+Done with  2299  out of  10791  time left  3868.597377033325  ave loss  0.21663269182653364
+Done with  2399  out of  10791  time left  3822.546712938176  ave loss  0.2156757720859264
+Done with  2499  out of  10791  time left  3774.441470104964  ave loss  0.2147569979382429
+Done with  2599  out of  10791  time left  3729.7175423540302  ave loss  0.21403605867635564
+Done with  2699  out of  10791  time left  3686.795759131441  ave loss  0.212998321048433
+Done with  2799  out of  10791  time left  3638.752281409751  ave loss  0.21323665368061934
+Done with  2899  out of  10791  time left  3591.0391071841977  ave loss  0.21260720757016138
+Done with  2999  out of  10791  time left  3543.1429669353793  ave loss  0.21139526687475202
+Done with  3099  out of  10791  time left  3496.3443896902036  ave loss  0.21144516513984626
+Done with  3199  out of  10791  time left  3450.705777368906  ave loss  0.21189270326618784
+Done with  3299  out of  10791  time left  3405.8512881112197  ave loss  0.21191499692220755
+Done with  3399  out of  10791  time left  3359.085356332723  ave loss  0.2120945209427812
+Done with  3499  out of  10791  time left  3312.783037713883  ave loss  0.21133191274591087
+Done with  3599  out of  10791  time left  3268.0319425021653  ave loss  0.2114640056068545
+Done with  3699  out of  10791  time left  3220.9855458220136  ave loss  0.2110238454968571
+Done with  3799  out of  10791  time left  3176.1365536536377  ave loss  0.21069524052782584
+Done with  3899  out of  10791  time left  3130.165485896952  ave loss  0.211210356632099
+Done with  3999  out of  10791  time left  3085.5774069426207  ave loss  0.2108405976617724
+Done with  4099  out of  10791  time left  3041.0347531303078  ave loss  0.21071036400445664
+Done with  4199  out of  10791  time left  2994.1249605066632  ave loss  0.21061242216196382
+Done with  4299  out of  10791  time left  2949.3988252494687  ave loss  0.21050871074698807
+Done with  4399  out of  10791  time left  2903.638804126799  ave loss  0.21009146174645443
+Done with  4499  out of  10791  time left  2856.726435908479  ave loss  0.20991035977825206
+Done with  4599  out of  10791  time left  2812.276499701573  ave loss  0.21100997362062288
+Done with  4699  out of  10791  time left  2767.4912747110957  ave loss  0.21141105838089064
+Done with  4799  out of  10791  time left  2722.433843792317  ave loss  0.2118772037366976
+Done with  4899  out of  10791  time left  2677.471205102835  ave loss  0.2117077210905427
+Done with  4999  out of  10791  time left  2631.476488640318  ave loss  0.21265949499705789
+Done with  5099  out of  10791  time left  2585.0070459297017  ave loss  0.21275436097351827
+Done with  5199  out of  10791  time left  2540.2530320173596  ave loss  0.21247565993298634
+Done with  5299  out of  10791  time left  2494.748341158845  ave loss  0.21290117017358856
+Done with  5399  out of  10791  time left  2449.4462853516666  ave loss  0.2124692082284686
+Done with  5499  out of  10791  time left  2404.0054230401247  ave loss  0.21344840535612047
+Done with  5599  out of  10791  time left  2358.10522520144  ave loss  0.21343976567591824
+Done with  5699  out of  10791  time left  2313.3295640659285  ave loss  0.21374281640046894
+Done with  5799  out of  10791  time left  2267.263383465731  ave loss  0.2130400504826408
+Done with  5899  out of  10791  time left  2222.0721586518093  ave loss  0.2127642916857828
+Done with  5999  out of  10791  time left  2176.2899213709184  ave loss  0.21293934898345868
+Done with  6099  out of  10791  time left  2130.5854405451455  ave loss  0.21359625957518538
+Done with  6199  out of  10791  time left  2085.399814044493  ave loss  0.2133655042935837
+Done with  6299  out of  10791  time left  2040.6625515564906  ave loss  0.21348138235740488
+Done with  6399  out of  10791  time left  1994.167784311265  ave loss  0.21302284974160796
+Done with  6499  out of  10791  time left  1948.0439112565393  ave loss  0.21281391240996433
+Done with  6599  out of  10791  time left  1901.7989967717315  ave loss  0.21272144979088262
+Done with  6699  out of  10791  time left  1856.0425213686938  ave loss  0.21263884973873812
+Done with  6799  out of  10791  time left  1810.5015143133435  ave loss  0.2118639085520043
+Done with  6899  out of  10791  time left  1764.1293144250956  ave loss  0.21147090857343648
+Done with  6999  out of  10791  time left  1718.2726565923908  ave loss  0.21130055428307212
+Done with  7099  out of  10791  time left  1672.5955409118367  ave loss  0.21099920951942874
+Done with  7199  out of  10791  time left  1626.97611265001  ave loss  0.21048140189004202
+Done with  7299  out of  10791  time left  1581.1750608178454  ave loss  0.21038501291539113
+Done with  7399  out of  10791  time left  1535.5976620656218  ave loss  0.2102928556488523
+Done with  7499  out of  10791  time left  1489.9789435720743  ave loss  0.20999687851423648
+Done with  7599  out of  10791  time left  1444.744972085181  ave loss  0.20974600352705688
+Done with  7699  out of  10791  time left  1398.9665163629534  ave loss  0.20931135301573106
+Done with  7799  out of  10791  time left  1353.1885195087816  ave loss  0.20867135087440428
+Done with  7899  out of  10791  time left  1307.356923699515  ave loss  0.20880800994155357
+Done with  7999  out of  10791  time left  1262.4987747780397  ave loss  0.2088494919494321
+Done with  8099  out of  10791  time left  1216.8731264060684  ave loss  0.20932832804398058
+Done with  8199  out of  10791  time left  1172.0218203865998  ave loss  0.20901062506028573
+Done with  8299  out of  10791  time left  1126.481407097728  ave loss  0.20907932543794763
+Done with  8399  out of  10791  time left  1081.1835308887942  ave loss  0.20884502426345977
+Done with  8499  out of  10791  time left  1035.7097404411309  ave loss  0.2082403244467865
+Done with  8599  out of  10791  time left  990.2668607955562  ave loss  0.20793812231275557
+Done with  8699  out of  10791  time left  944.7706752946589  ave loss  0.2078687925355043
+Done with  8799  out of  10791  time left  899.5108572253991  ave loss  0.2074773142073717
+Done with  8899  out of  10791  time left  854.2575879763024  ave loss  0.20694010740240282
+Done with  8999  out of  10791  time left  808.8845554304753  ave loss  0.20707601686760402
+Done with  9099  out of  10791  time left  763.6329808947359  ave loss  0.2070663532028693
+Done with  9199  out of  10791  time left  718.3443852455827  ave loss  0.2070438447607951
+Done with  9299  out of  10791  time left  673.0342965436272  ave loss  0.2070904391753175
+Done with  9399  out of  10791  time left  627.803593596292  ave loss  0.20688609050748383
+Done with  9499  out of  10791  time left  582.5886456295495  ave loss  0.20682535775652958
+Done with  9599  out of  10791  time left  537.5145006303999  ave loss  0.20695319619694222
+Done with  9699  out of  10791  time left  492.32233996115485  ave loss  0.2070669108760475
+Done with  9799  out of  10791  time left  447.2277838952907  ave loss  0.20747824105796375
+Done with  9899  out of  10791  time left  402.022425822651  ave loss  0.20729038447942713
+Done with  9999  out of  10791  time left  356.79966851036147  ave loss  0.20725536067109795
+Done with  10099  out of  10791  time left  311.7698993584651  ave loss  0.20734485899556684
+Done with  10199  out of  10791  time left  266.69081279658513  ave loss  0.20704804983138916
+Done with  10299  out of  10791  time left  221.63584169465045  ave loss  0.20675191346924943
+Done with  10399  out of  10791  time left  176.549943611225  ave loss  0.2066029915609959
+Done with  10499  out of  10791  time left  131.45947760220358  ave loss  0.20632163374904075
+Done with  10599  out of  10791  time left  86.42421537345845  ave loss  0.2062084349167873
+Done with  10699  out of  10791  time left  41.40296126905028  ave loss  0.2058391571799516
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  1604  time left  226.8260996149044
+Done with  199  out of  1604  time left  209.41201934862377
+Done with  299  out of  1604  time left  194.76136988620695
+Done with  399  out of  1604  time left  179.75959227198646
+Done with  499  out of  1604  time left  164.64707609885681
+Done with  599  out of  1604  time left  146.8214508667215
+Done with  699  out of  1604  time left  130.48404806502728
+Done with  799  out of  1604  time left  115.25128083921345
+Done with  899  out of  1604  time left  100.84581522840811
+Done with  999  out of  1604  time left  85.92826144950645
+Done with  1099  out of  1604  time left  71.65987866482375
+Done with  1199  out of  1604  time left  57.21669577876163
+Done with  1299  out of  1604  time left  42.902868774140956
+Done with  1399  out of  1604  time left  28.756922099997606
+Done with  1499  out of  1604  time left  14.66951842702493
+Done with  1599  out of  1604  time left  0.6948005787799925
+train results ------------
+ Epoch: 2, ave loss: 0.2057478950292308, acc_sc: 0.950, acc_sa: 0.939, acc_wn: 0.990,         acc_wc: 0.945, acc_wo: 0.960, acc_wvi: 0.932, acc_wv: 0.934, acc_lx: 0.809, acc_x: 0.809
+dev results ------------
+ Epoch: 2, ave loss: 2.1857571512119276, acc_sc: 0.961, acc_sa: 0.940, acc_wn: 0.992,         acc_wc: 0.956, acc_wo: 0.966, acc_wvi: 0.935, acc_wv: 0.936, acc_lx: 0.827, acc_x: 0.827
+0.8269035928610396
+ Best Dev lx acc: 0.8269035928610396 at epoch: 2
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  10791  time left  5394.5561027526865  ave loss  0.12782933617556336
+Done with  199  out of  10791  time left  5035.4627233534  ave loss  0.15623973903653385
+Done with  299  out of  10791  time left  4886.517087834336  ave loss  0.1572988317044371
+Done with  399  out of  10791  time left  4784.452203133949  ave loss  0.15411683845854268
+Done with  499  out of  10791  time left  4700.421380255169  ave loss  0.15402768506577055
+Done with  599  out of  10791  time left  4646.486529437847  ave loss  0.16021404632107542
+Done with  699  out of  10791  time left  4590.922829292363  ave loss  0.1617214909357649
+Done with  799  out of  10791  time left  4538.814421709846  ave loss  0.1612353567115599
+Done with  899  out of  10791  time left  4488.706074670106  ave loss  0.15999178977002565
+Done with  999  out of  10791  time left  4433.051359021985  ave loss  0.1618900184589042
+Done with  1099  out of  10791  time left  4376.794214164484  ave loss  0.16457090329559346
+Done with  1199  out of  10791  time left  4318.83504486084  ave loss  0.16648897022537862
+Done with  1299  out of  10791  time left  4264.368595013167  ave loss  0.1655839178487128
+Done with  1399  out of  10791  time left  4214.954415845565  ave loss  0.16609395541809233
+Done with  1499  out of  10791  time left  4177.914623505438  ave loss  0.1673635442107804
+Done with  1599  out of  10791  time left  4133.2699286369625  ave loss  0.16804620593010428
+Done with  1699  out of  10791  time left  4079.6277692518634  ave loss  0.1676784082529096
+Done with  1799  out of  10791  time left  4034.747053645729  ave loss  0.16766490552599245
+Done with  1899  out of  10791  time left  3987.347277898924  ave loss  0.16753548803261573
+Done with  1999  out of  10791  time left  3942.6517487869914  ave loss  0.1675021764695348
+Done with  2099  out of  10791  time left  3895.726883243981  ave loss  0.16647271162620866
+Done with  2199  out of  10791  time left  3847.97391565695  ave loss  0.16667777213726231
+Done with  2299  out of  10791  time left  3806.8776541760094  ave loss  0.16567984169001498
+Done with  2399  out of  10791  time left  3764.664468568084  ave loss  0.1673273164598429
+Done with  2499  out of  10791  time left  3719.156761174013  ave loss  0.16813919559174612
+Done with  2599  out of  10791  time left  3673.3620818704308  ave loss  0.16918070350461697
+Done with  2699  out of  10791  time left  3630.023066490304  ave loss  0.17021576014067702
+Done with  2799  out of  10791  time left  3589.047065330088  ave loss  0.17045318448320318
+Done with  2899  out of  10791  time left  3543.0093788105523  ave loss  0.1722556551914452
+Done with  2999  out of  10791  time left  3496.674326798406  ave loss  0.171928311908649
+Done with  3099  out of  10791  time left  3452.7485099148084  ave loss  0.17263731436325203
+Done with  3199  out of  10791  time left  3404.741306846907  ave loss  0.1731787367096353
+Done with  3299  out of  10791  time left  3356.947896784528  ave loss  0.1721424174830419
+Done with  3399  out of  10791  time left  3311.0337363678273  ave loss  0.17208687933660533
+Done with  3499  out of  10791  time left  3266.2126910492298  ave loss  0.1715248736908761
+Done with  3599  out of  10791  time left  3221.1939976573753  ave loss  0.17077029449923445
+Done with  3699  out of  10791  time left  3174.4744172919986  ave loss  0.17021225008430732
+Done with  3799  out of  10791  time left  3130.1656999570437  ave loss  0.1694365577249111
+Done with  3899  out of  10791  time left  3084.782791842128  ave loss  0.16973883328964362
+Done with  3999  out of  10791  time left  3039.9581554810625  ave loss  0.1698679916323569
+Done with  4099  out of  10791  time left  2995.177320226747  ave loss  0.17020357669771688
+Done with  4199  out of  10791  time left  2951.0425661163804  ave loss  0.16981009266275587
+Done with  4299  out of  10791  time left  2907.320175317976  ave loss  0.17029753312010124
+Done with  4399  out of  10791  time left  2862.696907751504  ave loss  0.17123601544448552
+Done with  4499  out of  10791  time left  2816.862556110093  ave loss  0.1711015758936996
+Done with  4599  out of  10791  time left  2771.064472706117  ave loss  0.1701194891457989
+Done with  4699  out of  10791  time left  2726.6009542433144  ave loss  0.16950871737659112
+Done with  4799  out of  10791  time left  2680.4878627604608  ave loss  0.16944228285006346
+Done with  4899  out of  10791  time left  2635.181597469631  ave loss  0.17021451638368473
+Done with  4999  out of  10791  time left  2588.9438665305693  ave loss  0.1707307941499536
+Done with  5099  out of  10791  time left  2543.8894602240102  ave loss  0.17098428803367022
+Done with  5199  out of  10791  time left  2497.8290972855484  ave loss  0.17055151196163804
+Done with  5299  out of  10791  time left  2451.90904005475  ave loss  0.17010911463138637
+Done with  5399  out of  10791  time left  2406.8967547557118  ave loss  0.17006994079920332
+Done with  5499  out of  10791  time left  2361.4037284679384  ave loss  0.16987318244862556
+Done with  5599  out of  10791  time left  2317.2327228538647  ave loss  0.1694367646249387
+Done with  5699  out of  10791  time left  2272.343475478849  ave loss  0.16915434816279676
+Done with  5799  out of  10791  time left  2226.9743330906663  ave loss  0.16896773332779
+Done with  5899  out of  10791  time left  2181.9486173619093  ave loss  0.16846235529996606
+Done with  5999  out of  10791  time left  2135.9501511465214  ave loss  0.1679814987656731
+Done with  6099  out of  10791  time left  2090.0180636460827  ave loss  0.16791435459421677
+Done with  6199  out of  10791  time left  2046.1432538002532  ave loss  0.16851416228144406
+Done with  6299  out of  10791  time left  2001.6136284302977  ave loss  0.16819199210298105
+Done with  6399  out of  10791  time left  1956.3826243431424  ave loss  0.1682105963434655
+Done with  6499  out of  10791  time left  1910.4606109495292  ave loss  0.16776951014259753
+Done with  6599  out of  10791  time left  1865.3555286636965  ave loss  0.1683417512206676
+Done with  6699  out of  10791  time left  1820.3201764863113  ave loss  0.16869201252216562
+Done with  6799  out of  10791  time left  1775.5777089654357  ave loss  0.16924077602601306
+Done with  6899  out of  10791  time left  1731.4028322750942  ave loss  0.16944902667172226
+Done with  6999  out of  10791  time left  1686.3245389164133  ave loss  0.16931991245543743
+Done with  7099  out of  10791  time left  1641.6127274473347  ave loss  0.16921896042729048
+Done with  7199  out of  10791  time left  1596.790806381516  ave loss  0.16899575111784326
+Done with  7299  out of  10791  time left  1552.3389326453062  ave loss  0.1691541729908356
+Done with  7399  out of  10791  time left  1507.4019536413941  ave loss  0.16895838533970745
+Done with  7499  out of  10791  time left  1462.6468989056482  ave loss  0.16900294267280516
+Done with  7599  out of  10791  time left  1418.0464304755715  ave loss  0.16876013209266566
+Done with  7699  out of  10791  time left  1373.4246509866382  ave loss  0.16904750598898263
+Done with  7799  out of  10791  time left  1328.7241216371697  ave loss  0.16876644411356762
+Done with  7899  out of  10791  time left  1284.4188683209563  ave loss  0.16912863110958937
+Done with  7999  out of  10791  time left  1240.1186130214653  ave loss  0.1687124086257311
+Done with  8099  out of  10791  time left  1194.9964875864061  ave loss  0.1685224283384592
+Done with  8199  out of  10791  time left  1150.3746067470045  ave loss  0.1687162427570607
+Done with  8299  out of  10791  time left  1105.98051749495  ave loss  0.16868788057728
+Done with  8399  out of  10791  time left  1061.2383788745026  ave loss  0.16866511945481857
+Done with  8499  out of  10791  time left  1016.5918719351944  ave loss  0.16828356273502854
+Done with  8599  out of  10791  time left  972.0224186737242  ave loss  0.16828484147299203
+Done with  8699  out of  10791  time left  927.5369417630388  ave loss  0.16841217544803727
+Done with  8799  out of  10791  time left  883.0620539450946  ave loss  0.16845725693692506
+Done with  8899  out of  10791  time left  838.5227627830835  ave loss  0.16871955840744543
+Done with  8999  out of  10791  time left  794.1087808788108  ave loss  0.16870620378615553
+Done with  9099  out of  10791  time left  749.5809219258475  ave loss  0.1690315242346389
+Done with  9199  out of  10791  time left  705.1946464905157  ave loss  0.1688742154447226
+Done with  9299  out of  10791  time left  660.817035346765  ave loss  0.1687397823166261
+Done with  9399  out of  10791  time left  616.3037483478331  ave loss  0.16844880178235014
+Done with  9499  out of  10791  time left  572.036272963068  ave loss  0.16835745126599583
+Done with  9599  out of  10791  time left  527.6811305369073  ave loss  0.16839413466743244
+Done with  9699  out of  10791  time left  483.3715236712785  ave loss  0.1685060866653942
+Done with  9799  out of  10791  time left  438.9613051809137  ave loss  0.16848359683658204
+Done with  9899  out of  10791  time left  394.617735619954  ave loss  0.16824650653707307
+Done with  9999  out of  10791  time left  350.31606428694016  ave loss  0.1680917770532989
+Done with  10099  out of  10791  time left  306.17963583519673  ave loss  0.1679722534630814
+Done with  10199  out of  10791  time left  261.93010842429624  ave loss  0.16775130210199266
+Done with  10299  out of  10791  time left  217.684177678978  ave loss  0.16802950011765247
+Done with  10399  out of  10791  time left  173.42507031647352  ave loss  0.16797551848536493
+Done with  10499  out of  10791  time left  129.14161230816322  ave loss  0.16789775797328507
+Done with  10599  out of  10791  time left  84.90959035753022  ave loss  0.1677470597658483
+Done with  10699  out of  10791  time left  40.679061015929804  ave loss  0.16803189200304736
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  1604  time left  220.2598356718969
+Done with  199  out of  1604  time left  206.04428079260055
+Done with  299  out of  1604  time left  190.6469031321165
+Done with  399  out of  1604  time left  174.7519042049733
+Done with  499  out of  1604  time left  160.2531271635411
+Done with  599  out of  1604  time left  143.479342412869
+Done with  699  out of  1604  time left  127.88273553820979
+Done with  799  out of  1604  time left  112.94825032595848
+Done with  899  out of  1604  time left  98.62218399599477
+Done with  999  out of  1604  time left  84.02232353513067
+Done with  1099  out of  1604  time left  70.13766896518607
+Done with  1199  out of  1604  time left  55.973913653678345
+Done with  1299  out of  1604  time left  41.97402396231454
+Done with  1399  out of  1604  time left  28.104462160051852
+Done with  1499  out of  1604  time left  14.34353375132677
+Done with  1599  out of  1604  time left  0.679861486069928
+train results ------------
+ Epoch: 3, ave loss: 0.1681039067475104, acc_sc: 0.958, acc_sa: 0.939, acc_wn: 0.991,         acc_wc: 0.953, acc_wo: 0.967, acc_wvi: 0.946, acc_wv: 0.947, acc_lx: 0.831, acc_x: 0.831
+dev results ------------
+ Epoch: 3, ave loss: 2.301289030020307, acc_sc: 0.961, acc_sa: 0.937, acc_wn: 0.988,         acc_wc: 0.953, acc_wo: 0.965, acc_wvi: 0.940, acc_wv: 0.942, acc_lx: 0.830, acc_x: 0.830
+0.8304886602758943
+ Best Dev lx acc: 0.8304886602758943 at epoch: 3
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  10791  time left  5600.763241767883  ave loss  0.16542760567090503
+Done with  199  out of  10791  time left  5147.4196955618545  ave loss  0.15727470345600933
+Done with  299  out of  10791  time left  4987.405158451169  ave loss  0.1397062701030625
+Done with  399  out of  10791  time left  4838.751364872868  ave loss  0.13294958755829697
+Done with  499  out of  10791  time left  4755.605898335367  ave loss  0.13331088471379904
+Done with  599  out of  10791  time left  4668.398406918737  ave loss  0.13544432236278547
+Done with  699  out of  10791  time left  4594.96433345238  ave loss  0.13639081292261085
+Done with  799  out of  10791  time left  4525.995211461608  ave loss  0.13596740131389096
+Done with  899  out of  10791  time left  4460.352968415376  ave loss  0.1370063209140262
+Done with  999  out of  10791  time left  4410.660415237015  ave loss  0.13867978938116185
+Done with  1099  out of  10791  time left  4363.384080537131  ave loss  0.14504204010952126
+Done with  1199  out of  10791  time left  4310.191633224487  ave loss  0.14325626129468008
+Done with  1299  out of  10791  time left  4256.761283700515  ave loss  0.14174263471303927
+Done with  1399  out of  10791  time left  4207.46503125096  ave loss  0.14189085494890827
+Done with  1499  out of  10791  time left  4159.720070814116  ave loss  0.14165808047495534
+Done with  1599  out of  10791  time left  4107.657042226022  ave loss  0.14350889189920304
+Done with  1699  out of  10791  time left  4063.0240659000874  ave loss  0.1444908800041081
+Done with  1799  out of  10791  time left  4015.043833899591  ave loss  0.144514524061348
+Done with  1899  out of  10791  time left  3971.940556675337  ave loss  0.1450921321266479
+Done with  1999  out of  10791  time left  3926.4801000458647  ave loss  0.14595143179765732
+Done with  2099  out of  10791  time left  3880.87994090894  ave loss  0.14529663927677514
+Done with  2199  out of  10791  time left  3833.1023860010246  ave loss  0.14553739795956921
+Done with  2299  out of  10791  time left  3789.598210886905  ave loss  0.14613576754660776
+Done with  2399  out of  10791  time left  3744.651187146987  ave loss  0.14640064205649309
+Done with  2499  out of  10791  time left  3695.057516980715  ave loss  0.14733575303857982
+Done with  2599  out of  10791  time left  3643.9635932690458  ave loss  0.14724796713822477
+Done with  2699  out of  10791  time left  3598.336503009082  ave loss  0.14671799817447137
+Done with  2799  out of  10791  time left  3550.4021714139985  ave loss  0.1461534216462767
+Done with  2899  out of  10791  time left  3504.7904247275383  ave loss  0.14564462276957477
+Done with  2999  out of  10791  time left  3457.513293444057  ave loss  0.14500643296509086
+Done with  3099  out of  10791  time left  3413.257234121915  ave loss  0.14546406028615178
+Done with  3199  out of  10791  time left  3368.036118891061  ave loss  0.14524762217437898
+Done with  3299  out of  10791  time left  3325.1471678467005  ave loss  0.14450192313865953
+Done with  3399  out of  10791  time left  3280.17568036422  ave loss  0.1435172775455709
+Done with  3499  out of  10791  time left  3237.2484916303797  ave loss  0.14321546201370525
+Done with  3599  out of  10791  time left  3193.107549095525  ave loss  0.14398585137953257
+Done with  3699  out of  10791  time left  3146.974938392639  ave loss  0.1442225208076803
+Done with  3799  out of  10791  time left  3101.0005729888167  ave loss  0.14403255501903667
+Done with  3899  out of  10791  time left  3056.92216749771  ave loss  0.1447456941794513
+Done with  3999  out of  10791  time left  3011.6574923578996  ave loss  0.14475467821353932
+Done with  4099  out of  10791  time left  2969.8127794403017  ave loss  0.14522700462556268
+Done with  4199  out of  10791  time left  2925.7273827571194  ave loss  0.1456167213105713
+Done with  4299  out of  10791  time left  2880.6461371443775  ave loss  0.14581664055447213
+Done with  4399  out of  10791  time left  2835.8462309459037  ave loss  0.14652228914518828
+Done with  4499  out of  10791  time left  2790.507916100742  ave loss  0.14697342096923355
+Done with  4599  out of  10791  time left  2745.980316751857  ave loss  0.1468238664123125
+Done with  4699  out of  10791  time left  2703.2044659618828  ave loss  0.1466062312962471
+Done with  4799  out of  10791  time left  2658.084359492727  ave loss  0.14615456697864934
+Done with  4899  out of  10791  time left  2614.527428882807  ave loss  0.14626155869088475
+Done with  4999  out of  10791  time left  2569.8715427075895  ave loss  0.1462315089307261
+Done with  5099  out of  10791  time left  2526.895321227121  ave loss  0.14621703641466408
+Done with  5199  out of  10791  time left  2483.168648368144  ave loss  0.14612818133817462
+Done with  5299  out of  10791  time left  2438.695112427263  ave loss  0.1454526667560395
+Done with  5399  out of  10791  time left  2394.5265513407917  ave loss  0.14547503007233287
+Done with  5499  out of  10791  time left  2350.195379563127  ave loss  0.1455548475115406
+Done with  5599  out of  10791  time left  2306.361208902595  ave loss  0.1448872067281006
+Done with  5699  out of  10791  time left  2261.325008553316  ave loss  0.1446510461958433
+Done with  5799  out of  10791  time left  2217.255858948733  ave loss  0.14467779376403253
+Done with  5899  out of  10791  time left  2172.2462459173944  ave loss  0.14481509763225744
+Done with  5999  out of  10791  time left  2127.7984539075856  ave loss  0.1447028897597398
+Done with  6099  out of  10791  time left  2083.039207201431  ave loss  0.14487151611784702
+Done with  6199  out of  10791  time left  2038.4650773019018  ave loss  0.14513555937966852
+Done with  6299  out of  10791  time left  1993.8282608055542  ave loss  0.14511448087943324
+Done with  6399  out of  10791  time left  1948.999603864345  ave loss  0.14514559910935834
+Done with  6499  out of  10791  time left  1904.554784248858  ave loss  0.14530429750429286
+Done with  6599  out of  10791  time left  1860.0375274551839  ave loss  0.14530402657639838
+Done with  6699  out of  10791  time left  1815.0618046774653  ave loss  0.14562025128011952
+Done with  6799  out of  10791  time left  1770.7567570183205  ave loss  0.14567532224939805
+Done with  6899  out of  10791  time left  1726.1366824248094  ave loss  0.1458074541917444
+Done with  6999  out of  10791  time left  1680.8312541570879  ave loss  0.14585657425816323
+Done with  7099  out of  10791  time left  1636.3204394292286  ave loss  0.1456809539989836
+Done with  7199  out of  10791  time left  1591.3086446332077  ave loss  0.1450432791523365
+Done with  7299  out of  10791  time left  1547.645698704937  ave loss  0.14533545485860563
+Done with  7399  out of  10791  time left  1503.1608182389216  ave loss  0.14553248477030237
+Done with  7499  out of  10791  time left  1459.1058416926141  ave loss  0.14540069409316858
+Done with  7599  out of  10791  time left  1415.0401498596518  ave loss  0.1453474460686625
+Done with  7699  out of  10791  time left  1370.8476442504757  ave loss  0.1453688650389637
+Done with  7799  out of  10791  time left  1326.340996902315  ave loss  0.14537608126457935
+Done with  7899  out of  10791  time left  1281.8654192831414  ave loss  0.14538175409651727
+Done with  7999  out of  10791  time left  1237.5177874130552  ave loss  0.14512772806936994
+Done with  8099  out of  10791  time left  1193.3981764146113  ave loss  0.14493186946091607
+Done with  8199  out of  10791  time left  1148.859533006352  ave loss  0.1445494736542374
+Done with  8299  out of  10791  time left  1104.5576341056524  ave loss  0.14420433020829856
+Done with  8399  out of  10791  time left  1060.014455810276  ave loss  0.1442376075250871
+Done with  8499  out of  10791  time left  1015.6760899970946  ave loss  0.14420027760572104
+Done with  8599  out of  10791  time left  970.9957781034316  ave loss  0.14438639969981085
+Done with  8699  out of  10791  time left  926.7072870125372  ave loss  0.14449610395142234
+Done with  8799  out of  10791  time left  882.5094862546769  ave loss  0.14444309603336816
+Done with  8899  out of  10791  time left  838.1621066872652  ave loss  0.14454099271824572
+Done with  8999  out of  10791  time left  793.6987331139007  ave loss  0.14475263557352006
+Done with  9099  out of  10791  time left  749.2855679118669  ave loss  0.14493461844524522
+Done with  9199  out of  10791  time left  705.0361096106063  ave loss  0.14471304394296944
+Done with  9299  out of  10791  time left  660.6276952484267  ave loss  0.1448871521024045
+Done with  9399  out of  10791  time left  616.4325720345369  ave loss  0.14501258463567562
+Done with  9499  out of  10791  time left  571.9969047958417  ave loss  0.14505398046340792
+Done with  9599  out of  10791  time left  527.766876406689  ave loss  0.14513715566140492
+Done with  9699  out of  10791  time left  483.6396012390283  ave loss  0.14482733445455492
+Done with  9799  out of  10791  time left  439.4286951554991  ave loss  0.14473295182889237
+Done with  9899  out of  10791  time left  395.1222320797106  ave loss  0.14417874883386209
+Done with  9999  out of  10791  time left  350.89501309158777  ave loss  0.1440794408375234
+Done with  10099  out of  10791  time left  306.67255222085606  ave loss  0.14404486445260206
+Done with  10199  out of  10791  time left  262.39105535537686  ave loss  0.14415655251761184
+Done with  10299  out of  10791  time left  218.05757489386363  ave loss  0.14404422706466166
+Done with  10399  out of  10791  time left  173.7880857797618  ave loss  0.14380772812167886
+Done with  10499  out of  10791  time left  129.488536123208  ave loss  0.14392582244658472
+Done with  10599  out of  10791  time left  85.15050162588811  ave loss  0.1438054317515395
+Done with  10699  out of  10791  time left  40.82181309641984  ave loss  0.14392039185098518
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  1604  time left  226.51500633268645
+Done with  199  out of  1604  time left  213.9920655447035
+Done with  299  out of  1604  time left  197.91490014978874
+Done with  399  out of  1604  time left  182.67870198216352
+Done with  499  out of  1604  time left  167.36685759318854
+Done with  599  out of  1604  time left  149.23147940675486
+Done with  699  out of  1604  time left  132.72797242595743
+Done with  799  out of  1604  time left  116.99891942015877
+Done with  899  out of  1604  time left  102.15745654201613
+Done with  999  out of  1604  time left  86.96516199632212
+Done with  1099  out of  1604  time left  72.61847064970188
+Done with  1199  out of  1604  time left  58.042107694242475
+Done with  1299  out of  1604  time left  43.55298083593884
+Done with  1399  out of  1604  time left  29.19994067515195
+Done with  1499  out of  1604  time left  14.914119799507706
+Done with  1599  out of  1604  time left  0.7069069501233891
+train results ------------
+ Epoch: 4, ave loss: 0.14382586840469774, acc_sc: 0.962, acc_sa: 0.941, acc_wn: 0.992,         acc_wc: 0.958, acc_wo: 0.973, acc_wvi: 0.954, acc_wv: 0.955, acc_lx: 0.844, acc_x: 0.844
+dev results ------------
+ Epoch: 4, ave loss: 2.5452990227790058, acc_sc: 0.966, acc_sa: 0.937, acc_wn: 0.990,         acc_wc: 0.957, acc_wo: 0.970, acc_wvi: 0.946, acc_wv: 0.947, acc_lx: 0.841, acc_x: 0.841
+0.8408541812797132
+ Best Dev lx acc: 0.8408541812797132 at epoch: 4
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  10791  time left  5399.069835662842  ave loss  0.12039462306226294
+Done with  199  out of  10791  time left  5059.481805657621  ave loss  0.12287373934760128
+Done with  299  out of  10791  time left  4928.699290613666  ave loss  0.12469878341896727
+Done with  399  out of  10791  time left  4833.078176785232  ave loss  0.12451581497788126
+Done with  499  out of  10791  time left  4781.174934496144  ave loss  0.13332725977158838
+Done with  599  out of  10791  time left  4714.239509162202  ave loss  0.13596031126806835
+Done with  699  out of  10791  time left  4639.040464364408  ave loss  0.13374960444050205
+Done with  799  out of  10791  time left  4591.8910546857815  ave loss  0.13625779671192947
+Done with  899  out of  10791  time left  4533.4434759831665  ave loss  0.13587163965638885
+Done with  999  out of  10791  time left  4481.607760455157  ave loss  0.1371347256329002
+Done with  1099  out of  10791  time left  4437.536329325813  ave loss  0.13547633288690256
+Done with  1199  out of  10791  time left  4391.687400817871  ave loss  0.1359959954710571
+Done with  1299  out of  10791  time left  4348.311793314117  ave loss  0.1378947740711155
+Done with  1399  out of  10791  time left  4299.369552285097  ave loss  0.1392610511078324
+Done with  1499  out of  10791  time left  4242.964331378771  ave loss  0.1386755956784189
+Done with  1599  out of  10791  time left  4194.051660659389  ave loss  0.13750200928800424
+Done with  1699  out of  10791  time left  4142.9405325990065  ave loss  0.13795374977424862
+Done with  1799  out of  10791  time left  4096.123235137414  ave loss  0.13565513147432057
+Done with  1899  out of  10791  time left  4046.4321417514743  ave loss  0.13490465471666063
+Done with  1999  out of  10791  time left  4003.216352298655  ave loss  0.1334814586289208
+Done with  2099  out of  10791  time left  3953.2977149839794  ave loss  0.13268836630226444
+Done with  2199  out of  10791  time left  3903.2799527271054  ave loss  0.13242098403252936
+Done with  2299  out of  10791  time left  3859.693775783886  ave loss  0.1333383890086343
+Done with  2399  out of  10791  time left  3811.415721981562  ave loss  0.13323634201382695
+Done with  2499  out of  10791  time left  3766.6502191937416  ave loss  0.13260871409302988
+Done with  2599  out of  10791  time left  3722.960059758561  ave loss  0.13083129549243946
+Done with  2699  out of  10791  time left  3678.84007667126  ave loss  0.13024242400233907
+Done with  2799  out of  10791  time left  3632.588757499621  ave loss  0.12959776528710107
+Done with  2899  out of  10791  time left  3585.4800459725893  ave loss  0.12962404003398711
+Done with  2999  out of  10791  time left  3538.5428705282234  ave loss  0.1296928397313398
+Done with  3099  out of  10791  time left  3493.046471317878  ave loss  0.12952944515093037
+Done with  3199  out of  10791  time left  3448.714775912424  ave loss  0.1301912554854633
+Done with  3299  out of  10791  time left  3402.288044414364  ave loss  0.13059047683519073
+Done with  3399  out of  10791  time left  3357.0403532750397  ave loss  0.1298896807373354
+Done with  3499  out of  10791  time left  3312.1394325072647  ave loss  0.13060342559044824
+Done with  3599  out of  10791  time left  3268.62775367192  ave loss  0.13050976459900662
+Done with  3699  out of  10791  time left  3219.91805854621  ave loss  0.1300928630702235
+Done with  3799  out of  10791  time left  3174.4761911408777  ave loss  0.12975361003800254
+Done with  3899  out of  10791  time left  3129.1860864751307  ave loss  0.12975589602728352
+Done with  3999  out of  10791  time left  3083.4647964025385  ave loss  0.12945795394555334
+Done with  4099  out of  10791  time left  3038.8526864059963  ave loss  0.12947708705281005
+Done with  4199  out of  10791  time left  2993.612230337697  ave loss  0.12999538550565695
+Done with  4299  out of  10791  time left  2947.2790269093002  ave loss  0.13012370252444522
+Done with  4399  out of  10791  time left  2901.9796439242596  ave loss  0.1304807805232441
+Done with  4499  out of  10791  time left  2855.5717911801885  ave loss  0.13028415283688144
+Done with  4599  out of  10791  time left  2809.8199628318594  ave loss  0.13040161793132155
+Done with  4699  out of  10791  time left  2765.064244581248  ave loss  0.13050332915294138
+Done with  4799  out of  10791  time left  2719.3555784760033  ave loss  0.13067509799940108
+Done with  4899  out of  10791  time left  2672.7304530286815  ave loss  0.1303434992906951
+Done with  4999  out of  10791  time left  2626.8656183186713  ave loss  0.12990286069509305
+Done with  5099  out of  10791  time left  2581.227645504449  ave loss  0.1294906543236316
+Done with  5199  out of  10791  time left  2535.9270918142292  ave loss  0.12923903056302335
+Done with  5299  out of  10791  time left  2490.2330698670926  ave loss  0.12939372689548087
+Done with  5399  out of  10791  time left  2445.2187118798765  ave loss  0.12877793209277097
+Done with  5499  out of  10791  time left  2399.260579749137  ave loss  0.1291688140228514
+Done with  5599  out of  10791  time left  2354.3919012897845  ave loss  0.12908907508376768
+Done with  5699  out of  10791  time left  2309.964614761568  ave loss  0.1289378952661179
+Done with  5799  out of  10791  time left  2264.285816711647  ave loss  0.1287451311110692
+Done with  5899  out of  10791  time left  2218.260857894918  ave loss  0.12844044089423376
+Done with  5999  out of  10791  time left  2174.4187844739517  ave loss  0.12799976021385187
+Done with  6099  out of  10791  time left  2129.292728892231  ave loss  0.1276304982187059
+Done with  6199  out of  10791  time left  2084.7046064840515  ave loss  0.12726302483326174
+Done with  6299  out of  10791  time left  2039.0912505225692  ave loss  0.12691909172340068
+Done with  6399  out of  10791  time left  1993.6939218765237  ave loss  0.12652857618153426
+Done with  6499  out of  10791  time left  1947.7526610059397  ave loss  0.1262013127074699
+Done with  6599  out of  10791  time left  1902.6645524148814  ave loss  0.12577710825564656
+Done with  6699  out of  10791  time left  1857.1545278521007  ave loss  0.1257106505593327
+Done with  6799  out of  10791  time left  1811.235755423585  ave loss  0.125560448002664
+Done with  6899  out of  10791  time left  1765.6621883329851  ave loss  0.12533101316653547
+Done with  6999  out of  10791  time left  1719.7201859792617  ave loss  0.1250127494888193
+Done with  7099  out of  10791  time left  1674.167646585812  ave loss  0.12518333667257195
+Done with  7199  out of  10791  time left  1629.0014360501777  ave loss  0.1253833614275223
+Done with  7299  out of  10791  time left  1583.3990388710315  ave loss  0.12541859846715167
+Done with  7399  out of  10791  time left  1538.2025114580947  ave loss  0.12515047112394245
+Done with  7499  out of  10791  time left  1492.3325548254659  ave loss  0.12510215452689374
+Done with  7599  out of  10791  time left  1447.4484253178177  ave loss  0.1250021685201109
+Done with  7699  out of  10791  time left  1401.7581466701313  ave loss  0.12538769744436676
+Done with  7799  out of  10791  time left  1356.4960899729654  ave loss  0.12507375125565737
+Done with  7899  out of  10791  time left  1311.5007517170282  ave loss  0.12518715163343277
+Done with  7999  out of  10791  time left  1266.163512618471  ave loss  0.1253244408632788
+Done with  8099  out of  10791  time left  1221.2514091384073  ave loss  0.12525676358388982
+Done with  8199  out of  10791  time left  1175.936613449281  ave loss  0.12521255364948836
+Done with  8299  out of  10791  time left  1130.2934588980338  ave loss  0.12495139491787853
+Done with  8399  out of  10791  time left  1084.8932311288202  ave loss  0.12530363582823587
+Done with  8499  out of  10791  time left  1039.7004309360357  ave loss  0.12538581409653696
+Done with  8599  out of  10791  time left  994.122148804144  ave loss  0.1251783415971231
+Done with  8699  out of  10791  time left  948.7978966073039  ave loss  0.1251951648493205
+Done with  8799  out of  10791  time left  903.3294290743547  ave loss  0.1250185376767388
+Done with  8899  out of  10791  time left  858.1317368013456  ave loss  0.12503902721294247
+Done with  8999  out of  10791  time left  812.8812614650326  ave loss  0.12511157802353232
+Done with  9099  out of  10791  time left  767.4759659262486  ave loss  0.12509161463084326
+Done with  9199  out of  10791  time left  722.1336646102307  ave loss  0.12498095533110849
+Done with  9299  out of  10791  time left  676.7386149206345  ave loss  0.1251413034030638
+Done with  9399  out of  10791  time left  631.1715497060435  ave loss  0.12538267415770474
+Done with  9499  out of  10791  time left  585.717864923169  ave loss  0.1253603493873798
+Done with  9599  out of  10791  time left  540.3651632634237  ave loss  0.12530059934630994
+Done with  9699  out of  10791  time left  495.1413116968346  ave loss  0.1250269609068202
+Done with  9799  out of  10791  time left  449.74763633353524  ave loss  0.12488031340574075
+Done with  9899  out of  10791  time left  404.35411226326727  ave loss  0.1245896291737544
+Done with  9999  out of  10791  time left  359.0080078427154  ave loss  0.1245781176846184
+Done with  10099  out of  10791  time left  313.73380340336695  ave loss  0.12479277504622098
+Done with  10199  out of  10791  time left  268.3801325066719  ave loss  0.12465246423377596
+Done with  10299  out of  10791  time left  223.0609882942553  ave loss  0.12503963393177162
+Done with  10399  out of  10791  time left  177.70066156780757  ave loss  0.12502543821617026
+Done with  10499  out of  10791  time left  132.37518630149034  ave loss  0.1249969397107773
+Done with  10599  out of  10791  time left  87.0534291012308  ave loss  0.12481737873896219
+Done with  10699  out of  10791  time left  41.71338242777642  ave loss  0.1249588192023176
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  1604  time left  230.7931587431166
+Done with  199  out of  1604  time left  214.84616207717053
+Done with  299  out of  1604  time left  200.14359405208194
+Done with  399  out of  1604  time left  183.53699144564177
+Done with  499  out of  1604  time left  167.78964030002066
+Done with  599  out of  1604  time left  150.2415775954226
+Done with  699  out of  1604  time left  133.5933587854683
+Done with  799  out of  1604  time left  117.84265025685517
+Done with  899  out of  1604  time left  102.64016815101743
+Done with  999  out of  1604  time left  87.44064705985205
+Done with  1099  out of  1604  time left  72.95246934326698
+Done with  1199  out of  1604  time left  58.29131316999478
+Done with  1299  out of  1604  time left  43.71557445962948
+Done with  1399  out of  1604  time left  29.336774388409413
+Done with  1499  out of  1604  time left  14.991630873257035
+Done with  1599  out of  1604  time left  0.7108597191815975
+train results ------------
+ Epoch: 5, ave loss: 0.12502834206854274, acc_sc: 0.966, acc_sa: 0.941, acc_wn: 0.993,         acc_wc: 0.962, acc_wo: 0.977, acc_wvi: 0.961, acc_wv: 0.962, acc_lx: 0.855, acc_x: 0.855
+dev results ------------
+ Epoch: 5, ave loss: 2.6887637795122754, acc_sc: 0.966, acc_sa: 0.938, acc_wn: 0.993,         acc_wc: 0.961, acc_wo: 0.976, acc_wvi: 0.956, acc_wv: 0.958, acc_lx: 0.852, acc_x: 0.852
+0.8516093835242772
+ Best Dev lx acc: 0.8516093835242772 at epoch: 5
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  10791  time left  5370.788040161133  ave loss  0.09955173277065647
+Done with  199  out of  10791  time left  5136.957255071132  ave loss  0.11004872086642768
+Done with  299  out of  10791  time left  4988.085512917178  ave loss  0.10660495338953695
+Done with  399  out of  10791  time left  4882.919730695567  ave loss  0.10862391661002971
+Done with  499  out of  10791  time left  4789.130535924602  ave loss  0.10831972287374293
+Done with  599  out of  10791  time left  4719.41457401333  ave loss  0.10891936648169064
+Done with  699  out of  10791  time left  4658.908350441077  ave loss  0.1084871827964491
+Done with  799  out of  10791  time left  4604.681060406681  ave loss  0.10905175457795376
+Done with  899  out of  10791  time left  4543.378658993755  ave loss  0.1102612404914436
+Done with  999  out of  10791  time left  4492.450419932872  ave loss  0.11031566363387835
+Done with  1099  out of  10791  time left  4447.950879889255  ave loss  0.10901081981042059
+Done with  1199  out of  10791  time left  4391.743143081665  ave loss  0.10805986845196676
+Done with  1299  out of  10791  time left  4346.87705450961  ave loss  0.10907135675736546
+Done with  1399  out of  10791  time left  4293.532306082169  ave loss  0.10906528889399962
+Done with  1499  out of  10791  time left  4239.785978929928  ave loss  0.10938831347738548
+Done with  1599  out of  10791  time left  4188.827505949067  ave loss  0.10941788054763306
+Done with  1699  out of  10791  time left  4141.910795177552  ave loss  0.11200330140405697
+Done with  1799  out of  10791  time left  4094.2981013350513  ave loss  0.11418981456742407
+Done with  1899  out of  10791  time left  4046.432526904825  ave loss  0.11420910332311217
+Done with  1999  out of  10791  time left  4000.151015034075  ave loss  0.11317133708608212
+Done with  2099  out of  10791  time left  3954.912310219538  ave loss  0.11244156328778672
+Done with  2199  out of  10791  time left  3905.934208311781  ave loss  0.11276816399089303
+Done with  2299  out of  10791  time left  3860.09311983574  ave loss  0.1122933569510693
+Done with  2399  out of  10791  time left  3812.412042154278  ave loss  0.11396842372522967
+Done with  2499  out of  10791  time left  3766.69161445897  ave loss  0.11372896139834206
+Done with  2599  out of  10791  time left  3720.5587816227394  ave loss  0.11440585040527304
+Done with  2699  out of  10791  time left  3674.1956995673954  ave loss  0.11392222693383731
+Done with  2799  out of  10791  time left  3629.6008383576127  ave loss  0.11436943169540142
+Done with  2899  out of  10791  time left  3584.7711126607796  ave loss  0.11350794476305147
+Done with  2999  out of  10791  time left  3538.7717581542584  ave loss  0.11430318430282714
+Done with  3099  out of  10791  time left  3494.508025799924  ave loss  0.11388560853957953
+Done with  3199  out of  10791  time left  3450.6427461726103  ave loss  0.1135066796524723
+Done with  3299  out of  10791  time left  3404.0003516358224  ave loss  0.11322890945229125
+Done with  3399  out of  10791  time left  3356.7079962573007  ave loss  0.1126448960361089
+Done with  3499  out of  10791  time left  3309.970168457129  ave loss  0.11224584374511928
+Done with  3599  out of  10791  time left  3257.724391970644  ave loss  0.11245409500747068
+Done with  3699  out of  10791  time left  3211.5088359665697  ave loss  0.11231009496820493
+Done with  3799  out of  10791  time left  3166.4142762646297  ave loss  0.11185563170190455
+Done with  3899  out of  10791  time left  3120.0298769513774  ave loss  0.11156349987311792
+Done with  3999  out of  10791  time left  3075.933982077883  ave loss  0.11144895463326673
+Done with  4099  out of  10791  time left  3029.5916196093035  ave loss  0.11135951684223884
+Done with  4199  out of  10791  time left  2983.496097685525  ave loss  0.11143475025319746
+Done with  4299  out of  10791  time left  2939.514331080243  ave loss  0.11117346585342561
+Done with  4399  out of  10791  time left  2892.875630457419  ave loss  0.11056856184360879
+Done with  4499  out of  10791  time left  2847.8325843811035  ave loss  0.11004942697273885
+Done with  4599  out of  10791  time left  2802.804893068138  ave loss  0.10979625567151448
+Done with  4699  out of  10791  time left  2755.621195917562  ave loss  0.10952474952041522
+Done with  4799  out of  10791  time left  2709.702986818772  ave loss  0.10984447480881257
+Done with  4899  out of  10791  time left  2662.888454881681  ave loss  0.10936288445044541
+Done with  4999  out of  10791  time left  2616.8205096127867  ave loss  0.10898677548340745
+Done with  5099  out of  10791  time left  2571.1878160258607  ave loss  0.10919992680805718
+Done with  5199  out of  10791  time left  2525.4513456616455  ave loss  0.10911766253941338
+Done with  5299  out of  10791  time left  2479.864144387707  ave loss  0.10930898349336846
+Done with  5399  out of  10791  time left  2434.2100093132876  ave loss  0.1095341768795815
+Done with  5499  out of  10791  time left  2388.376590410348  ave loss  0.10942809765893706
+Done with  5599  out of  10791  time left  2342.0922675854094  ave loss  0.10999778459119684
+Done with  5699  out of  10791  time left  2296.043683112975  ave loss  0.10990721925906477
+Done with  5799  out of  10791  time left  2250.639483156318  ave loss  0.10979555266640134
+Done with  5899  out of  10791  time left  2205.503336252328  ave loss  0.1097272352946524
+Done with  5999  out of  10791  time left  2159.5887256195633  ave loss  0.10935542128136319
+Done with  6099  out of  10791  time left  2113.8030396910412  ave loss  0.11005807450192502
+Done with  6199  out of  10791  time left  2068.0053461256057  ave loss  0.1103076594902371
+Done with  6299  out of  10791  time left  2021.8688667065417  ave loss  0.1099540088249595
+Done with  6399  out of  10791  time left  1976.6505990786222  ave loss  0.10992179436787147
+Done with  6499  out of  10791  time left  1931.2266168324354  ave loss  0.1101574774417461
+Done with  6599  out of  10791  time left  1885.5425538260893  ave loss  0.11017625398405281
+Done with  6699  out of  10791  time left  1840.2374328040137  ave loss  0.110182737827706
+Done with  6799  out of  10791  time left  1793.8541154442053  ave loss  0.11004680339329519
+Done with  6899  out of  10791  time left  1748.0385477514194  ave loss  0.11008258596876201
+Done with  6999  out of  10791  time left  1703.007654205597  ave loss  0.11055258577978612
+Done with  7099  out of  10791  time left  1658.0809072665654  ave loss  0.11080914570059253
+Done with  7199  out of  10791  time left  1612.547017302674  ave loss  0.11087448766471161
+Done with  7299  out of  10791  time left  1567.165103810048  ave loss  0.11104553937588213
+Done with  7399  out of  10791  time left  1522.1005152756336  ave loss  0.11088854968525479
+Done with  7499  out of  10791  time left  1476.3738859758837  ave loss  0.11070723045548228
+Done with  7599  out of  10791  time left  1431.6439053565205  ave loss  0.11063087499077093
+Done with  7699  out of  10791  time left  1386.73286806303  ave loss  0.11089024725513455
+Done with  7799  out of  10791  time left  1341.7961870470572  ave loss  0.11073019196333561
+Done with  7899  out of  10791  time left  1297.1389788994534  ave loss  0.11125648010983485
+Done with  7999  out of  10791  time left  1252.2725254995464  ave loss  0.11091077099262293
+Done with  8099  out of  10791  time left  1207.0807023455234  ave loss  0.11101358001796141
+Done with  8199  out of  10791  time left  1161.969644004244  ave loss  0.11110989000725899
+Done with  8299  out of  10791  time left  1116.6176158013523  ave loss  0.1111034825922704
+Done with  8399  out of  10791  time left  1071.503078592634  ave loss  0.11094427307607674
+Done with  8499  out of  10791  time left  1026.3856078560934  ave loss  0.11096606968530245
+Done with  8599  out of  10791  time left  981.3666537577973  ave loss  0.11091757091982324
+Done with  8699  out of  10791  time left  936.2482327884306  ave loss  0.11069975636681749
+Done with  8799  out of  10791  time left  891.3257142095244  ave loss  0.11091913924701834
+Done with  8899  out of  10791  time left  846.3836847618867  ave loss  0.11099159535407904
+Done with  8999  out of  10791  time left  801.5047375462508  ave loss  0.11107631613060667
+Done with  9099  out of  10791  time left  756.7187472531161  ave loss  0.11099034244731565
+Done with  9199  out of  10791  time left  711.9474712070764  ave loss  0.110923028914155
+Done with  9299  out of  10791  time left  667.1100885965758  ave loss  0.11101917051582431
+Done with  9399  out of  10791  time left  622.5235637892483  ave loss  0.11094017272646796
+Done with  9499  out of  10791  time left  577.9597193692556  ave loss  0.11085507220878088
+Done with  9599  out of  10791  time left  533.0914192460008  ave loss  0.11092254715216847
+Done with  9699  out of  10791  time left  488.4027854720026  ave loss  0.11121331684953546
+Done with  9799  out of  10791  time left  443.7967369078811  ave loss  0.11126588104393412
+Done with  9899  out of  10791  time left  399.0674241420801  ave loss  0.11102201899821358
+Done with  9999  out of  10791  time left  354.4076234609774  ave loss  0.11103418943976301
+Done with  10099  out of  10791  time left  309.62669555417784  ave loss  0.11099356069179664
+Done with  10199  out of  10791  time left  264.89832852510676  ave loss  0.11142451585276594
+Done with  10299  out of  10791  time left  220.18251109130173  ave loss  0.11154032715816553
+Done with  10399  out of  10791  time left  175.4671383039781  ave loss  0.11158830491736077
+Done with  10499  out of  10791  time left  130.74021906797768  ave loss  0.11138597535353069
+Done with  10599  out of  10791  time left  85.95643433031805  ave loss  0.11142102046520691
+Done with  10699  out of  10791  time left  41.18815023144313  ave loss  0.11138298352122063
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+Done with  99  out of  1604  time left  223.73256049974998
+Done with  199  out of  1604  time left  207.22177427617748
+Done with  299  out of  1604  time left  192.9300063350129
+Done with  399  out of  1604  time left  178.41261361475875
+Done with  499  out of  1604  time left  163.0338886792292
+Done with  599  out of  1604  time left  145.90515205577537
+Done with  699  out of  1604  time left  129.89972666950527
+Done with  799  out of  1604  time left  114.86263307671672
+Done with  899  out of  1604  time left  100.33500798021727
+Done with  999  out of  1604  time left  85.52902922496662
+Done with  1099  out of  1604  time left  71.32730013788343
+Done with  1199  out of  1604  time left  56.90436155424206
+Done with  1299  out of  1604  time left  42.65671577794998
+Done with  1399  out of  1604  time left  28.595341890517776
+Done with  1499  out of  1604  time left  14.573520640677973
+Done with  1599  out of  1604  time left  0.6911957890186704
+train results ------------
+ Epoch: 6, ave loss: 0.11152764996341917, acc_sc: 0.968, acc_sa: 0.942, acc_wn: 0.993,         acc_wc: 0.965, acc_wo: 0.980, acc_wvi: 0.966, acc_wv: 0.967, acc_lx: 0.863, acc_x: 0.863
+dev results ------------
+ Epoch: 6, ave loss: 2.7847001254919665, acc_sc: 0.967, acc_sa: 0.938, acc_wn: 0.992,         acc_wc: 0.962, acc_wo: 0.976, acc_wvi: 0.952, acc_wv: 0.954, acc_lx: 0.851, acc_x: 0.851
+0.8506741485464889
+ Best Dev lx acc: 0.8516093835242772 at epoch: 5
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)
+The current process just got forked. Disabling parallelism to avoid deadlocks...
+To disable this warning, please explicitly set TOKENIZERS_PARALLELISM=(true | false)

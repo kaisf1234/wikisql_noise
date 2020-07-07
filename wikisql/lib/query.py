@@ -8,7 +8,7 @@ re_whitespace = re.compile(r'\s+', flags=re.UNICODE)
 
 
 class Query:
-
+            #  0     1     2       3        4      5
     agg_ops = ['', 'MAX', 'MIN', 'COUNT', 'SUM', 'AVG']
     cond_ops = ['=', '>', '<', 'OP']
     syms = ['SELECT', 'WHERE', 'AND', 'COL', 'TABLE', 'CAPTION', 'PAGE', 'SECTION', 'OP', 'COND', 'QUESTION', 'AGG', 'AGGOPS', 'CONDOPS']

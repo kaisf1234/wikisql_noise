@@ -46,6 +46,16 @@ class DBEngine:
         where_str = ''
         if where_clause:
             where_str = 'WHERE ' + ' AND '.join(where_clause)
+
+
         query = 'SELECT {} AS result FROM {} {}'.format(select, table_id, where_str)
         out = self.db.query(query, **where_map)
         return [o.result for o in out]
+
+    def execute_sel_star(self, table_id):
+        if not table_id.startswith('table'):
+            table_id = 'table_{}'.format(table_id.replace('-', '_'))
+        query = 'SELECT * FROM {} '.format(table_id)
+        out = self.db.query(query, **{})
+        return ([([str(y) for y in x.values()]) for x in  out])
+

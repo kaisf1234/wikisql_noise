@@ -2,7 +2,7 @@
 import json
 from argparse import ArgumentParser
 from tqdm import tqdm
-
+from tabulate import tabulate
 from errors.error_logger import ErrorLogger
 from wikisql.lib.dbengine import DBEngine
 from wikisql.lib.query import Query
@@ -17,7 +17,7 @@ def oprint(*args, **kwargs):
     #print(*args, **kwargs)
     pass
 
-leeway = 0
+leeway = 100
 if __name__ == '__main__':
 
     # Hyper parameters
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     dset_name = 'wikisql_tok'
     saved_epoch = 'best'  # 30-162
     key_data = '/gtlt_noisy_data/'
-    key_results = '/sample_oracle_1'
+    key_results = '/sample_3_more'
     # Set path
     path_h = './' # change to your home folder
     # path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
@@ -64,10 +64,11 @@ if __name__ == '__main__':
 
 
     error_loger = ErrorLogger()
-
+    agg_map = {x : {y: 0 for y in Query.agg_ops} for x in Query.agg_ops}
     with open(args.source_file) as fs, open(args.pred_file) as fp:
         grades = []
         c = 0
+        cc = 0
         for ls, lp in tqdm(zip(fs, fp), total=count_lines(args.source_file)):
             eg = json.loads(ls)
             ep = json.loads(lp)
@@ -101,16 +102,26 @@ if __name__ == '__main__':
                 except Exception as e:
                     pred = repr(e)
             correct = pred == gold
+            if all_meta[eg["table_id"]]["types"][ep["query"]["sel"]] == "real":
+                agg_map[Query.agg_ops[eg["sql"]["agg"]]][Query.agg_ops[ep["query"]["agg"]]] += 1
             if not correct:
-                if ep["query"]["agg"] != eg["sql"]["agg"]:
-                    # print(eg["question"])
-                    # print(eg["sql"]["agg"])
-                    # print(ep["query"]["agg"])
-                    # print(eg["sql"])
-                    # print(ep["query"])
-                    # print(all_meta[eg["table_id"]]["header"])
-                    # print(all_meta[eg["table_id"]]["types"])
-                    # print("*"*100)
+                if ep["query"]["agg"] != eg["sql"]["agg"] :
+                # if  all_meta[eg["table_id"]]["types"][ep["query"]["sel"]] == "real" and eg["sql"]["agg"] == 3 :
+                    cc += 1
+                    print(eg["question"])
+                    print("GOLD", Query.agg_ops[eg["sql"]["agg"]])
+                    print("PRED", Query.agg_ops[ep["query"]["agg"]])
+                    print("GOLD", eg["sql"])
+                    print("PRED", ep["query"])
+                    print(all_meta[eg["table_id"]]["header"])
+                    print(all_meta[eg["table_id"]]["types"])
+                    print(pred, gold)
+                    print("table_" + eg["table_id"].replace("-", "_"))
+                    print("^"*100)
+                    values = engine.execute_sel_star(eg["table_id"])
+
+                    print(tabulate(values, headers=all_meta[eg["table_id"]]["header"], tablefmt='fancy_grid'))
+                    print("*"*100)
                     pass
                 #oprint("Pred" ,pred)
                 #oprint("Gold", gold)
@@ -122,7 +133,7 @@ if __name__ == '__main__':
                 oprint("-"*100)
                 pass
             match = qp == qg
-            if not match and leeway > 0:
+            if not match and leeway >= 1:
                 leeway -= 1
                 match = 1
             grades.append(correct)
@@ -134,9 +145,10 @@ if __name__ == '__main__':
             }, indent=2))
 
         print(c)
+        print(agg_map)
         error_loger.display()
         error_loger.dump('./errors/' + (key_data+"_"+key_results+"").replace("/", '')+'.log')
-
+        print(cc)
 
 '''
 4413

@@ -439,8 +439,21 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
     start = time.time()
     l = len(data_loader)
     for iB, t in enumerate(data_loader):
-        if iB % 100 == 99:
+        if iB % 2 == 1:
             print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB))
+            acc_sc = cnt_sc / cnt
+            acc_sa = cnt_sa / cnt
+            acc_wn = cnt_wn / cnt
+            acc_wc = cnt_wc / cnt
+            acc_wo = cnt_wo / cnt
+            acc_wvi = cnt_wvi / cnt
+            acc_wv = cnt_wv / cnt
+            acc_lx = cnt_lx / cnt
+            acc_x = cnt_x / cnt
+
+
+            acc = [ave_loss, acc_sc, acc_sa, acc_wn, acc_wc, acc_wo, acc_wvi, acc_wv, acc_lx, acc_x]
+            print(acc)
         cnt += len(t)
         if cnt < st_pos:
             continue
@@ -471,7 +484,7 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
 
         # model specific part
         # score
-        if not EG:
+        if False:
             # No Execution guided decoding
             s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs)
 
@@ -682,7 +695,7 @@ if __name__ == '__main__':
     BERT_PT_PATH = args.shelf_bert_path
 
 
-    path_save_for_evaluation = '/content/drive/My Drive/sf'
+    path_save_for_evaluation = './'
 
     ## 3. Load data
 
@@ -701,15 +714,15 @@ if __name__ == '__main__':
     else:
         # To start from the pre-trained models, un-comment following lines.
         print("Loading pretrained models...")
-        path_model_bert = '/content/drive/My Drive/sf/' + args.run_key + 'model_bert_best_orig.pt'
-        path_model = '/content/drive/My Drive/sf/'+ args.run_key +'model_best_orig.pt'
+        path_model_bert = './models/col_search_sample_3/' + 'model_bert_best.pt'
+        path_model = './models/col_search_sample_3/' +'model_best.pt'
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 
     ## 5. Get optimizers
     if args.do_train:
         pre_trained_path = None
-        if args.trained:
+        if False and args.trained:
             pre_trained_path = "/content/drive/My Drive/sf/" + args.run_key
         opt, opt_bert = get_opt(model, model_bert, args.fine_tune, pre_trained_path=pre_trained_path)
         num_training_steps = 1000
@@ -735,21 +748,21 @@ if __name__ == '__main__':
 
         for epoch in range(args.tepoch):
             # trainBERT-type
-            acc_train, aux_out_train = train(train_loader,
-                                             train_table,
-                                             model,
-                                             model_bert,
-                                             opt,
-                                             bert_config,
-                                             tokenizer,
-                                             args.max_seq_length,
-                                             args.num_target_layers,
-                                             args.accumulate_gradients,
-                                             opt_bert=opt_bert,
-                                             st_pos=0,
-                                             path_db=path_wikisql,
-                                             dset_name='train',
-                                             column_samples=train_column_vectors)
+            # acc_train, aux_out_train = train(train_loader,
+            #                                  train_table,
+            #                                  model,
+            #                                  model_bert,
+            #                                  opt,
+            #                                  bert_config,
+            #                                  tokenizer,
+            #                                  args.max_seq_length,
+            #                                  args.num_target_layers,
+            #                                  args.accumulate_gradients,
+            #                                  opt_bert=opt_bert,
+            #                                  st_pos=0,
+            #                                  path_db=path_wikisql,
+            #                                  dset_name='train',
+            #                                  column_samples=train_column_vectors)
 
             # check DEV
             with torch.no_grad():
@@ -766,7 +779,7 @@ if __name__ == '__main__':
                                                       st_pos=0,
                                                       dset_name='dev', EG=args.EG, column_samples=dev_column_vectors)
 
-            print_result(epoch, acc_train, 'train')
+            # print_result(epoch, acc_train, 'train')
             print_result(epoch, acc_dev, 'dev')
             acc_lx_t = acc_dev[-2]
             print(acc_lx_t)

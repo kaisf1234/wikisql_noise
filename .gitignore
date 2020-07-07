@@ -11,3 +11,5 @@ bert/__pycache__
 data/WikiSQL-1.1/.DS_Store
 /models/stanford-corenlp-4.0.0/
 /data/WikiSQL-1.1/gtlt_noisy_data/train.tables.jsonl
+/models/col_sample_3/
+/models/col_search_sample_3/
