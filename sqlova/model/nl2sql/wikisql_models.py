@@ -28,7 +28,7 @@ class Seq2SQL_v1(nn.Module):
         self.max_wn = 4
         self.n_cond_ops = n_cond_ops
         self.n_agg_ops = n_agg_ops
-
+        self.simple_agg = nn.Linear(768, n_agg_ops)
         self.scp = SCP(iS, hS, lS, dr)
         self.sap = SAP(iS, hS, lS, dr, n_agg_ops, old=old)
         self.wnp = WNP(iS, hS, lS, dr)
@@ -40,7 +40,7 @@ class Seq2SQL_v1(nn.Module):
     def forward(self, wemb_n, l_n, wemb_hpu, l_hpu, l_hs,
                 g_sc=None, g_sa=None, g_wn=None, g_wc=None, g_wo=None, g_wvi=None,
                 show_p_sc=False, show_p_sa=False,
-                show_p_wn=False, show_p_wc=False, show_p_wo=False, show_p_wv=False):
+                show_p_wn=False, show_p_wc=False, show_p_wo=False, show_p_wv=False, cls = None):
 
         # sc
         s_sc = self.scp(wemb_n, l_n, wemb_hpu, l_hpu, l_hs, show_p_sc=show_p_sc)
@@ -51,7 +51,10 @@ class Seq2SQL_v1(nn.Module):
             pr_sc = pred_sc(s_sc)
 
         # sa
-        s_sa = self.sap(wemb_n, l_n, wemb_hpu, l_hpu, l_hs, pr_sc, show_p_sa=show_p_sa)
+        if cls is None:
+            s_sa = self.sap(wemb_n, l_n, wemb_hpu, l_hpu, l_hs, pr_sc, show_p_sa=show_p_sa)
+        else:
+            s_sa = self.simple_agg(cls)
         if g_sa:
             # it's not necessary though.
             pr_sa = g_sa

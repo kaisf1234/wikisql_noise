@@ -6,14 +6,14 @@
 
 
 import os, sys, argparse, re, json
-
-from matplotlib.pylab import *
+import time
+import numpy as np
 import torch.nn as nn
 import torch
 import torch.nn.functional as F
 import random as python_random
 # import torchvision.datasets as dsets
-
+from numpy import *
 # BERT
 import bert.tokenization as tokenization
 from bert.modeling import BertConfig, BertModel
@@ -27,11 +27,11 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def construct_hyper_param(parser):
     parser.add_argument("--do_train", default=False, action='store_true')
-    parser.add_argument('--do_infer', default=False, action='store_true')
-    parser.add_argument('--infer_loop', default=False, action='store_true')
+    parser.add_argument('--do_infer', default=True, action='store_true')
+    parser.add_argument('--infer_loop', default=True, action='store_true')
     parser.add_argument("--column_vector_path", type=str, help="column_rep")
 
-    parser.add_argument("--trained", default=False, action='store_true')
+    parser.add_argument("--trained", default=True, action='store_true')
     parser.add_argument("--data_path", type=str, help="contains all tok and data files and such")
 
     parser.add_argument('--tepoch', default=200, type=int)
@@ -102,7 +102,7 @@ def construct_hyper_param(parser):
         args.do_lower_case = True
 
     # Seeds for random number generation
-    seed(args.seed)
+    # seed(args.seed)
     python_random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -671,7 +671,7 @@ if __name__ == '__main__':
     args = construct_hyper_param(parser)
 
     path_main = args.data_path
-    if path_main == '':
+    if path_main == '' or path_main == None:
         path_main = './data/WikiSQL-1.1/data'
 
     ## 2. Paths

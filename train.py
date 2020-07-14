@@ -144,20 +144,20 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
 
 def get_opt(model, model_bert, fine_tune, pre_trained_path=None):
     if fine_tune:
-        opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
-                               lr=args.lr, amsgrad=True)
+        opt = torch.optim.AdamW(filter(lambda p: p.requires_grad, model.parameters()),
+                               lr=args.lr)
 
-        opt_bert = torch.optim.Adam(filter(lambda p: p.requires_grad, model_bert.parameters()),
-                                    lr=args.lr_bert, amsgrad=True)
+        opt_bert = torch.optim.AdamW(filter(lambda p: p.requires_grad, model_bert.parameters()),
+                                    lr=args.lr_bert)
     else:
-        opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
-                               lr=args.lr, weight_decay=0)
+        opt = torch.optim.AdamW(filter(lambda p: p.requires_grad, model.parameters()),
+                               lr=args.lr)
         opt_bert = None
     if pre_trained_path:
         print("Loading opt...", pre_trained_path)
         opt.load_state_dict(torch.load(pre_trained_path + "opt_best_orig.pt"))
         if opt_bert is not None:
-            opt_bert.load_state_dict(torch.load(pre_trained_path, "opt_bert_best_orig.pt"))
+            opt_bert.load_state_dict(torch.load(pre_trained_path + "opt_bert_best_orig.pt"))
     return opt, opt_bert
 
 
@@ -261,7 +261,7 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         # get ground truth where-value index under CoreNLP tokenization scheme. It's done already on trainset.
         g_wvi_corenlp = get_g_wvi_corenlp(t)
         wemb_n, wemb_h, l_n, l_hpu, l_hs, \
-        nlu_tt, t_to_tt_idx, tt_to_t_idx \
+        nlu_tt, t_to_tt_idx, tt_to_t_idx, cls \
             = get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length,
                             num_out_layers_n=num_target_layers, num_out_layers_h=num_target_layers)
 
@@ -282,7 +282,7 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
 
         # score
         s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs,
-                                                   g_sc=g_sc, g_sa=g_sa, g_wn=g_wn, g_wc=g_wc, g_wvi=g_wvi)
+                                                   g_sc=g_sc, g_sa=g_sa, g_wn=g_wn, g_wc=g_wc, g_wvi=g_wvi, cls=cls)
 
         # Calculate loss & step
         loss = Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi)
@@ -441,8 +441,9 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
     start = time.time()
     l = len(data_loader)
     for iB, t in enumerate(data_loader):
-        if iB % 2 == 1:
+        if iB % 100 == 99:
             print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB))
+            ave_loss /= cnt
             acc_sc = cnt_sc / cnt
             acc_sa = cnt_sa / cnt
             acc_wn = cnt_wn / cnt
@@ -465,7 +466,7 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
         g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
         g_wvi_corenlp = get_g_wvi_corenlp(t)
         wemb_n, wemb_h, l_n, l_hpu, l_hs, \
-        nlu_tt, t_to_tt_idx, tt_to_t_idx \
+        nlu_tt, t_to_tt_idx, tt_to_t_idx, cls \
             = get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length,
                             num_out_layers_n=num_target_layers, num_out_layers_h=num_target_layers)
         try:
@@ -486,9 +487,9 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
 
         # model specific part
         # score
-        if False:
+        if True:
             # No Execution guided decoding
-            s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs)
+            s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs, cls=cls)
 
             # get loss & step
             loss = Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi)

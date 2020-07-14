@@ -5,7 +5,7 @@
 # Wonseok Hwang
 # Convert the wikisql format to the suitable format for the BERT.
 import os, sys, json
-from matplotlib.pylab import *
+from numpy import *
 
 
 def get_squad_style_ans(nlu, sql):

@@ -3,7 +3,6 @@
 import os, sys, argparse, re, json
 import random as python_random
 
-from matplotlib.pylab import *
 import torch.nn as nn
 import torch
 import torch.nn.functional as F

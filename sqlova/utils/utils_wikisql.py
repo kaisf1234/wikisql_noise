@@ -7,7 +7,6 @@ import os, json
 import random as rd
 from copy import deepcopy
 
-from matplotlib.pylab import *
 
 import torch
 import torchvision.datasets as dsets
@@ -15,7 +14,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data.dataloader import DataLoader
 from .util_wiki_config import config
-
+from numpy import *
 from .utils import generate_perm_inv
 from .utils import json_default_type_checker
 
@@ -892,7 +891,7 @@ def get_wemb_bert(bert_config, model_bert, tokenizer, nlu_t, hds, max_seq_length
                         num_out_layers_h)
 
     return wemb_n, wemb_h, l_n, l_hpu, l_hs, \
-           nlu_tt, t_to_tt_idx, tt_to_t_idx
+           nlu_tt, t_to_tt_idx, tt_to_t_idx, pooled_output
 
 
 def gen_pnt_n(g_wvi, mL_w, mL_nt):

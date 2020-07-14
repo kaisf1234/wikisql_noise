@@ -1,0 +1,638 @@
+{"phase": 1, "table_id": "1-11764007-2", "question": "... 0% - 1 MB - 1.26 MB/s - 0s", "sql": {"sel": 0, "conds": [[2, 0, "1"]], "agg": 0}}
+{"phase": 1, "table_id": "1-1281200-1", "question": "... 0% - 2 MB - 1.88 MB/s - 1s", "sql": {"sel": 4, "conds": [[3, 0, 8]], "agg": 0}}
+{"phase": 1, "table_id": "1-1281200-1", "question": "... 0% - 2 MB - 1.89 MB/s - 1s", "sql": {"sel": 2, "conds": [[5, 0, "8"]], "agg": 3}}
+{"phase": 1, "table_id": "1-13337302-16", "question": "... 0% - 2 MB - 1.99 MB/s - 1s", "sql": {"sel": 3, "conds": [[4, 0, 2], [5, 0, 0]], "agg": 3}}
+{"phase": 1, "table_id": "1-13758945-3", "question": "... 0% - 3 MB - 2.84 MB/s - 1s", "sql": {"sel": 2, "conds": [[9, 0, "8"]], "agg": 0}}
+{"phase": 1, "table_id": "1-13758945-3", "question": "... 0% - 3 MB - 2.85 MB/s - 1s", "sql": {"sel": 0, "conds": [[10, 0, "1"]], "agg": 0}}
+{"phase": 1, "table_id": "1-14181578-1", "question": "... 0% - 3 MB - 3.03 MB/s - 1s", "sql": {"sel": 3, "conds": [[0, 0, 1]], "agg": 0}}
+{"phase": 1, "table_id": "1-14342480-6", "question": "... 0% - 3 MB - 3.13 MB/s - 1s", "sql": {"sel": 3, "conds": [[5, 0, 1]], "agg": 1}}
+{"phase": 1, "table_id": "1-14342480-6", "question": "... 0% - 3 MB - 3.16 MB/s - 1s", "sql": {"sel": 6, "conds": [[5, 0, 1]], "agg": 3}}
+{"phase": 1, "table_id": "1-14882588-3", "question": "... 0% - 4 MB - 3.16 MB/s - 1s", "sql": {"sel": 2, "conds": [[0, 0, 3]], "agg": 3}}
+{"phase": 1, "table_id": "1-150343-3", "question": "... 0% - 4 MB - 3.46 MB/s - 1s", "sql": {"sel": 10, "conds": [[5, 0, 0]], "agg": 0}}
+{"phase": 1, "table_id": "1-15418319-1", "question": "... 0% - 4 MB - 3.67 MB/s - 1s", "sql": {"sel": 7, "conds": [[9, 0, "7"]], "agg": 1}}
+{"phase": 1, "table_id": "1-158088-2", "question": "... 0% - 5 MB - 3.98 MB/s - 1s", "sql": {"sel": 2, "conds": [[0, 0, 3]], "agg": 0}}
+{"phase": 1, "table_id": "1-17265535-6", "question": "... 0% - 6 MB - 4.27 MB/s - 1s", "sql": {"sel": 3, "conds": [[2, 0, "7"]], "agg": 0}}
+{"phase": 1, "table_id": "1-17271495-1", "question": "... 0% - 6 MB - 4.30 MB/s - 1s", "sql": {"sel": 6, "conds": [[8, 0, "30"]], "agg": 3}}
+{"phase": 1, "table_id": "1-17901155-4", "question": "... 1% - 6 MB - 4.72 MB/s - 1s", "sql": {"sel": 7, "conds": [[1, 0, 6]], "agg": 0}}
+{"phase": 1, "table_id": "1-17927935-1", "question": "... 1% - 6 MB - 4.75 MB/s - 1s", "sql": {"sel": 1, "conds": [[0, 0, 4]], "agg": 0}}
+{"phase": 1, "table_id": "1-18095719-2", "question": "... 1% - 7 MB - 4.87 MB/s - 1s", "sql": {"sel": 3, "conds": [[0, 0, 7]], "agg": 0}}
+{"phase": 1, "table_id": "1-1817852-1", "question": "... 1% - 7 MB - 4.92 MB/s - 1s", "sql": {"sel": 1, "conds": [[4, 0, 4]], "agg": 3}}
+{"phase": 1, "table_id": "1-18207285-2", "question": "... 1% - 7 MB - 4.96 MB/s - 1s", "sql": {"sel": 6, "conds": [[0, 0, 9]], "agg": 3}}
+{"phase": 1, "table_id": "1-18207285-2", "question": "... 1% - 7 MB - 4.98 MB/s - 1s", "sql": {"sel": 5, "conds": [[0, 0, 1]], "agg": 1}}
+{"phase": 1, "table_id": "1-18303274-1", "question": "... 1% - 7 MB - 5.03 MB/s - 1s", "sql": {"sel": 2, "conds": [[0, 0, 5]], "agg": 0}}
+{"phase": 1, "table_id": "1-18335117-3", "question": "... 1% - 7 MB - 5.03 MB/s - 1s", "sql": {"sel": 3, "conds": [[1, 0, 1]], "agg": 0}}
+{"phase": 1, "table_id": "1-19089486-1", "question": "... 1% - 7 MB - 4.94 MB/s - 1s", "sql": {"sel": 5, "conds": [[2, 0, 4]], "agg": 0}}
+{"phase": 1, "table_id": "1-19834691-4", "question": "... 1% - 8 MB - 5.29 MB/s - 1s", "sql": {"sel": 3, "conds": [[0, 0, 1]], "agg": 3}}
+{"phase": 1, "table_id": "1-20007413-6", "question": "... 1% - 8 MB - 5.35 MB/s - 1s", "sql": {"sel": 4, "conds": [[6, 0, 5]], "agg": 0}}
+{"phase": 1, "table_id": "1-21471897-2", "question": "... 1% - 9 MB - 5.47 MB/s - 1s", "sql": {"sel": 3, "conds": [[7, 0, 7]], "agg": 1}}
+{"phase": 1, "table_id": "1-21471897-2", "question": "... 1% - 9 MB - 5.48 MB/s - 1s", "sql": {"sel": 7, "conds": [[4, 0, 8]], "agg": 0}}
+{"phase": 1, "table_id": "1-21550897-1", "question": "... 1% - 9 MB - 5.56 MB/s - 1s", "sql": {"sel": 6, "conds": [[1, 0, 6]], "agg": 3}}
+{"phase": 1, "table_id": "1-2182654-6", "question": "... 1% - 10 MB - 5.68 MB/s - 1s", "sql": {"sel": 5, "conds": [[1, 0, 10]], "agg": 0}}
+{"phase": 1, "table_id": "1-22948559-1", "question": "... 1% - 11 MB - 6.21 MB/s - 1s", "sql": {"sel": 6, "conds": [[1, 0, "21"]], "agg": 0}}
+{"phase": 1, "table_id": "1-23248910-11", "question": "... 1% - 11 MB - 6.31 MB/s - 1s", "sql": {"sel": 3, "conds": [[0, 0, 6]], "agg": 0}}
+{"phase": 1, "table_id": "1-23286112-6", "question": "... 1% - 11 MB - 6.36 MB/s - 1s", "sql": {"sel": 1, "conds": [[0, 0, 3]], "agg": 0}}
+{"phase": 1, "table_id": "1-233830-1", "question": "... 1% - 11 MB - 6.32 MB/s - 1s", "sql": {"sel": 4, "conds": [[1, 0, 1]], "agg": 0}}
+{"phase": 1, "table_id": "1-23662272-4", "question": "... 1% - 11 MB - 6.11 MB/s - 1s", "sql": {"sel": 2, "conds": [[3, 0, 6]], "agg": 0}}
+{"phase": 1, "table_id": "1-2401326-1", "question": "... 1% - 12 MB - 6.28 MB/s - 1s", "sql": {"sel": 2, "conds": [[6, 0, 8]], "agg": 2}}
+{"phase": 1, "table_id": "1-24291077-8", "question": "... 1% - 12 MB - 6.43 MB/s - 1s", "sql": {"sel": 6, "conds": [[0, 0, 3]], "agg": 0}}
+{"phase": 1, "table_id": "1-24399615-3", "question": "... 2% - 12 MB - 6.46 MB/s - 1s", "sql": {"sel": 4, "conds": [[0, 0, 4]], "agg": 0}}
+{"phase": 1, "table_id": "1-24565004-15", "question": "... 2% - 12 MB - 6.54 MB/s - 1s", "sql": {"sel": 0, "conds": [[4, 0, 4]], "agg": 0}}
+{"phase": 1, "table_id": "1-25356350-2", "question": "... 2% - 13 MB - 6.79 MB/s - 1s", "sql": {"sel": 5, "conds": [[0, 0, 1]], "agg": 0}}
+{"phase": 1, "table_id": "1-25794532-1", "question": "... 2% - 14 MB - 6.69 MB/s - 2s", "sql": {"sel": 8, "conds": [[3, 0, 4]], "agg": 0}}
+{"phase": 1, "table_id": "1-26400041-2", "question": "... 2% - 14 MB - 7.07 MB/s - 2s", "sql": {"sel": 5, "conds": [[1, 0, 4]], "agg": 0}}
+{"phase": 1, "table_id": "1-26561506-1", "question": "... 2% - 14 MB - 7.12 MB/s - 2s", "sql": {"sel": 5, "conds": [[1, 0, 4]], "agg": 3}}
+{"phase": 1, "table_id": "1-26998693-1", "question": "... 2% - 15 MB - 6.95 MB/s - 2s", "sql": {"sel": 0, "conds": [[7, 0, 9]], "agg": 2}}
+{"phase": 1, "table_id": "1-26998693-1", "question": "... 2% - 15 MB - 6.96 MB/s - 2s", "sql": {"sel": 3, "conds": [[5, 0, 1]], "agg": 0}}
+{"phase": 1, "table_id": "1-27268238-4", "question": "... 2% - 15 MB - 6.99 MB/s - 2s", "sql": {"sel": 6, "conds": [[2, 0, 5]], "agg": 0}}
+{"phase": 1, "table_id": "1-27293285-6", "question": "... 2% - 15 MB - 7.02 MB/s - 2s", "sql": {"sel": 8, "conds": [[2, 0, "15"]], "agg": 0}}
+{"phase": 1, "table_id": "1-27293285-6", "question": "... 2% - 15 MB - 7.03 MB/s - 2s", "sql": {"sel": 0, "conds": [[4, 0, "7"]], "agg": 0}}
+{"phase": 1, "table_id": "1-27552095-27", "question": "... 2% - 16 MB - 7.24 MB/s - 2s", "sql": {"sel": 3, "conds": [[4, 0, "1"]], "agg": 0}}
+{"phase": 1, "table_id": "1-27988382-1", "question": "... 2% - 16 MB - 7.48 MB/s - 2s", "sql": {"sel": 6, "conds": [[1, 0, 8]], "agg": 3}}
+{"phase": 1, "table_id": "1-27998152-1", "question": "... 2% - 16 MB - 7.50 MB/s - 2s", "sql": {"sel": 3, "conds": [[0, 0, 7]], "agg": 0}}
+{"phase": 1, "table_id": "1-2850912-1", "question": "... 2% - 17 MB - 7.66 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 0, 17]], "agg": 0}}
+{"phase": 1, "table_id": "1-2950964-1", "question": "... 2% - 18 MB - 7.56 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 0, "7"]], "agg": 0}}
+{"phase": 1, "table_id": "1-2950964-1", "question": "... 2% - 18 MB - 7.56 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 0, "8"]], "agg": 0}}
+{"phase": 1, "table_id": "1-29756040-1", "question": "... 2% - 18 MB - 7.66 MB/s - 2s", "sql": {"sel": 3, "conds": [[4, 0, "1"]], "agg": 0}}
+{"phase": 1, "table_id": "1-29756040-1", "question": "... 2% - 18 MB - 7.66 MB/s - 2s", "sql": {"sel": 3, "conds": [[4, 0, "6"]], "agg": 0}}
+{"phase": 1, "table_id": "1-30087032-5", "question": "... 3% - 18 MB - 7.76 MB/s - 2s", "sql": {"sel": 4, "conds": [[0, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-10098068-6", "question": "... 3% - 18 MB - 7.83 MB/s - 2s", "sql": {"sel": 4, "conds": [[3, 2, 2], [2, 1, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-1010430-2", "question": "... 3% - 18 MB - 7.83 MB/s - 2s", "sql": {"sel": 0, "conds": [[2, 0, 2], [5, 2, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-1010430-2", "question": "... 3% - 18 MB - 7.83 MB/s - 2s", "sql": {"sel": 5, "conds": [[0, 2, 2]], "agg": 2}}
+{"phase": 2, "table_id": "2-10351118-1", "question": "... 3% - 18 MB - 7.85 MB/s - 2s", "sql": {"sel": 2, "conds": [[5, 2, 2]], "agg": 2}}
+{"phase": 2, "table_id": "2-10351118-1", "question": "... 3% - 18 MB - 7.86 MB/s - 2s", "sql": {"sel": 0, "conds": [[3, 1, 1], [2, 2, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-10084187-2", "question": "... 3% - 19 MB - 7.87 MB/s - 2s", "sql": {"sel": 4, "conds": [[1, 1, 3]], "agg": 5}}
+{"phase": 2, "table_id": "2-1006287-7", "question": "... 3% - 19 MB - 7.90 MB/s - 2s", "sql": {"sel": 4, "conds": [[1, 2, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-10256651-3", "question": "... 3% - 19 MB - 7.93 MB/s - 2s", "sql": {"sel": 2, "conds": [[0, 1, 9]], "agg": 2}}
+{"phase": 2, "table_id": "2-10285177-8", "question": "... 3% - 19 MB - 7.92 MB/s - 2s", "sql": {"sel": 3, "conds": [[5, 0, "2"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1006029-1", "question": "... 3% - 19 MB - 7.92 MB/s - 2s", "sql": {"sel": 4, "conds": [[5, 2, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-102100-5", "question": "... 3% - 19 MB - 7.94 MB/s - 2s", "sql": {"sel": 3, "conds": [[5, 0, "4"], [1, 2, 3]], "agg": 1}}
+{"phase": 2, "table_id": "2-102100-5", "question": "... 3% - 19 MB - 7.95 MB/s - 2s", "sql": {"sel": 7, "conds": [[3, 1, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-10319633-1", "question": "... 3% - 19 MB - 7.99 MB/s - 2s", "sql": {"sel": 1, "conds": [[4, 1, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-10319633-1", "question": "... 3% - 19 MB - 7.99 MB/s - 2s", "sql": {"sel": 5, "conds": [[4, 1, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-10319633-1", "question": "... 3% - 19 MB - 8.00 MB/s - 2s", "sql": {"sel": 3, "conds": [[4, 0, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-1008145-13", "question": "... 3% - 19 MB - 8.00 MB/s - 2s", "sql": {"sel": 7, "conds": [[3, 0, 8]], "agg": 3}}
+{"phase": 2, "table_id": "2-10240125-2", "question": "... 3% - 19 MB - 8.01 MB/s - 2s", "sql": {"sel": 5, "conds": [[6, 0, 0], [4, 1, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-10240125-2", "question": "... 3% - 19 MB - 8.01 MB/s - 2s", "sql": {"sel": 6, "conds": [[3, 1, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-10638654-2", "question": "... 3% - 19 MB - 7.67 MB/s - 2s", "sql": {"sel": 5, "conds": [[6, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-10647310-1", "question": "... 3% - 19 MB - 7.68 MB/s - 2s", "sql": {"sel": 3, "conds": [[0, 2, 3]], "agg": 1}}
+{"phase": 2, "table_id": "2-10647310-1", "question": "... 3% - 19 MB - 7.68 MB/s - 2s", "sql": {"sel": 3, "conds": [[0, 1, 8]], "agg": 4}}
+{"phase": 2, "table_id": "2-10749367-1", "question": "... 3% - 19 MB - 7.70 MB/s - 2s", "sql": {"sel": 3, "conds": [[4, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-10749367-1", "question": "... 3% - 19 MB - 7.70 MB/s - 2s", "sql": {"sel": 0, "conds": [[4, 1, 0]], "agg": 0}}
+{"phase": 2, "table_id": "2-10780927-1", "question": "... 3% - 19 MB - 7.73 MB/s - 2s", "sql": {"sel": 4, "conds": [[1, 1, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-10577-3", "question": "... 3% - 20 MB - 7.89 MB/s - 2s", "sql": {"sel": 1, "conds": [[2, 0, "0"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1074629-9", "question": "... 3% - 20 MB - 7.91 MB/s - 2s", "sql": {"sel": 0, "conds": [[2, 0, "0"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1074616-8", "question": "... 3% - 20 MB - 8.01 MB/s - 2s", "sql": {"sel": 2, "conds": [[3, 0, "0"], [1, 0, "0"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1074616-8", "question": "... 3% - 20 MB - 8.01 MB/s - 2s", "sql": {"sel": 2, "conds": [[3, 0, "0"]], "agg": 0}}
+{"phase": 2, "table_id": "2-10672413-2", "question": "... 3% - 21 MB - 8.24 MB/s - 2s", "sql": {"sel": 2, "conds": [[0, 0, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-10649389-3", "question": "... 3% - 21 MB - 8.25 MB/s - 2s", "sql": {"sel": 3, "conds": [[0, 1, 8]], "agg": 2}}
+{"phase": 2, "table_id": "2-10638654-5", "question": "... 3% - 21 MB - 8.25 MB/s - 2s", "sql": {"sel": 0, "conds": [[6, 1, 1]], "agg": 2}}
+{"phase": 2, "table_id": "2-1074011-3", "question": "... 3% - 21 MB - 8.26 MB/s - 2s", "sql": {"sel": 4, "conds": [[3, 1, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-1074011-3", "question": "... 3% - 21 MB - 8.26 MB/s - 2s", "sql": {"sel": 4, "conds": [[3, 0, 8]], "agg": 2}}
+{"phase": 2, "table_id": "2-14926835-1", "question": "... 3% - 21 MB - 8.19 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 0, 21]], "agg": 0}}
+{"phase": 2, "table_id": "2-13845847-2", "question": "... 3% - 21 MB - 7.93 MB/s - 2s", "sql": {"sel": 2, "conds": [[5, 2, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-14302613-17", "question": "... 3% - 21 MB - 7.95 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 1, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-1514634-7", "question": "... 3% - 21 MB - 8.02 MB/s - 2s", "sql": {"sel": 6, "conds": [[1, 0, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-1514634-7", "question": "... 3% - 21 MB - 8.02 MB/s - 2s", "sql": {"sel": 3, "conds": [[2, 0, 3]], "agg": 1}}
+{"phase": 2, "table_id": "2-1514634-7", "question": "... 3% - 21 MB - 8.03 MB/s - 2s", "sql": {"sel": 3, "conds": [[2, 2, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-15284070-1", "question": "... 3% - 22 MB - 8.07 MB/s - 2s", "sql": {"sel": 2, "conds": [[5, 2, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-14140556-5", "question": "... 3% - 22 MB - 8.11 MB/s - 2s", "sql": {"sel": 3, "conds": [[0, 2, 3]], "agg": 5}}
+{"phase": 2, "table_id": "2-14140556-5", "question": "... 3% - 22 MB - 8.11 MB/s - 2s", "sql": {"sel": 2, "conds": [[0, 1, 2], [5, 1, 3]], "agg": 5}}
+{"phase": 2, "table_id": "2-15129536-3", "question": "... 3% - 22 MB - 8.21 MB/s - 2s", "sql": {"sel": 4, "conds": [[3, 0, 8]], "agg": 5}}
+{"phase": 2, "table_id": "2-15129536-3", "question": "... 3% - 22 MB - 8.21 MB/s - 2s", "sql": {"sel": 1, "conds": [[3, 1, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-13741576-4", "question": "... 3% - 22 MB - 8.25 MB/s - 2s", "sql": {"sel": 4, "conds": [[1, 0, "22"]], "agg": 0}}
+{"phase": 2, "table_id": "2-14289535-3", "question": "... 3% - 22 MB - 8.26 MB/s - 2s", "sql": {"sel": 4, "conds": [[0, 0, "3"], [3, 2, 2]], "agg": 2}}
+{"phase": 2, "table_id": "2-14289535-3", "question": "... 3% - 22 MB - 8.27 MB/s - 2s", "sql": {"sel": 3, "conds": [[4, 2, 7]], "agg": 4}}
+{"phase": 2, "table_id": "2-15059224-2", "question": "... 3% - 23 MB - 8.46 MB/s - 2s", "sql": {"sel": 4, "conds": [[3, 0, 3], [0, 1, 6]], "agg": 5}}
+{"phase": 2, "table_id": "2-1360863-3", "question": "... 3% - 23 MB - 8.47 MB/s - 2s", "sql": {"sel": 2, "conds": [[0, 1, 3]], "agg": 1}}
+{"phase": 2, "table_id": "2-1360863-3", "question": "... 3% - 23 MB - 8.48 MB/s - 2s", "sql": {"sel": 4, "conds": [[0, 0, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-1360863-3", "question": "... 3% - 23 MB - 8.48 MB/s - 2s", "sql": {"sel": 3, "conds": [[2, 0, 23]], "agg": 3}}
+{"phase": 2, "table_id": "2-14056076-7", "question": "... 3% - 23 MB - 8.51 MB/s - 2s", "sql": {"sel": 0, "conds": [[1, 1, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-14660820-2", "question": "... 3% - 23 MB - 8.42 MB/s - 2s", "sql": {"sel": 5, "conds": [[0, 2, 3]], "agg": 3}}
+{"phase": 2, "table_id": "2-14660820-2", "question": "... 3% - 23 MB - 8.15 MB/s - 2s", "sql": {"sel": 2, "conds": [[0, 2, 3], [4, 2, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-14660820-2", "question": "... 3% - 23 MB - 8.16 MB/s - 2s", "sql": {"sel": 0, "conds": [[4, 0, 2], [5, 0, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-15054180-6", "question": "... 3% - 23 MB - 8.16 MB/s - 2s", "sql": {"sel": 9, "conds": [[10, 1, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-15054180-6", "question": "... 3% - 23 MB - 8.16 MB/s - 2s", "sql": {"sel": 5, "conds": [[10, 2, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-15054180-6", "question": "... 3% - 23 MB - 8.17 MB/s - 2s", "sql": {"sel": 11, "conds": [[7, 0, 2], [14, 1, 17]], "agg": 4}}
+{"phase": 2, "table_id": "2-14344289-12", "question": "... 3% - 23 MB - 8.17 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-13535631-4", "question": "... 3% - 23 MB - 8.28 MB/s - 2s", "sql": {"sel": 3, "conds": [[0, 1, 2]], "agg": 1}}
+{"phase": 2, "table_id": "2-15149189-3", "question": "... 3% - 24 MB - 8.33 MB/s - 2s", "sql": {"sel": 4, "conds": [[3, 2, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-14342480-3", "question": "... 3% - 24 MB - 8.35 MB/s - 2s", "sql": {"sel": 5, "conds": [[3, 0, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-15290638-1", "question": "... 3% - 24 MB - 8.38 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 0, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-14519693-1", "question": "... 3% - 24 MB - 8.40 MB/s - 2s", "sql": {"sel": 1, "conds": [[2, 1, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-14877877-2", "question": "... 3% - 24 MB - 8.41 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 1, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-14431362-6", "question": "... 3% - 24 MB - 8.45 MB/s - 2s", "sql": {"sel": 3, "conds": [[4, 0, "s"]], "agg": 3}}
+{"phase": 2, "table_id": "2-14342367-5", "question": "... 3% - 24 MB - 8.46 MB/s - 2s", "sql": {"sel": 3, "conds": [[1, 0, 4]], "agg": 2}}
+{"phase": 2, "table_id": "2-14342367-5", "question": "... 3% - 24 MB - 8.46 MB/s - 2s", "sql": {"sel": 4, "conds": [[1, 2, 2]], "agg": 1}}
+{"phase": 2, "table_id": "2-14342367-5", "question": "... 3% - 24 MB - 8.46 MB/s - 2s", "sql": {"sel": 2, "conds": [[1, 2, 2]], "agg": 1}}
+{"phase": 2, "table_id": "2-14342367-5", "question": "... 3% - 24 MB - 8.47 MB/s - 2s", "sql": {"sel": 4, "conds": [[1, 0, 4]], "agg": 5}}
+{"phase": 2, "table_id": "2-14726623-3", "question": "... 3% - 24 MB - 8.47 MB/s - 2s", "sql": {"sel": 3, "conds": [[1, 0, 8]], "agg": 2}}
+{"phase": 2, "table_id": "2-1473124-1", "question": "... 3% - 24 MB - 8.48 MB/s - 2s", "sql": {"sel": 4, "conds": [[0, 0, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-14208850-2", "question": "... 3% - 24 MB - 8.53 MB/s - 2s", "sql": {"sel": 3, "conds": [[5, 0, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-14311305-10", "question": "... 4% - 24 MB - 8.61 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 2, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-14311305-10", "question": "... 4% - 25 MB - 8.61 MB/s - 2s", "sql": {"sel": 1, "conds": [[0, 2, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-14641138-1", "question": "... 4% - 25 MB - 8.62 MB/s - 2s", "sql": {"sel": 5, "conds": [[0, 0, 5]], "agg": 1}}
+{"phase": 2, "table_id": "2-14342210-5", "question": "... 4% - 25 MB - 8.65 MB/s - 2s", "sql": {"sel": 3, "conds": [[1, 0, 5]], "agg": 3}}
+{"phase": 2, "table_id": "2-14342210-5", "question": "... 4% - 25 MB - 8.38 MB/s - 3s", "sql": {"sel": 3, "conds": [[1, 2, 3], [4, 0, 4], [2, 2, 4]], "agg": 3}}
+{"phase": 2, "table_id": "2-13897690-1", "question": "... 4% - 25 MB - 8.39 MB/s - 3s", "sql": {"sel": 3, "conds": [[5, 0, "39"]], "agg": 1}}
+{"phase": 2, "table_id": "2-1518351-1", "question": "... 4% - 25 MB - 8.42 MB/s - 3s", "sql": {"sel": 0, "conds": [[4, 0, "8"]], "agg": 0}}
+{"phase": 2, "table_id": "2-14342480-5", "question": "... 4% - 25 MB - 8.44 MB/s - 3s", "sql": {"sel": 5, "conds": [[6, 2, 5]], "agg": 2}}
+{"phase": 2, "table_id": "2-14347546-6", "question": "... 4% - 25 MB - 8.47 MB/s - 3s", "sql": {"sel": 5, "conds": [[1, 1, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-13554889-6", "question": "... 4% - 25 MB - 8.48 MB/s - 3s", "sql": {"sel": 4, "conds": [[5, 2, 3], [7, 2, 4]], "agg": 5}}
+{"phase": 2, "table_id": "2-15124966-1", "question": "... 4% - 25 MB - 8.50 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 2, 4]], "agg": 2}}
+{"phase": 2, "table_id": "2-14871601-2", "question": "... 4% - 26 MB - 8.57 MB/s - 3s", "sql": {"sel": 3, "conds": [[4, 2, 7]], "agg": 2}}
+{"phase": 2, "table_id": "2-14871601-2", "question": "... 4% - 26 MB - 8.57 MB/s - 3s", "sql": {"sel": 4, "conds": [[5, 1, 8]], "agg": 0}}
+{"phase": 2, "table_id": "2-14208857-12", "question": "... 4% - 26 MB - 8.63 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 0, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-1386692-1", "question": "... 4% - 26 MB - 8.70 MB/s - 3s", "sql": {"sel": 0, "conds": [[2, 1, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-14056030-2", "question": "... 4% - 26 MB - 8.72 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 1, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-14423756-3", "question": "... 4% - 26 MB - 8.73 MB/s - 3s", "sql": {"sel": 4, "conds": [[5, 1, 4]], "agg": 1}}
+{"phase": 2, "table_id": "2-14423756-3", "question": "... 4% - 26 MB - 8.73 MB/s - 3s", "sql": {"sel": 5, "conds": [[0, 2, 2]], "agg": 2}}
+{"phase": 2, "table_id": "2-14423756-3", "question": "... 4% - 26 MB - 8.74 MB/s - 3s", "sql": {"sel": 3, "conds": [[2, 0, 2]], "agg": 4}}
+{"phase": 2, "table_id": "2-15062102-1", "question": "... 4% - 26 MB - 8.76 MB/s - 3s", "sql": {"sel": 6, "conds": [[2, 1, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-15062102-1", "question": "... 4% - 26 MB - 8.76 MB/s - 3s", "sql": {"sel": 0, "conds": [[7, 2, 4]], "agg": 5}}
+{"phase": 2, "table_id": "2-15062102-1", "question": "... 4% - 26 MB - 8.76 MB/s - 3s", "sql": {"sel": 1, "conds": [[4, 2, 6], [7, 2, 4]], "agg": 5}}
+{"phase": 2, "table_id": "2-15062102-1", "question": "... 4% - 26 MB - 8.77 MB/s - 3s", "sql": {"sel": 1, "conds": [[5, 1, 3]], "agg": 3}}
+{"phase": 2, "table_id": "2-14177667-3", "question": "... 4% - 27 MB - 8.79 MB/s - 3s", "sql": {"sel": 2, "conds": [[4, 1, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-14177667-3", "question": "... 4% - 27 MB - 8.80 MB/s - 3s", "sql": {"sel": 0, "conds": [[3, 0, 0], [2, 2, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-14177667-3", "question": "... 4% - 27 MB - 8.80 MB/s - 3s", "sql": {"sel": 4, "conds": [[3, 2, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-14177667-3", "question": "... 4% - 27 MB - 8.80 MB/s - 3s", "sql": {"sel": 5, "conds": [[2, 2, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-14385107-2", "question": "... 4% - 27 MB - 8.80 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 2, 8]], "agg": 0}}
+{"phase": 2, "table_id": "2-14835245-1", "question": "... 4% - 27 MB - 8.81 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 2, 7]], "agg": 0}}
+{"phase": 2, "table_id": "2-15100419-6", "question": "... 4% - 27 MB - 8.85 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 2, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-14342480-4", "question": "... 4% - 27 MB - 8.86 MB/s - 3s", "sql": {"sel": 5, "conds": [[1, 2, 2], [2, 0, 7]], "agg": 2}}
+{"phase": 2, "table_id": "2-14076980-4", "question": "... 4% - 27 MB - 8.91 MB/s - 3s", "sql": {"sel": 4, "conds": [[1, 2, 2]], "agg": 1}}
+{"phase": 2, "table_id": "2-1519060-2", "question": "... 4% - 27 MB - 8.60 MB/s - 3s", "sql": {"sel": 1, "conds": [[4, 2, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-1519060-2", "question": "... 4% - 27 MB - 8.60 MB/s - 3s", "sql": {"sel": 3, "conds": [[4, 1, 2], [1, 2, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-1519060-2", "question": "... 4% - 27 MB - 8.61 MB/s - 3s", "sql": {"sel": 1, "conds": [[3, 0, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-14889951-2", "question": "... 4% - 27 MB - 8.63 MB/s - 3s", "sql": {"sel": 5, "conds": [[3, 2, 6]], "agg": 1}}
+{"phase": 2, "table_id": "2-15267650-1", "question": "... 4% - 27 MB - 8.68 MB/s - 3s", "sql": {"sel": 2, "conds": [[1, 2, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-14342480-7", "question": "... 4% - 27 MB - 8.69 MB/s - 3s", "sql": {"sel": 5, "conds": [[3, 1, 3]], "agg": 5}}
+{"phase": 2, "table_id": "2-15092877-2", "question": "... 4% - 27 MB - 8.69 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 1, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-1530291-1", "question": "... 4% - 27 MB - 8.71 MB/s - 3s", "sql": {"sel": 8, "conds": [[4, 1, 7]], "agg": 5}}
+{"phase": 2, "table_id": "2-1530291-1", "question": "... 4% - 28 MB - 8.71 MB/s - 3s", "sql": {"sel": 5, "conds": [[1, 2, 3], [4, 2, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-14227676-2", "question": "... 4% - 28 MB - 8.77 MB/s - 3s", "sql": {"sel": 4, "conds": [[1, 0, "2"]], "agg": 0}}
+{"phase": 2, "table_id": "2-14227676-2", "question": "... 4% - 28 MB - 8.77 MB/s - 3s", "sql": {"sel": 3, "conds": [[1, 0, "2"]], "agg": 0}}
+{"phase": 2, "table_id": "2-14707564-9", "question": "... 4% - 28 MB - 8.78 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 1, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-14707564-9", "question": "... 4% - 28 MB - 8.79 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 0, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-15988551-1", "question": "... 4% - 28 MB - 8.83 MB/s - 3s", "sql": {"sel": 2, "conds": [[5, 1, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-15988551-1", "question": "... 4% - 28 MB - 8.84 MB/s - 3s", "sql": {"sel": 3, "conds": [[2, 1, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-15988551-1", "question": "... 4% - 28 MB - 8.84 MB/s - 3s", "sql": {"sel": 5, "conds": [[3, 2, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-1552908-21", "question": "... 4% - 28 MB - 8.85 MB/s - 3s", "sql": {"sel": 5, "conds": [[2, 2, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-1552908-21", "question": "... 4% - 28 MB - 8.85 MB/s - 3s", "sql": {"sel": 5, "conds": [[1, 1, 8]], "agg": 3}}
+{"phase": 2, "table_id": "2-15494883-20", "question": "... 4% - 28 MB - 8.85 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 2, 8]], "agg": 3}}
+{"phase": 2, "table_id": "2-15494883-20", "question": "... 4% - 28 MB - 8.86 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 2, 6]], "agg": 4}}
+{"phase": 2, "table_id": "2-15472798-1", "question": "... 4% - 28 MB - 8.88 MB/s - 3s", "sql": {"sel": 2, "conds": [[4, 2, 4]], "agg": 1}}
+{"phase": 2, "table_id": "2-15472798-1", "question": "... 4% - 28 MB - 8.88 MB/s - 3s", "sql": {"sel": 1, "conds": [[4, 2, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-15463188-12", "question": "... 4% - 28 MB - 8.89 MB/s - 3s", "sql": {"sel": 4, "conds": [[2, 1, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-1618638-2", "question": "... 4% - 28 MB - 8.89 MB/s - 3s", "sql": {"sel": 0, "conds": [[3, 1, 2]], "agg": 1}}
+{"phase": 2, "table_id": "2-15416002-1", "question": "... 4% - 28 MB - 8.90 MB/s - 3s", "sql": {"sel": 4, "conds": [[6, 0, 4]], "agg": 2}}
+{"phase": 2, "table_id": "2-15550233-3", "question": "... 4% - 28 MB - 8.91 MB/s - 3s", "sql": {"sel": 2, "conds": [[1, 0, "b"]], "agg": 0}}
+{"phase": 2, "table_id": "2-15419712-1", "question": "... 4% - 29 MB - 8.99 MB/s - 3s", "sql": {"sel": 4, "conds": [[2, 1, 4]], "agg": 1}}
+{"phase": 2, "table_id": "2-15419712-1", "question": "... 4% - 29 MB - 8.99 MB/s - 3s", "sql": {"sel": 1, "conds": [[6, 1, 8]], "agg": 0}}
+{"phase": 2, "table_id": "2-1552908-25", "question": "... 4% - 29 MB - 8.95 MB/s - 3s", "sql": {"sel": 4, "conds": [[1, 2, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-1552908-25", "question": "... 4% - 29 MB - 8.96 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 2, 3]], "agg": 1}}
+{"phase": 2, "table_id": "2-15472662-3", "question": "... 4% - 29 MB - 8.76 MB/s - 3s", "sql": {"sel": 0, "conds": [[4, 0, 9]], "agg": 5}}
+{"phase": 2, "table_id": "2-15472662-3", "question": "... 4% - 29 MB - 8.76 MB/s - 3s", "sql": {"sel": 0, "conds": [[4, 0, 7], [5, 2, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-15553293-2", "question": "... 4% - 29 MB - 8.77 MB/s - 3s", "sql": {"sel": 4, "conds": [[2, 2, 2]], "agg": 2}}
+{"phase": 2, "table_id": "2-15553293-2", "question": "... 4% - 29 MB - 8.77 MB/s - 3s", "sql": {"sel": 5, "conds": [[0, 2, 4], [2, 2, 2]], "agg": 1}}
+{"phase": 2, "table_id": "2-15553293-2", "question": "... 4% - 29 MB - 8.78 MB/s - 3s", "sql": {"sel": 5, "conds": [[0, 1, 9]], "agg": 5}}
+{"phase": 2, "table_id": "2-15733048-1", "question": "... 4% - 29 MB - 8.78 MB/s - 3s", "sql": {"sel": 6, "conds": [[0, 0, "9"]], "agg": 0}}
+{"phase": 2, "table_id": "2-15581223-8", "question": "... 4% - 29 MB - 8.81 MB/s - 3s", "sql": {"sel": 5, "conds": [[3, 1, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-16050349-6", "question": "... 4% - 29 MB - 8.84 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 0, 2]], "agg": 2}}
+{"phase": 2, "table_id": "2-1603424-3", "question": "... 4% - 29 MB - 8.84 MB/s - 3s", "sql": {"sel": 4, "conds": [[3, 1, 2], [0, 0, "2"]], "agg": 0}}
+{"phase": 2, "table_id": "2-15695610-1", "question": "... 4% - 29 MB - 8.89 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 1, 3]], "agg": 5}}
+{"phase": 2, "table_id": "2-16050349-10", "question": "... 4% - 30 MB - 8.93 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 1, 4]], "agg": 1}}
+{"phase": 2, "table_id": "2-15947425-1", "question": "... 4% - 30 MB - 8.93 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 0, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-15947425-1", "question": "... 4% - 30 MB - 8.93 MB/s - 3s", "sql": {"sel": 3, "conds": [[4, 1, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-15947425-1", "question": "... 4% - 30 MB - 8.94 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 2, 8]], "agg": 3}}
+{"phase": 2, "table_id": "2-15689942-1", "question": "... 4% - 30 MB - 8.98 MB/s - 3s", "sql": {"sel": 1, "conds": [[0, 1, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-15689942-1", "question": "... 4% - 30 MB - 8.99 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 2, 4]], "agg": 5}}
+{"phase": 2, "table_id": "2-15608800-3", "question": "... 4% - 30 MB - 9.05 MB/s - 3s", "sql": {"sel": 0, "conds": [[4, 1, 0]], "agg": 0}}
+{"phase": 2, "table_id": "2-1577603-1", "question": "... 4% - 30 MB - 9.09 MB/s - 3s", "sql": {"sel": 4, "conds": [[3, 1, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-1577603-1", "question": "... 4% - 30 MB - 9.10 MB/s - 3s", "sql": {"sel": 5, "conds": [[2, 1, 1], [0, 1, 3], [4, 1, 3]], "agg": 5}}
+{"phase": 2, "table_id": "2-1577603-1", "question": "... 4% - 30 MB - 9.10 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 2, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-1577603-1", "question": "... 4% - 30 MB - 9.10 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 1, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-16050349-14", "question": "... 4% - 30 MB - 9.11 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 1, 4]], "agg": 2}}
+{"phase": 2, "table_id": "2-1544337-5", "question": "... 4% - 31 MB - 9.15 MB/s - 3s", "sql": {"sel": 6, "conds": [[2, 0, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-1608306-4", "question": "... 4% - 31 MB - 9.15 MB/s - 3s", "sql": {"sel": 2, "conds": [[3, 0, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-1608306-4", "question": "... 4% - 31 MB - 9.16 MB/s - 3s", "sql": {"sel": 1, "conds": [[2, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-15481353-1", "question": "... 5% - 31 MB - 9.09 MB/s - 3s", "sql": {"sel": 0, "conds": [[3, 0, 1], [2, 1, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-1543742-2", "question": "... 5% - 31 MB - 9.10 MB/s - 3s", "sql": {"sel": 5, "conds": [[4, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-1543742-2", "question": "... 5% - 31 MB - 9.10 MB/s - 3s", "sql": {"sel": 1, "conds": [[2, 2, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-1543742-2", "question": "... 5% - 31 MB - 9.11 MB/s - 3s", "sql": {"sel": 4, "conds": [[3, 2, 5]], "agg": 2}}
+{"phase": 2, "table_id": "2-15345341-2", "question": "... 5% - 31 MB - 9.13 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 2, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-15826239-2", "question": "... 5% - 31 MB - 9.14 MB/s - 3s", "sql": {"sel": 2, "conds": [[5, 2, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-15317277-1", "question": "... 5% - 31 MB - 9.14 MB/s - 3s", "sql": {"sel": 6, "conds": [[4, 2, 5]], "agg": 3}}
+{"phase": 2, "table_id": "2-15317277-1", "question": "... 5% - 31 MB - 9.15 MB/s - 3s", "sql": {"sel": 3, "conds": [[5, 1, 9], [2, 2, 15]], "agg": 5}}
+{"phase": 2, "table_id": "2-15400315-1", "question": "... 5% - 31 MB - 9.16 MB/s - 3s", "sql": {"sel": 4, "conds": [[2, 1, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-15400315-1", "question": "... 5% - 31 MB - 9.16 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 0, "3"]], "agg": 5}}
+{"phase": 2, "table_id": "2-15400315-1", "question": "... 5% - 31 MB - 9.16 MB/s - 3s", "sql": {"sel": 1, "conds": [[2, 2, 1], [4, 1, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-15584441-1", "question": "... 5% - 31 MB - 8.94 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 2, 8]], "agg": 0}}
+{"phase": 2, "table_id": "2-15625088-7", "question": "... 5% - 31 MB - 8.99 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 0, "3"]], "agg": 0}}
+{"phase": 2, "table_id": "2-15625088-7", "question": "... 5% - 31 MB - 8.99 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-15368442-1", "question": "... 5% - 32 MB - 9.06 MB/s - 3s", "sql": {"sel": 0, "conds": [[4, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-15368442-1", "question": "... 5% - 32 MB - 9.06 MB/s - 3s", "sql": {"sel": 2, "conds": [[5, 1, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-16070554-1", "question": "... 5% - 32 MB - 9.07 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 1, 9]], "agg": 5}}
+{"phase": 2, "table_id": "2-1682026-5", "question": "... 5% - 32 MB - 9.08 MB/s - 3s", "sql": {"sel": 6, "conds": [[0, 0, 9]], "agg": 4}}
+{"phase": 2, "table_id": "2-16678191-2", "question": "... 5% - 32 MB - 9.11 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 1, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-17323912-2", "question": "... 5% - 32 MB - 9.15 MB/s - 3s", "sql": {"sel": 3, "conds": [[2, 1, 9]], "agg": 1}}
+{"phase": 2, "table_id": "2-17538072-1", "question": "... 5% - 32 MB - 9.17 MB/s - 3s", "sql": {"sel": 5, "conds": [[3, 0, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-17290216-1", "question": "... 5% - 32 MB - 9.18 MB/s - 3s", "sql": {"sel": 2, "conds": [[4, 2, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-17299309-2", "question": "... 5% - 32 MB - 9.18 MB/s - 3s", "sql": {"sel": 2, "conds": [[4, 1, 3]], "agg": 3}}
+{"phase": 2, "table_id": "2-17299309-2", "question": "... 5% - 32 MB - 9.19 MB/s - 3s", "sql": {"sel": 1, "conds": [[4, 2, 3], [0, 2, 2]], "agg": 2}}
+{"phase": 2, "table_id": "2-16494005-1", "question": "... 5% - 32 MB - 9.20 MB/s - 3s", "sql": {"sel": 1, "conds": [[3, 1, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-16494005-1", "question": "... 5% - 32 MB - 9.20 MB/s - 3s", "sql": {"sel": 1, "conds": [[3, 1, 0]], "agg": 4}}
+{"phase": 2, "table_id": "2-16494005-1", "question": "... 5% - 32 MB - 9.20 MB/s - 3s", "sql": {"sel": 4, "conds": [[2, 0, 0], [1, 2, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-171019-1", "question": "... 5% - 32 MB - 9.21 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 0, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-17056450-5", "question": "... 5% - 32 MB - 9.21 MB/s - 3s", "sql": {"sel": 3, "conds": [[4, 0, 2]], "agg": 4}}
+{"phase": 2, "table_id": "2-17056450-5", "question": "... 5% - 32 MB - 9.22 MB/s - 3s", "sql": {"sel": 4, "conds": [[2, 1, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-17100961-31", "question": "... 5% - 32 MB - 9.22 MB/s - 3s", "sql": {"sel": 2, "conds": [[1, 2, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-17100961-31", "question": "... 5% - 32 MB - 9.22 MB/s - 3s", "sql": {"sel": 0, "conds": [[1, 2, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-17325937-5", "question": "... 5% - 32 MB - 9.28 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 0, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-17608926-6", "question": "... 5% - 33 MB - 9.31 MB/s - 3s", "sql": {"sel": 7, "conds": [[0, 0, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-1658421-3", "question": "... 5% - 33 MB - 9.22 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 0, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-17100961-60", "question": "... 5% - 33 MB - 9.26 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 2, 5]], "agg": 4}}
+{"phase": 2, "table_id": "2-17409365-1", "question": "... 5% - 33 MB - 9.10 MB/s - 3s", "sql": {"sel": 5, "conds": [[9, 0, "0"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17029703-3", "question": "... 5% - 33 MB - 9.14 MB/s - 3s", "sql": {"sel": 4, "conds": [[2, 1, 1], [3, 0, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-17029703-3", "question": "... 5% - 33 MB - 9.15 MB/s - 3s", "sql": {"sel": 5, "conds": [[0, 0, "1"], [3, 2, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-17443117-2", "question": "... 5% - 33 MB - 9.16 MB/s - 3s", "sql": {"sel": 6, "conds": [[5, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17223835-2", "question": "... 5% - 33 MB - 9.18 MB/s - 3s", "sql": {"sel": 1, "conds": [[4, 0, "3"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1662630-5", "question": "... 5% - 33 MB - 9.19 MB/s - 3s", "sql": {"sel": 1, "conds": [[2, 2, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-1662630-5", "question": "... 5% - 33 MB - 9.19 MB/s - 3s", "sql": {"sel": 5, "conds": [[4, 2, 5], [3, 1, 1]], "agg": 1}}
+{"phase": 2, "table_id": "2-1662630-5", "question": "... 5% - 33 MB - 9.20 MB/s - 3s", "sql": {"sel": 3, "conds": [[6, 2, 9]], "agg": 5}}
+{"phase": 2, "table_id": "2-17412873-11", "question": "... 5% - 34 MB - 9.22 MB/s - 3s", "sql": {"sel": 1, "conds": [[4, 0, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-17430257-1", "question": "... 5% - 34 MB - 9.23 MB/s - 3s", "sql": {"sel": 8, "conds": [[3, 0, "4"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17430257-1", "question": "... 5% - 34 MB - 9.23 MB/s - 3s", "sql": {"sel": 8, "conds": [[7, 0, "5"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17035268-2", "question": "... 5% - 34 MB - 9.29 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 0, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-16783007-1", "question": "... 5% - 34 MB - 9.33 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 1, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-17042893-14", "question": "... 5% - 34 MB - 9.32 MB/s - 3s", "sql": {"sel": 1, "conds": [[0, 0, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-17382981-2", "question": "... 5% - 34 MB - 9.35 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 0, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-17035864-1", "question": "... 5% - 34 MB - 9.36 MB/s - 3s", "sql": {"sel": 2, "conds": [[4, 0, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-16668557-1", "question": "... 5% - 34 MB - 9.41 MB/s - 3s", "sql": {"sel": 1, "conds": [[2, 1, 4]], "agg": 5}}
+{"phase": 2, "table_id": "2-1637041-2", "question": "... 5% - 35 MB - 9.23 MB/s - 3s", "sql": {"sel": 3, "conds": [[1, 0, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-17100961-17", "question": "... 5% - 35 MB - 9.24 MB/s - 3s", "sql": {"sel": 2, "conds": [[0, 2, 9]], "agg": 5}}
+{"phase": 2, "table_id": "2-17409365-3", "question": "... 5% - 35 MB - 9.26 MB/s - 3s", "sql": {"sel": 3, "conds": [[8, 0, "5"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17244483-1", "question": "... 5% - 35 MB - 9.26 MB/s - 3s", "sql": {"sel": 3, "conds": [[8, 0, "26"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17214300-1", "question": "... 5% - 35 MB - 9.33 MB/s - 3s", "sql": {"sel": 2, "conds": [[4, 0, "9"]], "agg": 0}}
+{"phase": 2, "table_id": "2-16827273-1", "question": "... 5% - 36 MB - 9.34 MB/s - 3s", "sql": {"sel": 5, "conds": [[3, 0, "4"]], "agg": 0}}
+{"phase": 2, "table_id": "2-16827273-1", "question": "... 5% - 36 MB - 9.35 MB/s - 3s", "sql": {"sel": 7, "conds": [[8, 0, "6"]], "agg": 0}}
+{"phase": 2, "table_id": "2-16827273-1", "question": "... 5% - 36 MB - 9.35 MB/s - 3s", "sql": {"sel": 4, "conds": [[8, 0, "35"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17269395-6", "question": "... 5% - 36 MB - 9.36 MB/s - 3s", "sql": {"sel": 0, "conds": [[4, 2, 36]], "agg": 0}}
+{"phase": 2, "table_id": "2-17269395-6", "question": "... 5% - 36 MB - 9.36 MB/s - 3s", "sql": {"sel": 0, "conds": [[4, 2, 36]], "agg": 0}}
+{"phase": 2, "table_id": "2-17323267-2", "question": "... 5% - 36 MB - 9.38 MB/s - 3s", "sql": {"sel": 3, "conds": [[0, 1, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-17323267-2", "question": "... 5% - 36 MB - 9.39 MB/s - 3s", "sql": {"sel": 4, "conds": [[0, 2, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-1732978-1", "question": "... 5% - 36 MB - 9.47 MB/s - 3s", "sql": {"sel": 4, "conds": [[3, 1, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-16566850-11", "question": "... 5% - 36 MB - 9.48 MB/s - 3s", "sql": {"sel": 5, "conds": [[0, 1, 6]], "agg": 5}}
+{"phase": 2, "table_id": "2-17525955-2", "question": "... 5% - 36 MB - 9.49 MB/s - 3s", "sql": {"sel": 5, "conds": [[3, 0, "4"]], "agg": 5}}
+{"phase": 2, "table_id": "2-17525955-2", "question": "... 5% - 36 MB - 9.49 MB/s - 3s", "sql": {"sel": 5, "conds": [[0, 2, 5]], "agg": 2}}
+{"phase": 2, "table_id": "2-16404968-31", "question": "... 5% - 36 MB - 9.52 MB/s - 3s", "sql": {"sel": 3, "conds": [[2, 1, 3]], "agg": 1}}
+{"phase": 2, "table_id": "2-17271235-3", "question": "... 5% - 37 MB - 9.56 MB/s - 3s", "sql": {"sel": 7, "conds": [[8, 0, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-17100961-76", "question": "... 5% - 37 MB - 9.57 MB/s - 3s", "sql": {"sel": 5, "conds": [[2, 0, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-16764781-3", "question": "... 6% - 37 MB - 9.37 MB/s - 3s", "sql": {"sel": 1, "conds": [[0, 0, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-17118657-7", "question": "... 6% - 37 MB - 9.37 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 0, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-17622423-4", "question": "... 6% - 37 MB - 9.42 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 2, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-16864441-1", "question": "... 6% - 37 MB - 9.46 MB/s - 4s", "sql": {"sel": 4, "conds": [[5, 0, 7]], "agg": 5}}
+{"phase": 2, "table_id": "2-17100961-48", "question": "... 6% - 38 MB - 9.48 MB/s - 4s", "sql": {"sel": 2, "conds": [[0, 2, 8]], "agg": 5}}
+{"phase": 2, "table_id": "2-16514575-7", "question": "... 6% - 38 MB - 9.54 MB/s - 4s", "sql": {"sel": 3, "conds": [[0, 0, "3"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1636806-2", "question": "... 6% - 38 MB - 9.57 MB/s - 4s", "sql": {"sel": 4, "conds": [[3, 0, "7"]], "agg": 3}}
+{"phase": 2, "table_id": "2-1636806-2", "question": "... 6% - 38 MB - 9.57 MB/s - 4s", "sql": {"sel": 1, "conds": [[4, 0, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-1636806-2", "question": "... 6% - 38 MB - 9.57 MB/s - 4s", "sql": {"sel": 1, "conds": [[2, 0, "5"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17290223-1", "question": "... 6% - 38 MB - 9.57 MB/s - 4s", "sql": {"sel": 3, "conds": [[0, 0, "4"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17290223-1", "question": "... 6% - 38 MB - 9.57 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 0, "4"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17290223-1", "question": "... 6% - 38 MB - 9.57 MB/s - 4s", "sql": {"sel": 5, "conds": [[0, 0, "5"]], "agg": 4}}
+{"phase": 2, "table_id": "2-16670746-2", "question": "... 6% - 38 MB - 9.61 MB/s - 4s", "sql": {"sel": 2, "conds": [[0, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-16279834-3", "question": "... 6% - 38 MB - 9.62 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 1, 2], [4, 2, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-16279834-3", "question": "... 6% - 38 MB - 9.62 MB/s - 4s", "sql": {"sel": 2, "conds": [[3, 0, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-16279834-3", "question": "... 6% - 38 MB - 9.62 MB/s - 4s", "sql": {"sel": 2, "conds": [[0, 1, 4]], "agg": 2}}
+{"phase": 2, "table_id": "2-17378237-2", "question": "... 6% - 38 MB - 9.63 MB/s - 4s", "sql": {"sel": 0, "conds": [[3, 1, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-17378237-2", "question": "... 6% - 38 MB - 9.64 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 1, 6]], "agg": 4}}
+{"phase": 2, "table_id": "2-16746295-4", "question": "... 6% - 38 MB - 9.64 MB/s - 4s", "sql": {"sel": 3, "conds": [[5, 0, "4"]], "agg": 1}}
+{"phase": 2, "table_id": "2-16746295-4", "question": "... 6% - 38 MB - 9.64 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 2, 8]], "agg": 0}}
+{"phase": 2, "table_id": "2-1631887-4", "question": "... 6% - 38 MB - 9.65 MB/s - 4s", "sql": {"sel": 3, "conds": [[1, 0, 4]], "agg": 2}}
+{"phase": 2, "table_id": "2-1631887-4", "question": "... 6% - 39 MB - 9.65 MB/s - 4s", "sql": {"sel": 1, "conds": [[3, 0, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-17162255-3", "question": "... 6% - 39 MB - 9.48 MB/s - 4s", "sql": {"sel": 3, "conds": [[4, 0, 4]], "agg": 3}}
+{"phase": 2, "table_id": "2-16946425-1", "question": "... 6% - 39 MB - 9.51 MB/s - 4s", "sql": {"sel": 2, "conds": [[0, 2, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-17054550-2", "question": "... 6% - 39 MB - 9.52 MB/s - 4s", "sql": {"sel": 3, "conds": [[0, 0, "5"]], "agg": 0}}
+{"phase": 2, "table_id": "2-16899-3", "question": "... 6% - 39 MB - 9.53 MB/s - 4s", "sql": {"sel": 4, "conds": [[6, 0, 5]], "agg": 3}}
+{"phase": 2, "table_id": "2-17323351-4", "question": "... 6% - 39 MB - 9.56 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 2, 9]], "agg": 5}}
+{"phase": 2, "table_id": "2-17525117-2", "question": "... 6% - 40 MB - 9.59 MB/s - 4s", "sql": {"sel": 4, "conds": [[5, 2, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-17525117-2", "question": "... 6% - 40 MB - 9.60 MB/s - 4s", "sql": {"sel": 3, "conds": [[4, 1, 6]], "agg": 1}}
+{"phase": 2, "table_id": "2-17129364-2", "question": "... 6% - 40 MB - 9.63 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 2, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-17100961-26", "question": "... 6% - 40 MB - 9.68 MB/s - 4s", "sql": {"sel": 2, "conds": [[1, 1, 9]], "agg": 3}}
+{"phase": 2, "table_id": "2-17100961-26", "question": "... 6% - 40 MB - 9.68 MB/s - 4s", "sql": {"sel": 2, "conds": [[1, 2, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-17100961-26", "question": "... 6% - 40 MB - 9.68 MB/s - 4s", "sql": {"sel": 0, "conds": [[1, 0, 9]], "agg": 4}}
+{"phase": 2, "table_id": "2-17100961-26", "question": "... 6% - 40 MB - 9.69 MB/s - 4s", "sql": {"sel": 2, "conds": [[1, 2, 9]], "agg": 1}}
+{"phase": 2, "table_id": "2-16640814-6", "question": "... 6% - 40 MB - 9.68 MB/s - 4s", "sql": {"sel": 5, "conds": [[3, 2, 8]], "agg": 4}}
+{"phase": 2, "table_id": "2-16640814-6", "question": "... 6% - 40 MB - 9.68 MB/s - 4s", "sql": {"sel": 3, "conds": [[4, 2, 4]], "agg": 4}}
+{"phase": 2, "table_id": "2-16605179-2", "question": "... 6% - 40 MB - 9.70 MB/s - 4s", "sql": {"sel": 3, "conds": [[0, 1, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-16605179-2", "question": "... 6% - 40 MB - 9.71 MB/s - 4s", "sql": {"sel": 2, "conds": [[0, 2, 1]], "agg": 1}}
+{"phase": 2, "table_id": "2-17064229-1", "question": "... 6% - 40 MB - 9.71 MB/s - 4s", "sql": {"sel": 5, "conds": [[0, 1, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-17440650-2", "question": "... 6% - 41 MB - 9.78 MB/s - 4s", "sql": {"sel": 2, "conds": [[5, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-16729457-18", "question": "... 6% - 41 MB - 9.72 MB/s - 4s", "sql": {"sel": 2, "conds": [[0, 0, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-16785055-1", "question": "... 6% - 41 MB - 9.59 MB/s - 4s", "sql": {"sel": 4, "conds": [[5, 1, 1]], "agg": 2}}
+{"phase": 2, "table_id": "2-16773359-1", "question": "... 6% - 41 MB - 9.64 MB/s - 4s", "sql": {"sel": 3, "conds": [[4, 2, 6]], "agg": 4}}
+{"phase": 2, "table_id": "2-17128242-6", "question": "... 6% - 41 MB - 9.66 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17430115-1", "question": "... 6% - 41 MB - 9.68 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1671401-3", "question": "... 6% - 42 MB - 9.70 MB/s - 4s", "sql": {"sel": 4, "conds": [[1, 0, 7]], "agg": 3}}
+{"phase": 2, "table_id": "2-17584390-1", "question": "... 6% - 42 MB - 9.71 MB/s - 4s", "sql": {"sel": 5, "conds": [[0, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-16882190-2", "question": "... 6% - 42 MB - 9.73 MB/s - 4s", "sql": {"sel": 7, "conds": [[0, 0, "2"]], "agg": 0}}
+{"phase": 2, "table_id": "2-16785053-2", "question": "... 6% - 42 MB - 9.77 MB/s - 4s", "sql": {"sel": 2, "conds": [[4, 1, 2]], "agg": 1}}
+{"phase": 2, "table_id": "2-16785053-2", "question": "... 6% - 42 MB - 9.78 MB/s - 4s", "sql": {"sel": 2, "conds": [[4, 2, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-11750790-1", "question": "... 6% - 42 MB - 9.80 MB/s - 4s", "sql": {"sel": 4, "conds": [[1, 1, 8]], "agg": 5}}
+{"phase": 2, "table_id": "2-11750790-1", "question": "... 6% - 42 MB - 9.81 MB/s - 4s", "sql": {"sel": 6, "conds": [[2, 2, 1]], "agg": 1}}
+{"phase": 2, "table_id": "2-11750790-1", "question": "... 6% - 42 MB - 9.81 MB/s - 4s", "sql": {"sel": 5, "conds": [[2, 2, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-11750790-1", "question": "... 6% - 42 MB - 9.81 MB/s - 4s", "sql": {"sel": 3, "conds": [[1, 2, 8]], "agg": 4}}
+{"phase": 2, "table_id": "2-11267418-1", "question": "... 6% - 42 MB - 9.83 MB/s - 4s", "sql": {"sel": 2, "conds": [[0, 2, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-11960407-2", "question": "... 6% - 42 MB - 9.86 MB/s - 4s", "sql": {"sel": 5, "conds": [[0, 0, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-11100973-1", "question": "... 6% - 43 MB - 9.86 MB/s - 4s", "sql": {"sel": 3, "conds": [[2, 2, 6]], "agg": 4}}
+{"phase": 2, "table_id": "2-12097215-2", "question": "... 6% - 43 MB - 9.82 MB/s - 4s", "sql": {"sel": 4, "conds": [[9, 2, 4]], "agg": 1}}
+{"phase": 2, "table_id": "2-12097215-2", "question": "... 6% - 43 MB - 9.82 MB/s - 4s", "sql": {"sel": 0, "conds": [[9, 2, 4]], "agg": 1}}
+{"phase": 2, "table_id": "2-1132588-1", "question": "... 6% - 43 MB - 9.83 MB/s - 4s", "sql": {"sel": 3, "conds": [[4, 0, "m"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1132588-1", "question": "... 6% - 43 MB - 9.84 MB/s - 4s", "sql": {"sel": 2, "conds": [[4, 0, "b"]], "agg": 0}}
+{"phase": 2, "table_id": "2-11972799-3", "question": "... 6% - 43 MB - 9.84 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 0, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-11621799-4", "question": "... 6% - 43 MB - 9.85 MB/s - 4s", "sql": {"sel": 3, "conds": [[0, 1, 3]], "agg": 3}}
+{"phase": 2, "table_id": "2-1126627-1", "question": "... 6% - 43 MB - 9.69 MB/s - 4s", "sql": {"sel": 6, "conds": [[4, 0, "b"]], "agg": 0}}
+{"phase": 2, "table_id": "2-11628153-8", "question": "... 6% - 43 MB - 9.67 MB/s - 4s", "sql": {"sel": 2, "conds": [[3, 1, 9]], "agg": 3}}
+{"phase": 2, "table_id": "2-11681226-1", "question": "... 6% - 43 MB - 9.69 MB/s - 4s", "sql": {"sel": 0, "conds": [[3, 0, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-11859949-3", "question": "... 7% - 43 MB - 9.76 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 0, 9]], "agg": 5}}
+{"phase": 2, "table_id": "2-10961674-3", "question": "... 7% - 44 MB - 9.87 MB/s - 4s", "sql": {"sel": 5, "conds": [[2, 0, 4]], "agg": 2}}
+{"phase": 2, "table_id": "2-11636955-32", "question": "... 7% - 44 MB - 9.86 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 2, 8]], "agg": 3}}
+{"phase": 2, "table_id": "2-11100973-6", "question": "... 7% - 45 MB - 9.96 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 2, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-11753080-2", "question": "... 7% - 45 MB - 9.92 MB/s - 4s", "sql": {"sel": 3, "conds": [[4, 2, 4]], "agg": 3}}
+{"phase": 2, "table_id": "2-1122585-2", "question": "... 7% - 45 MB - 9.82 MB/s - 4s", "sql": {"sel": 4, "conds": [[2, 2, 7]], "agg": 1}}
+{"phase": 2, "table_id": "2-11309601-1", "question": "... 7% - 45 MB - 9.84 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 0, 8]], "agg": 1}}
+{"phase": 2, "table_id": "2-11164956-2", "question": "... 7% - 46 MB - 9.90 MB/s - 4s", "sql": {"sel": 5, "conds": [[4, 2, 7], [3, 1, 6]], "agg": 5}}
+{"phase": 2, "table_id": "2-11164956-2", "question": "... 7% - 46 MB - 9.90 MB/s - 4s", "sql": {"sel": 1, "conds": [[3, 2, 6]], "agg": 2}}
+{"phase": 2, "table_id": "2-10814483-4", "question": "... 7% - 46 MB - 9.92 MB/s - 4s", "sql": {"sel": 6, "conds": [[3, 0, 4]], "agg": 5}}
+{"phase": 2, "table_id": "2-11235334-2", "question": "... 7% - 46 MB - 9.93 MB/s - 4s", "sql": {"sel": 3, "conds": [[4, 0, "4"]], "agg": 0}}
+{"phase": 2, "table_id": "2-11303154-2", "question": "... 7% - 46 MB - 10.02 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 0, "10"]], "agg": 0}}
+{"phase": 2, "table_id": "2-11303154-2", "question": "... 7% - 46 MB - 10.02 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 0, "10"]], "agg": 0}}
+{"phase": 2, "table_id": "2-11303154-2", "question": "... 7% - 46 MB - 10.02 MB/s - 4s", "sql": {"sel": 3, "conds": [[0, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1145778-3", "question": "... 7% - 46 MB - 10.03 MB/s - 4s", "sql": {"sel": 3, "conds": [[2, 2, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-11442751-2", "question": "... 7% - 47 MB - 10.01 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 0, "4"]], "agg": 0}}
+{"phase": 2, "table_id": "2-10970776-3", "question": "... 7% - 47 MB - 10.02 MB/s - 4s", "sql": {"sel": 2, "conds": [[3, 2, 2], [5, 1, 7]], "agg": 1}}
+{"phase": 2, "table_id": "2-10970776-3", "question": "... 7% - 47 MB - 10.02 MB/s - 4s", "sql": {"sel": 4, "conds": [[5, 2, 7]], "agg": 4}}
+{"phase": 2, "table_id": "2-10970776-3", "question": "... 7% - 47 MB - 10.02 MB/s - 4s", "sql": {"sel": 3, "conds": [[2, 0, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-10970776-3", "question": "... 7% - 47 MB - 9.94 MB/s - 4s", "sql": {"sel": 4, "conds": [[5, 0, 7]], "agg": 3}}
+{"phase": 2, "table_id": "2-11563671-1", "question": "... 7% - 47 MB - 9.87 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 0, "7"]], "agg": 1}}
+{"phase": 2, "table_id": "2-11338646-3", "question": "... 7% - 47 MB - 9.88 MB/s - 4s", "sql": {"sel": 4, "conds": [[1, 2, 9]], "agg": 3}}
+{"phase": 2, "table_id": "2-11338646-3", "question": "... 7% - 47 MB - 9.88 MB/s - 4s", "sql": {"sel": 4, "conds": [[3, 2, 7]], "agg": 2}}
+{"phase": 2, "table_id": "2-11338646-3", "question": "... 7% - 47 MB - 9.88 MB/s - 4s", "sql": {"sel": 3, "conds": [[1, 0, 9]], "agg": 4}}
+{"phase": 2, "table_id": "2-11218948-13", "question": "... 7% - 47 MB - 9.89 MB/s - 4s", "sql": {"sel": 4, "conds": [[1, 0, "m"]], "agg": 2}}
+{"phase": 2, "table_id": "2-1129727-3", "question": "... 7% - 47 MB - 9.91 MB/s - 4s", "sql": {"sel": 1, "conds": [[0, 0, 7]], "agg": 0}}
+{"phase": 2, "table_id": "2-11169688-2", "question": "... 7% - 47 MB - 9.93 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 0, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-11128658-1", "question": "... 7% - 47 MB - 9.93 MB/s - 4s", "sql": {"sel": 2, "conds": [[9, 2, 7]], "agg": 1}}
+{"phase": 2, "table_id": "2-11128658-1", "question": "... 7% - 47 MB - 9.93 MB/s - 4s", "sql": {"sel": 2, "conds": [[4, 2, 7], [5, 1, 4]], "agg": 3}}
+{"phase": 2, "table_id": "2-11636955-13", "question": "... 7% - 48 MB - 9.97 MB/s - 4s", "sql": {"sel": 5, "conds": [[0, 1, 9]], "agg": 3}}
+{"phase": 2, "table_id": "2-10932739-3", "question": "... 7% - 48 MB - 10.01 MB/s - 4s", "sql": {"sel": 6, "conds": [[1, 0, 1]], "agg": 2}}
+{"phase": 2, "table_id": "2-12093571-1", "question": "... 7% - 48 MB - 10.03 MB/s - 4s", "sql": {"sel": 4, "conds": [[5, 2, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-11903796-2", "question": "... 7% - 48 MB - 10.05 MB/s - 4s", "sql": {"sel": 5, "conds": [[6, 0, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-11783842-5", "question": "... 7% - 48 MB - 10.06 MB/s - 4s", "sql": {"sel": 3, "conds": [[1, 1, 1], [4, 2, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-11792210-13", "question": "... 7% - 48 MB - 10.07 MB/s - 4s", "sql": {"sel": 3, "conds": [[0, 0, 7]], "agg": 0}}
+{"phase": 2, "table_id": "2-11173586-1", "question": "... 7% - 48 MB - 10.10 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 2, 10]], "agg": 4}}
+{"phase": 2, "table_id": "2-11173586-1", "question": "... 7% - 48 MB - 10.11 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 1, 10]], "agg": 2}}
+{"phase": 2, "table_id": "2-1123406-2", "question": "... 7% - 48 MB - 10.12 MB/s - 4s", "sql": {"sel": 2, "conds": [[4, 1, 2]], "agg": 4}}
+{"phase": 2, "table_id": "2-11358287-7", "question": "... 7% - 49 MB - 10.07 MB/s - 4s", "sql": {"sel": 2, "conds": [[3, 1, 0], [5, 1, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-11803299-2", "question": "... 7% - 49 MB - 10.02 MB/s - 4s", "sql": {"sel": 0, "conds": [[4, 2, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-1123297-2", "question": "... 7% - 49 MB - 9.98 MB/s - 4s", "sql": {"sel": 2, "conds": [[4, 1, 4]], "agg": 5}}
+{"phase": 2, "table_id": "2-11204543-20", "question": "... 8% - 49 MB - 10.03 MB/s - 4s", "sql": {"sel": 2, "conds": [[4, 0, "0"]], "agg": 0}}
+{"phase": 2, "table_id": "2-11204543-20", "question": "... 8% - 49 MB - 10.03 MB/s - 4s", "sql": {"sel": 3, "conds": [[4, 0, "0"]], "agg": 0}}
+{"phase": 2, "table_id": "2-12017602-23", "question": "... 8% - 50 MB - 10.04 MB/s - 4s", "sql": {"sel": 1, "conds": [[5, 0, "5"]], "agg": 0}}
+{"phase": 2, "table_id": "2-12005739-2", "question": "... 8% - 50 MB - 10.06 MB/s - 4s", "sql": {"sel": 2, "conds": [[4, 1, 4], [3, 2, 5]], "agg": 5}}
+{"phase": 2, "table_id": "2-12005739-2", "question": "... 8% - 50 MB - 10.06 MB/s - 4s", "sql": {"sel": 4, "conds": [[3, 1, 6]], "agg": 2}}
+{"phase": 2, "table_id": "2-12005739-2", "question": "... 8% - 50 MB - 10.06 MB/s - 4s", "sql": {"sel": 4, "conds": [[2, 1, 6]], "agg": 2}}
+{"phase": 2, "table_id": "2-11951237-1", "question": "... 8% - 50 MB - 10.06 MB/s - 4s", "sql": {"sel": 4, "conds": [[0, 0, 10]], "agg": 2}}
+{"phase": 2, "table_id": "2-11385308-1", "question": "... 8% - 50 MB - 10.11 MB/s - 4s", "sql": {"sel": 2, "conds": [[4, 1, 11]], "agg": 5}}
+{"phase": 2, "table_id": "2-11791040-1", "question": "... 8% - 50 MB - 10.12 MB/s - 4s", "sql": {"sel": 3, "conds": [[1, 1, 8]], "agg": 3}}
+{"phase": 2, "table_id": "2-11791040-1", "question": "... 8% - 50 MB - 10.12 MB/s - 5s", "sql": {"sel": 4, "conds": [[2, 2, 5], [1, 2, 8]], "agg": 5}}
+{"phase": 2, "table_id": "2-11791040-1", "question": "... 8% - 50 MB - 10.12 MB/s - 5s", "sql": {"sel": 2, "conds": [[4, 1, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-1122968-1", "question": "... 8% - 50 MB - 10.14 MB/s - 5s", "sql": {"sel": 0, "conds": [[2, 0, 10]], "agg": 0}}
+{"phase": 2, "table_id": "2-17693482-2", "question": "... 8% - 50 MB - 10.17 MB/s - 5s", "sql": {"sel": 2, "conds": [[5, 2, 7], [0, 0, 5]], "agg": 1}}
+{"phase": 2, "table_id": "2-17693482-2", "question": "... 8% - 50 MB - 10.17 MB/s - 5s", "sql": {"sel": 6, "conds": [[4, 2, 8]], "agg": 2}}
+{"phase": 2, "table_id": "2-17693482-2", "question": "... 8% - 50 MB - 10.17 MB/s - 5s", "sql": {"sel": 4, "conds": [[9, 1, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-17840109-1", "question": "... 8% - 51 MB - 10.13 MB/s - 5s", "sql": {"sel": 3, "conds": [[4, 2, 8]], "agg": 0}}
+{"phase": 2, "table_id": "2-18082586-5", "question": "... 8% - 51 MB - 10.10 MB/s - 5s", "sql": {"sel": 4, "conds": [[2, 1, 5]], "agg": 1}}
+{"phase": 2, "table_id": "2-17837782-4", "question": "... 8% - 51 MB - 10.11 MB/s - 5s", "sql": {"sel": 4, "conds": [[5, 1, 5]], "agg": 3}}
+{"phase": 2, "table_id": "2-180234-1", "question": "... 8% - 51 MB - 10.02 MB/s - 5s", "sql": {"sel": 4, "conds": [[1, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17860791-2", "question": "... 8% - 51 MB - 10.07 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 0, "8"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18058018-9", "question": "... 8% - 51 MB - 10.09 MB/s - 5s", "sql": {"sel": 7, "conds": [[6, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17968300-6", "question": "... 8% - 52 MB - 10.15 MB/s - 5s", "sql": {"sel": 5, "conds": [[3, 2, 52]], "agg": 4}}
+{"phase": 2, "table_id": "2-17968300-6", "question": "... 8% - 52 MB - 10.15 MB/s - 5s", "sql": {"sel": 5, "conds": [[3, 1, 52]], "agg": 5}}
+{"phase": 2, "table_id": "2-1828549-1", "question": "... 8% - 52 MB - 10.16 MB/s - 5s", "sql": {"sel": 1, "conds": [[6, 0, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-17978030-1", "question": "... 8% - 52 MB - 10.19 MB/s - 5s", "sql": {"sel": 3, "conds": [[2, 2, 1], [5, 2, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-18133211-2", "question": "... 8% - 52 MB - 10.18 MB/s - 5s", "sql": {"sel": 0, "conds": [[5, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17986709-4", "question": "... 8% - 52 MB - 10.22 MB/s - 5s", "sql": {"sel": 1, "conds": [[2, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-17982197-8", "question": "... 8% - 52 MB - 10.23 MB/s - 5s", "sql": {"sel": 1, "conds": [[2, 2, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-17982197-8", "question": "... 8% - 52 MB - 10.24 MB/s - 5s", "sql": {"sel": 1, "conds": [[4, 2, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-17982197-8", "question": "... 8% - 52 MB - 10.24 MB/s - 5s", "sql": {"sel": 1, "conds": [[2, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-17982197-8", "question": "... 8% - 52 MB - 10.24 MB/s - 5s", "sql": {"sel": 3, "conds": [[2, 1, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-17982197-8", "question": "... 8% - 52 MB - 10.24 MB/s - 5s", "sql": {"sel": 2, "conds": [[4, 2, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-17982197-8", "question": "... 8% - 52 MB - 10.24 MB/s - 5s", "sql": {"sel": 3, "conds": [[4, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-17643221-2", "question": "... 8% - 52 MB - 10.25 MB/s - 5s", "sql": {"sel": 5, "conds": [[0, 2, 8]], "agg": 0}}
+{"phase": 2, "table_id": "2-183628-10", "question": "... 8% - 53 MB - 10.20 MB/s - 5s", "sql": {"sel": 1, "conds": [[4, 0, "5"]], "agg": 0}}
+{"phase": 2, "table_id": "2-183628-10", "question": "... 8% - 53 MB - 10.20 MB/s - 5s", "sql": {"sel": 1, "conds": [[3, 0, "5"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17822529-2", "question": "... 8% - 53 MB - 10.22 MB/s - 5s", "sql": {"sel": 2, "conds": [[4, 0, 2], [5, 1, 2]], "agg": 2}}
+{"phase": 2, "table_id": "2-17822529-2", "question": "... 8% - 53 MB - 10.22 MB/s - 5s", "sql": {"sel": 0, "conds": [[5, 1, 2], [2, 0, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-17822529-2", "question": "... 8% - 53 MB - 10.22 MB/s - 5s", "sql": {"sel": 5, "conds": [[3, 1, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-17751851-1", "question": "... 8% - 53 MB - 10.24 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 0, "4"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17631598-2", "question": "... 8% - 53 MB - 10.09 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 0, 10]], "agg": 0}}
+{"phase": 2, "table_id": "2-17631598-2", "question": "... 8% - 53 MB - 10.09 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 0, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-17631598-2", "question": "... 8% - 53 MB - 10.09 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 1, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-17746037-3", "question": "... 8% - 53 MB - 10.11 MB/s - 5s", "sql": {"sel": 2, "conds": [[4, 2, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-18259953-4", "question": "... 8% - 53 MB - 10.13 MB/s - 5s", "sql": {"sel": 1, "conds": [[0, 2, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-17751859-4", "question": "... 8% - 53 MB - 10.13 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 0, "8"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18188607-5", "question": "... 8% - 53 MB - 10.15 MB/s - 5s", "sql": {"sel": 3, "conds": [[1, 1, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-17695272-4", "question": "... 8% - 53 MB - 10.19 MB/s - 5s", "sql": {"sel": 7, "conds": [[0, 2, 10]], "agg": 4}}
+{"phase": 2, "table_id": "2-17982205-4", "question": "... 8% - 54 MB - 10.21 MB/s - 5s", "sql": {"sel": 1, "conds": [[2, 1, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-18170681-7", "question": "... 8% - 54 MB - 10.22 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 0, 10], [0, 1, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-18170681-7", "question": "... 8% - 54 MB - 10.22 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 1, 5]], "agg": 2}}
+{"phase": 2, "table_id": "2-18170681-7", "question": "... 8% - 54 MB - 10.22 MB/s - 5s", "sql": {"sel": 0, "conds": [[3, 2, 10]], "agg": 3}}
+{"phase": 2, "table_id": "2-17776244-2", "question": "... 8% - 54 MB - 10.23 MB/s - 5s", "sql": {"sel": 6, "conds": [[4, 0, 8]], "agg": 2}}
+{"phase": 2, "table_id": "2-17776244-2", "question": "... 8% - 54 MB - 10.23 MB/s - 5s", "sql": {"sel": 6, "conds": [[3, 1, 8]], "agg": 2}}
+{"phase": 2, "table_id": "2-17837800-1", "question": "... 8% - 54 MB - 10.26 MB/s - 5s", "sql": {"sel": 0, "conds": [[2, 1, 8]], "agg": 0}}
+{"phase": 2, "table_id": "2-17837478-4", "question": "... 8% - 54 MB - 10.26 MB/s - 5s", "sql": {"sel": 4, "conds": [[5, 1, 5]], "agg": 3}}
+{"phase": 2, "table_id": "2-17837478-4", "question": "... 8% - 54 MB - 10.26 MB/s - 5s", "sql": {"sel": 6, "conds": [[0, 2, 10]], "agg": 3}}
+{"phase": 2, "table_id": "2-17837478-4", "question": "... 8% - 54 MB - 10.26 MB/s - 5s", "sql": {"sel": 6, "conds": [[9, 1, 26]], "agg": 1}}
+{"phase": 2, "table_id": "2-18191407-2", "question": "... 8% - 54 MB - 10.26 MB/s - 5s", "sql": {"sel": 3, "conds": [[2, 0, "10"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18191407-2", "question": "... 8% - 54 MB - 10.27 MB/s - 5s", "sql": {"sel": 0, "conds": [[3, 0, "0"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17746037-19", "question": "... 8% - 54 MB - 10.27 MB/s - 5s", "sql": {"sel": 3, "conds": [[2, 2, 2]], "agg": 5}}
+{"phase": 2, "table_id": "2-17746037-19", "question": "... 8% - 54 MB - 10.27 MB/s - 5s", "sql": {"sel": 4, "conds": [[1, 2, 10]], "agg": 4}}
+{"phase": 2, "table_id": "2-18009787-2", "question": "... 8% - 54 MB - 10.29 MB/s - 5s", "sql": {"sel": 3, "conds": [[4, 1, 5]], "agg": 5}}
+{"phase": 2, "table_id": "2-17781949-5", "question": "... 8% - 54 MB - 10.31 MB/s - 5s", "sql": {"sel": 1, "conds": [[0, 0, "8"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17781949-5", "question": "... 8% - 54 MB - 10.31 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 0, "8"]], "agg": 0}}
+{"phase": 2, "table_id": "2-17785973-1", "question": "... 8% - 55 MB - 10.27 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 0, 7]], "agg": 3}}
+{"phase": 2, "table_id": "2-17785973-1", "question": "... 8% - 55 MB - 10.27 MB/s - 5s", "sql": {"sel": 3, "conds": [[6, 2, 55]], "agg": 3}}
+{"phase": 2, "table_id": "2-18313582-1", "question": "... 8% - 55 MB - 10.30 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 2, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-18313582-1", "question": "... 8% - 55 MB - 10.30 MB/s - 5s", "sql": {"sel": 3, "conds": [[4, 2, 5]], "agg": 2}}
+{"phase": 2, "table_id": "2-18313582-1", "question": "... 8% - 55 MB - 10.24 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 2, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-17716055-2", "question": "... 8% - 55 MB - 10.18 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 1, 5]], "agg": 5}}
+{"phase": 2, "table_id": "2-17716055-2", "question": "... 8% - 55 MB - 10.19 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 0, 9]], "agg": 5}}
+{"phase": 2, "table_id": "2-17937080-4", "question": "... 8% - 55 MB - 10.22 MB/s - 5s", "sql": {"sel": 1, "conds": [[4, 2, 22], [0, 2, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-18113463-5", "question": "... 8% - 55 MB - 10.22 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18908350-2", "question": "... 8% - 55 MB - 10.24 MB/s - 5s", "sql": {"sel": 1, "conds": [[0, 2, 8]], "agg": 0}}
+{"phase": 2, "table_id": "2-18662685-12", "question": "... 8% - 56 MB - 10.26 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 2, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-18704095-2", "question": "... 9% - 56 MB - 10.27 MB/s - 5s", "sql": {"sel": 6, "conds": [[3, 1, 5]], "agg": 4}}
+{"phase": 2, "table_id": "2-18704095-2", "question": "... 9% - 56 MB - 10.28 MB/s - 5s", "sql": {"sel": 6, "conds": [[4, 1, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-18704095-2", "question": "... 9% - 56 MB - 10.28 MB/s - 5s", "sql": {"sel": 7, "conds": [[0, 1, 10]], "agg": 3}}
+{"phase": 2, "table_id": "2-18662028-6", "question": "... 9% - 56 MB - 10.29 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 2, 1]], "agg": 2}}
+{"phase": 2, "table_id": "2-18625479-5", "question": "... 9% - 56 MB - 10.32 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 1, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-18842986-2", "question": "... 9% - 56 MB - 10.32 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 0, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-18811741-16", "question": "... 9% - 56 MB - 10.32 MB/s - 5s", "sql": {"sel": 4, "conds": [[5, 1, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-18620528-7", "question": "... 9% - 56 MB - 10.32 MB/s - 5s", "sql": {"sel": 6, "conds": [[5, 0, "6"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18569105-3", "question": "... 9% - 56 MB - 10.35 MB/s - 5s", "sql": {"sel": 1, "conds": [[0, 1, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-18454234-3", "question": "... 9% - 56 MB - 10.37 MB/s - 5s", "sql": {"sel": 0, "conds": [[2, 0, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-18454234-3", "question": "... 9% - 56 MB - 10.37 MB/s - 5s", "sql": {"sel": 4, "conds": [[1, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-18711843-4", "question": "... 9% - 56 MB - 10.38 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 0, "3"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18662685-3", "question": "... 9% - 56 MB - 10.32 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 0, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-18662685-3", "question": "... 9% - 56 MB - 10.32 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 0, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-19001175-2", "question": "... 9% - 56 MB - 10.32 MB/s - 5s", "sql": {"sel": 2, "conds": [[7, 2, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-19001175-2", "question": "... 9% - 56 MB - 10.32 MB/s - 5s", "sql": {"sel": 7, "conds": [[6, 2, 2]], "agg": 2}}
+{"phase": 2, "table_id": "2-1853235-2", "question": "... 9% - 57 MB - 10.34 MB/s - 5s", "sql": {"sel": 7, "conds": [[6, 0, "5"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18628904-16", "question": "... 9% - 57 MB - 10.35 MB/s - 5s", "sql": {"sel": 3, "conds": [[2, 1, 5]], "agg": 3}}
+{"phase": 2, "table_id": "2-18628904-16", "question": "... 9% - 57 MB - 10.35 MB/s - 5s", "sql": {"sel": 1, "conds": [[3, 1, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-18628904-16", "question": "... 9% - 57 MB - 10.35 MB/s - 5s", "sql": {"sel": 2, "conds": [[3, 0, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-18657589-2", "question": "... 9% - 57 MB - 10.35 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 0, "9"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18426579-1", "question": "... 9% - 57 MB - 10.37 MB/s - 5s", "sql": {"sel": 3, "conds": [[4, 0, "0"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18566436-1", "question": "... 9% - 57 MB - 10.24 MB/s - 5s", "sql": {"sel": 1, "conds": [[3, 1, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-18566436-1", "question": "... 9% - 57 MB - 10.24 MB/s - 5s", "sql": {"sel": 0, "conds": [[1, 1, 0], [4, 1, 2], [3, 0, 0], [2, 1, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-18566436-1", "question": "... 9% - 57 MB - 10.24 MB/s - 5s", "sql": {"sel": 1, "conds": [[3, 2, 2], [4, 1, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-18628904-23", "question": "... 9% - 57 MB - 10.24 MB/s - 5s", "sql": {"sel": 3, "conds": [[2, 2, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-18632367-4", "question": "... 9% - 57 MB - 10.26 MB/s - 5s", "sql": {"sel": 5, "conds": [[4, 2, 2]], "agg": 1}}
+{"phase": 2, "table_id": "2-18632367-4", "question": "... 9% - 57 MB - 10.26 MB/s - 5s", "sql": {"sel": 5, "conds": [[0, 0, "6"], [3, 1, 2]], "agg": 1}}
+{"phase": 2, "table_id": "2-18934662-7", "question": "... 9% - 57 MB - 10.28 MB/s - 5s", "sql": {"sel": 4, "conds": [[2, 1, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-18499964-1", "question": "... 9% - 57 MB - 10.30 MB/s - 5s", "sql": {"sel": 9, "conds": [[5, 0, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-18782055-2", "question": "... 9% - 57 MB - 10.30 MB/s - 5s", "sql": {"sel": 4, "conds": [[5, 1, 1], [2, 1, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-18782055-2", "question": "... 9% - 57 MB - 10.30 MB/s - 5s", "sql": {"sel": 0, "conds": [[2, 2, 1], [4, 0, 0], [5, 1, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-18782055-2", "question": "... 9% - 57 MB - 10.30 MB/s - 5s", "sql": {"sel": 5, "conds": [[4, 2, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-18782055-2", "question": "... 9% - 57 MB - 10.31 MB/s - 5s", "sql": {"sel": 0, "conds": [[2, 0, 0], [5, 1, 1], [3, 1, 0]], "agg": 1}}
+{"phase": 2, "table_id": "2-18782055-2", "question": "... 9% - 57 MB - 10.31 MB/s - 5s", "sql": {"sel": 2, "conds": [[5, 1, 1]], "agg": 1}}
+{"phase": 2, "table_id": "2-18936986-3", "question": "... 9% - 57 MB - 10.32 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 1, 10]], "agg": 5}}
+{"phase": 2, "table_id": "2-18593648-10", "question": "... 9% - 58 MB - 10.33 MB/s - 5s", "sql": {"sel": 0, "conds": [[4, 2, 3]], "agg": 1}}
+{"phase": 2, "table_id": "2-18951015-2", "question": "... 9% - 58 MB - 10.34 MB/s - 5s", "sql": {"sel": 2, "conds": [[1, 0, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-18951015-2", "question": "... 9% - 58 MB - 10.34 MB/s - 5s", "sql": {"sel": 0, "conds": [[3, 2, 10], [2, 0, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-18951015-2", "question": "... 9% - 58 MB - 10.34 MB/s - 5s", "sql": {"sel": 2, "conds": [[1, 1, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-18771190-15", "question": "... 9% - 58 MB - 10.35 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 2, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-18771190-15", "question": "... 9% - 58 MB - 10.35 MB/s - 5s", "sql": {"sel": 5, "conds": [[3, 1, 1]], "agg": 1}}
+{"phase": 2, "table_id": "2-18771190-15", "question": "... 9% - 58 MB - 10.35 MB/s - 5s", "sql": {"sel": 5, "conds": [[0, 1, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-18706426-1", "question": "... 9% - 58 MB - 10.37 MB/s - 5s", "sql": {"sel": 1, "conds": [[0, 1, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-18965848-4", "question": "... 9% - 58 MB - 10.38 MB/s - 5s", "sql": {"sel": 0, "conds": [[4, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-18965848-4", "question": "... 9% - 58 MB - 10.38 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 0, "1"], [4, 2, 3]], "agg": 4}}
+{"phase": 2, "table_id": "2-18965848-4", "question": "... 9% - 58 MB - 10.38 MB/s - 5s", "sql": {"sel": 4, "conds": [[2, 1, 1], [3, 2, 3]], "agg": 3}}
+{"phase": 2, "table_id": "2-18662083-1", "question": "... 9% - 58 MB - 10.38 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 2, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-18649514-6", "question": "... 9% - 58 MB - 10.40 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 2, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-18628904-18", "question": "... 9% - 58 MB - 10.44 MB/s - 5s", "sql": {"sel": 4, "conds": [[2, 0, 5], [3, 2, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-18628904-18", "question": "... 9% - 58 MB - 10.44 MB/s - 5s", "sql": {"sel": 3, "conds": [[2, 1, 8]], "agg": 5}}
+{"phase": 2, "table_id": "2-18569011-13", "question": "... 9% - 58 MB - 10.38 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 2, 3]], "agg": 3}}
+{"phase": 2, "table_id": "2-18493040-4", "question": "... 9% - 59 MB - 10.39 MB/s - 5s", "sql": {"sel": 1, "conds": [[0, 0, "3"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18624773-3", "question": "... 9% - 59 MB - 10.40 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 2, 5], [1, 0, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-18395166-2", "question": "... 9% - 59 MB - 10.41 MB/s - 5s", "sql": {"sel": 5, "conds": [[4, 2, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-1864289-5", "question": "... 9% - 59 MB - 10.41 MB/s - 5s", "sql": {"sel": 5, "conds": [[3, 1, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-1864289-5", "question": "... 9% - 59 MB - 10.41 MB/s - 5s", "sql": {"sel": 1, "conds": [[5, 1, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-1864289-5", "question": "... 9% - 59 MB - 10.41 MB/s - 5s", "sql": {"sel": 0, "conds": [[4, 1, 1], [3, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-18621456-22", "question": "... 9% - 59 MB - 10.42 MB/s - 5s", "sql": {"sel": 7, "conds": [[2, 2, 9], [6, 0, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-18621456-22", "question": "... 9% - 59 MB - 10.42 MB/s - 5s", "sql": {"sel": 7, "conds": [[1, 1, 4]], "agg": 4}}
+{"phase": 2, "table_id": "2-18621456-22", "question": "... 9% - 59 MB - 10.42 MB/s - 5s", "sql": {"sel": 3, "conds": [[6, 1, 1], [1, 2, 4]], "agg": 1}}
+{"phase": 2, "table_id": "2-1881174-1", "question": "... 9% - 59 MB - 10.43 MB/s - 5s", "sql": {"sel": 1, "conds": [[7, 1, 1]], "agg": 1}}
+{"phase": 2, "table_id": "2-1881174-1", "question": "... 9% - 59 MB - 10.43 MB/s - 5s", "sql": {"sel": 8, "conds": [[1, 1, 10]], "agg": 0}}
+{"phase": 2, "table_id": "2-18484319-8", "question": "... 9% - 59 MB - 10.30 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 2, 3]], "agg": 0}}
+{"phase": 2, "table_id": "2-18620528-4", "question": "... 9% - 59 MB - 10.30 MB/s - 5s", "sql": {"sel": 0, "conds": [[7, 0, "0"], [6, 0, "5"]], "agg": 0}}
+{"phase": 2, "table_id": "2-18868206-3", "question": "... 9% - 59 MB - 10.31 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 2, 0]], "agg": 4}}
+{"phase": 2, "table_id": "2-18868206-3", "question": "... 9% - 59 MB - 10.31 MB/s - 5s", "sql": {"sel": 4, "conds": [[2, 1, 1]], "agg": 1}}
+{"phase": 2, "table_id": "2-18868206-3", "question": "... 9% - 59 MB - 10.31 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 2, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-1851542-3", "question": "... 9% - 59 MB - 10.32 MB/s - 5s", "sql": {"sel": 5, "conds": [[2, 0, 0], [1, 1, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-1851542-3", "question": "... 9% - 59 MB - 10.32 MB/s - 5s", "sql": {"sel": 1, "conds": [[4, 0, 9]], "agg": 2}}
+{"phase": 2, "table_id": "2-1851542-3", "question": "... 9% - 59 MB - 10.32 MB/s - 5s", "sql": {"sel": 1, "conds": [[3, 2, 5], [2, 2, 2]], "agg": 3}}
+{"phase": 2, "table_id": "2-1851542-3", "question": "... 9% - 59 MB - 10.33 MB/s - 5s", "sql": {"sel": 5, "conds": [[1, 1, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-1851542-3", "question": "... 9% - 59 MB - 10.33 MB/s - 5s", "sql": {"sel": 5, "conds": [[2, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-18472494-2", "question": "... 9% - 59 MB - 10.34 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 2, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-19000748-1", "question": "... 9% - 59 MB - 10.34 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 2, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-19000748-1", "question": "... 9% - 59 MB - 10.34 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 0, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-18493740-3", "question": "... 9% - 59 MB - 10.34 MB/s - 5s", "sql": {"sel": 3, "conds": [[1, 2, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-18493740-3", "question": "... 9% - 59 MB - 10.35 MB/s - 5s", "sql": {"sel": 5, "conds": [[4, 1, 3]], "agg": 3}}
+{"phase": 2, "table_id": "2-18493740-3", "question": "... 9% - 59 MB - 10.35 MB/s - 5s", "sql": {"sel": 2, "conds": [[1, 1, 0]], "agg": 4}}
+{"phase": 2, "table_id": "2-18603914-4", "question": "... 9% - 59 MB - 10.35 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-18692014-7", "question": "... 9% - 59 MB - 10.35 MB/s - 5s", "sql": {"sel": 3, "conds": [[1, 1, 5]], "agg": 2}}
+{"phase": 2, "table_id": "2-18692014-7", "question": "... 9% - 59 MB - 10.35 MB/s - 5s", "sql": {"sel": 3, "conds": [[1, 0, 3], [5, 1, 9]], "agg": 4}}
+{"phase": 2, "table_id": "2-18569011-6", "question": "... 9% - 59 MB - 10.36 MB/s - 5s", "sql": {"sel": 1, "conds": [[0, 2, 1]], "agg": 1}}
+{"phase": 2, "table_id": "2-18802185-4", "question": "... 9% - 59 MB - 10.36 MB/s - 5s", "sql": {"sel": 1, "conds": [[3, 0, 0], [4, 0, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-18802185-4", "question": "... 9% - 59 MB - 10.36 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 0, "3"]], "agg": 3}}
+{"phase": 2, "table_id": "2-18802185-4", "question": "... 9% - 59 MB - 10.36 MB/s - 5s", "sql": {"sel": 3, "conds": [[5, 2, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-18802185-4", "question": "... 9% - 59 MB - 10.36 MB/s - 5s", "sql": {"sel": 5, "conds": [[2, 0, 0], [0, 0, "6"]], "agg": 5}}
+{"phase": 2, "table_id": "2-18993396-1", "question": "... 9% - 59 MB - 10.36 MB/s - 5s", "sql": {"sel": 0, "conds": [[3, 1, 10]], "agg": 3}}
+{"phase": 2, "table_id": "2-18993396-1", "question": "... 9% - 59 MB - 10.36 MB/s - 5s", "sql": {"sel": 2, "conds": [[3, 2, 10]], "agg": 5}}
+{"phase": 2, "table_id": "2-18993396-1", "question": "... 9% - 59 MB - 10.37 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 0, 7]], "agg": 3}}
+{"phase": 2, "table_id": "2-18993396-1", "question": "... 9% - 59 MB - 10.37 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 2, 5]], "agg": 5}}
+{"phase": 2, "table_id": "2-18993396-1", "question": "... 9% - 59 MB - 10.37 MB/s - 5s", "sql": {"sel": 3, "conds": [[4, 2, 3]], "agg": 2}}
+{"phase": 2, "table_id": "2-18807607-2", "question": "... 9% - 59 MB - 10.37 MB/s - 5s", "sql": {"sel": 5, "conds": [[3, 2, 1]], "agg": 2}}
+{"phase": 2, "table_id": "2-18807607-2", "question": "... 9% - 59 MB - 10.37 MB/s - 5s", "sql": {"sel": 4, "conds": [[2, 2, 1], [3, 2, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-18807607-2", "question": "... 9% - 59 MB - 10.37 MB/s - 5s", "sql": {"sel": 5, "conds": [[3, 0, 1], [2, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-18807607-2", "question": "... 9% - 60 MB - 10.37 MB/s - 5s", "sql": {"sel": 5, "conds": [[3, 0, 0], [2, 1, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-18807607-2", "question": "... 9% - 60 MB - 10.37 MB/s - 5s", "sql": {"sel": 4, "conds": [[5, 1, 3], [0, 1, 1]], "agg": 1}}
+{"phase": 2, "table_id": "2-12702607-1", "question": "... 9% - 60 MB - 10.43 MB/s - 5s", "sql": {"sel": 4, "conds": [[2, 0, 3]], "agg": 1}}
+{"phase": 2, "table_id": "2-12702607-1", "question": "... 9% - 60 MB - 10.43 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 1, 3]], "agg": 1}}
+{"phase": 2, "table_id": "2-13292247-7", "question": "... 9% - 60 MB - 10.44 MB/s - 5s", "sql": {"sel": 5, "conds": [[6, 1, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-12303563-1", "question": "... 9% - 60 MB - 10.44 MB/s - 5s", "sql": {"sel": 3, "conds": [[1, 0, 0], [4, 0, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-13199257-4", "question": "... 9% - 60 MB - 10.44 MB/s - 5s", "sql": {"sel": 3, "conds": [[6, 1, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-1307603-6", "question": "... 9% - 60 MB - 10.45 MB/s - 5s", "sql": {"sel": 0, "conds": [[2, 1, 1]], "agg": 0}}
+{"phase": 2, "table_id": "2-1307603-6", "question": "... 9% - 60 MB - 10.45 MB/s - 5s", "sql": {"sel": 1, "conds": [[4, 0, 10]], "agg": 3}}
+{"phase": 2, "table_id": "2-1307603-6", "question": "... 9% - 60 MB - 10.45 MB/s - 5s", "sql": {"sel": 4, "conds": [[2, 2, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-12777110-2", "question": "... 9% - 60 MB - 10.48 MB/s - 5s", "sql": {"sel": 6, "conds": [[4, 1, 8]], "agg": 1}}
+{"phase": 2, "table_id": "2-12777110-2", "question": "... 9% - 60 MB - 10.49 MB/s - 5s", "sql": {"sel": 5, "conds": [[0, 1, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-12777110-2", "question": "... 9% - 60 MB - 10.49 MB/s - 5s", "sql": {"sel": 7, "conds": [[4, 0, 5]], "agg": 3}}
+{"phase": 2, "table_id": "2-13205637-1", "question": "... 9% - 60 MB - 10.44 MB/s - 5s", "sql": {"sel": 0, "conds": [[3, 0, 10]], "agg": 0}}
+{"phase": 2, "table_id": "2-13205637-1", "question": "... 9% - 60 MB - 10.44 MB/s - 5s", "sql": {"sel": 2, "conds": [[4, 2, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-13205637-1", "question": "... 9% - 60 MB - 10.44 MB/s - 5s", "sql": {"sel": 0, "conds": [[3, 0, 10]], "agg": 0}}
+{"phase": 2, "table_id": "2-13205637-1", "question": "... 9% - 60 MB - 10.44 MB/s - 5s", "sql": {"sel": 4, "conds": [[3, 2, 5]], "agg": 1}}
+{"phase": 2, "table_id": "2-12882416-1", "question": "... 9% - 60 MB - 10.44 MB/s - 5s", "sql": {"sel": 2, "conds": [[5, 0, 1], [3, 0, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-12882416-1", "question": "... 9% - 60 MB - 10.44 MB/s - 5s", "sql": {"sel": 0, "conds": [[5, 2, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-1332289-1", "question": "... 9% - 61 MB - 10.46 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 1, 6]], "agg": 4}}
+{"phase": 2, "table_id": "2-1332289-1", "question": "... 9% - 61 MB - 10.46 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 0, 6]], "agg": 2}}
+{"phase": 2, "table_id": "2-13312898-17", "question": "... 9% - 61 MB - 10.47 MB/s - 5s", "sql": {"sel": 5, "conds": [[0, 2, 7]], "agg": 0}}
+{"phase": 2, "table_id": "2-13312898-17", "question": "... 9% - 61 MB - 10.47 MB/s - 5s", "sql": {"sel": 4, "conds": [[0, 1, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-1213511-1", "question": "... 9% - 61 MB - 10.47 MB/s - 5s", "sql": {"sel": 5, "conds": [[0, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1213511-1", "question": "... 9% - 61 MB - 10.48 MB/s - 5s", "sql": {"sel": 1, "conds": [[0, 0, "6"]], "agg": 0}}
+{"phase": 2, "table_id": "2-12857063-3", "question": "... 9% - 61 MB - 10.48 MB/s - 5s", "sql": {"sel": 2, "conds": [[4, 1, 1], [3, 0, 8]], "agg": 1}}
+{"phase": 2, "table_id": "2-12857063-3", "question": "... 9% - 61 MB - 10.48 MB/s - 5s", "sql": {"sel": 2, "conds": [[4, 2, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-12857063-3", "question": "... 9% - 61 MB - 10.49 MB/s - 5s", "sql": {"sel": 2, "conds": [[3, 0, 1], [4, 1, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-1272339-1", "question": "... 9% - 61 MB - 10.42 MB/s - 5s", "sql": {"sel": 2, "conds": [[0, 2, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-1226466-1", "question": "... 9% - 61 MB - 10.35 MB/s - 5s", "sql": {"sel": 1, "conds": [[4, 0, "6"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1224089-1", "question": "... 9% - 61 MB - 10.37 MB/s - 5s", "sql": {"sel": 2, "conds": [[3, 0, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-12392600-3", "question": "... 9% - 61 MB - 10.41 MB/s - 5s", "sql": {"sel": 3, "conds": [[2, 1, 4]], "agg": 1}}
+{"phase": 2, "table_id": "2-12392600-3", "question": "... 9% - 61 MB - 10.41 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 1, 10]], "agg": 3}}
+{"phase": 2, "table_id": "2-12392600-3", "question": "... 9% - 61 MB - 10.41 MB/s - 5s", "sql": {"sel": 3, "conds": [[0, 2, 5], [4, 0, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-13291626-1", "question": "... 9% - 61 MB - 10.42 MB/s - 5s", "sql": {"sel": 4, "conds": [[1, 0, 2]], "agg": 0}}
+{"phase": 2, "table_id": "2-12256602-4", "question": "... 9% - 62 MB - 10.46 MB/s - 5s", "sql": {"sel": 3, "conds": [[5, 0, 9]], "agg": 0}}
+{"phase": 2, "table_id": "2-12256602-4", "question": "... 9% - 62 MB - 10.47 MB/s - 5s", "sql": {"sel": 0, "conds": [[5, 2, 10]], "agg": 0}}
+{"phase": 2, "table_id": "2-1251975-1", "question": "... 9% - 62 MB - 10.47 MB/s - 5s", "sql": {"sel": 2, "conds": [[4, 0, "9"]], "agg": 0}}
+{"phase": 2, "table_id": "2-1226970-1", "question": "... 10% - 62 MB - 10.50 MB/s - 5s", "sql": {"sel": 0, "conds": [[4, 1, 0]], "agg": 4}}
+{"phase": 2, "table_id": "2-12289333-4", "question": "... 10% - 62 MB - 10.53 MB/s - 5s", "sql": {"sel": 3, "conds": [[2, 1, 0], [0, 0, "1"]], "agg": 5}}
+{"phase": 2, "table_id": "2-12289333-4", "question": "... 10% - 62 MB - 10.53 MB/s - 5s", "sql": {"sel": 2, "conds": [[5, 2, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-13194020-2", "question": "... 10% - 63 MB - 10.48 MB/s - 6s", "sql": {"sel": 3, "conds": [[1, 0, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-12478598-3", "question": "... 10% - 63 MB - 10.41 MB/s - 6s", "sql": {"sel": 3, "conds": [[1, 1, 4], [2, 0, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-12478598-3", "question": "... 10% - 63 MB - 10.41 MB/s - 6s", "sql": {"sel": 4, "conds": [[3, 1, 0]], "agg": 4}}
+{"phase": 2, "table_id": "2-12478598-3", "question": "... 10% - 63 MB - 10.41 MB/s - 6s", "sql": {"sel": 2, "conds": [[1, 1, 1]], "agg": 4}}
+{"phase": 2, "table_id": "2-12478598-3", "question": "... 10% - 63 MB - 10.41 MB/s - 6s", "sql": {"sel": 2, "conds": [[4, 2, 4]], "agg": 3}}
+{"phase": 2, "table_id": "2-12478598-3", "question": "... 10% - 63 MB - 10.41 MB/s - 6s", "sql": {"sel": 1, "conds": [[2, 1, 0], [3, 1, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-1251950-2", "question": "... 10% - 63 MB - 10.43 MB/s - 6s", "sql": {"sel": 0, "conds": [[3, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-12146637-3", "question": "... 10% - 63 MB - 10.44 MB/s - 6s", "sql": {"sel": 2, "conds": [[4, 0, 10]], "agg": 0}}
+{"phase": 2, "table_id": "2-12481427-2", "question": "... 10% - 63 MB - 10.45 MB/s - 6s", "sql": {"sel": 3, "conds": [[4, 2, 4]], "agg": 1}}
+{"phase": 2, "table_id": "2-12481427-2", "question": "... 10% - 63 MB - 10.46 MB/s - 6s", "sql": {"sel": 6, "conds": [[3, 1, 10], [4, 1, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-1228316-1", "question": "... 10% - 63 MB - 10.46 MB/s - 6s", "sql": {"sel": 0, "conds": [[4, 1, 0]], "agg": 3}}
+{"phase": 2, "table_id": "2-12383066-2", "question": "... 10% - 63 MB - 10.47 MB/s - 6s", "sql": {"sel": 2, "conds": [[0, 2, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-12383066-2", "question": "... 10% - 63 MB - 10.47 MB/s - 6s", "sql": {"sel": 0, "conds": [[2, 1, 3]], "agg": 5}}
+{"phase": 2, "table_id": "2-12214488-2", "question": "... 10% - 63 MB - 10.48 MB/s - 6s", "sql": {"sel": 5, "conds": [[4, 1, 1]], "agg": 3}}
+{"phase": 2, "table_id": "2-12446535-3", "question": "... 10% - 63 MB - 10.48 MB/s - 6s", "sql": {"sel": 1, "conds": [[2, 0, 4]], "agg": 2}}
+{"phase": 2, "table_id": "2-1261748-7", "question": "... 10% - 64 MB - 10.49 MB/s - 6s", "sql": {"sel": 2, "conds": [[1, 2, 0]], "agg": 2}}
+{"phase": 2, "table_id": "2-128171-1", "question": "... 10% - 64 MB - 10.52 MB/s - 6s", "sql": {"sel": 1, "conds": [[4, 0, "4"]], "agg": 0}}
+{"phase": 2, "table_id": "2-12573519-9", "question": "... 10% - 64 MB - 10.54 MB/s - 6s", "sql": {"sel": 0, "conds": [[4, 2, 5]], "agg": 1}}
+{"phase": 2, "table_id": "2-12573519-9", "question": "... 10% - 64 MB - 10.54 MB/s - 6s", "sql": {"sel": 0, "conds": [[4, 0, 4], [3, 1, 1]], "agg": 5}}
+{"phase": 2, "table_id": "2-12573519-9", "question": "... 10% - 64 MB - 10.54 MB/s - 6s", "sql": {"sel": 2, "conds": [[3, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-12573519-9", "question": "... 10% - 64 MB - 10.54 MB/s - 6s", "sql": {"sel": 4, "conds": [[3, 2, 0]], "agg": 5}}
+{"phase": 2, "table_id": "2-12573519-9", "question": "... 10% - 64 MB - 10.54 MB/s - 6s", "sql": {"sel": 4, "conds": [[3, 0, 0]], "agg": 4}}
+{"phase": 2, "table_id": "2-12382876-3", "question": "... 10% - 64 MB - 10.55 MB/s - 6s", "sql": {"sel": 2, "conds": [[0, 0, 4]], "agg": 0}}
+{"phase": 2, "table_id": "2-12427276-3", "question": "... 10% - 64 MB - 10.56 MB/s - 6s", "sql": {"sel": 3, "conds": [[0, 1, 6]], "agg": 0}}
+{"phase": 2, "table_id": "2-1226581-1", "question": "... 10% - 65 MB - 10.59 MB/s - 6s", "sql": {"sel": 2, "conds": [[4, 1, 0]], "agg": 0}}
+{"phase": 2, "table_id": "2-12535878-1", "question": "... 10% - 65 MB - 10.45 MB/s - 6s", "sql": {"sel": 1, "conds": [[0, 1, 5]], "agg": 0}}
+{"phase": 2, "table_id": "2-12886178-4", "question": "... 10% - 65 MB - 10.47 MB/s - 6s", "sql": {"sel": 7, "conds": [[2, 0, "1"]], "agg": 0}}
+{"phase": 2, "table_id": "2-12420066-1", "question": "... 10% - 65 MB - 10.49 MB/s - 6s", "sql": {"sel": 1, "conds": [[0, 0, "1"]], "agg": 3}}
+{"phase": 2, "table_id": "2-12420066-1", "question": "... 10% - 65 MB - 10.49 MB/s - 6s", "sql": {"sel": 1, "conds": [[4, 2, 4]], "agg": 3}}
+{"phase": 2, "table_id": "2-12420066-1", "question": "... 10% - 65 MB - 10.49 MB/s - 6s", "sql": {"sel": 1, "conds": [[2, 0, 1], [4, 1, 4]], "agg": 4}}
