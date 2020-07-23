@@ -3,8 +3,9 @@
 import os, sys, argparse, re, json
 import random as python_random
 
-from matplotlib.pylab import *
+# from matplotlib.pylab import *
 import torch.nn as nn
+from numpy import *
 import torch
 import torch.nn.functional as F
 # import torchvision.datasets as dsets

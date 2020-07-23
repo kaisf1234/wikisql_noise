@@ -7,7 +7,8 @@ import os, json
 import random as rd
 from copy import deepcopy
 
-from matplotlib.pylab import *
+# from matplotlib.pylab import *
+from numpy import *
 
 import torch
 import torchvision.datasets as dsets
@@ -167,13 +168,13 @@ def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False, column_samples = Non
         # print(column_samples[tid1])
         best_samples = get_best_samples(nlu1, column_samples[tid1], tid1)
         #print("%"*100)
-        sampled_headers = {x:random.sample(best_samples[x], min(len(best_samples[x]), 3)) + [val for val in random.sample(set(column_samples[tid1][x]) - best_samples[x], min(len(set(column_samples[tid1][x]) - best_samples[x]), max(0, 3 - len(best_samples[x]))))]
-                                      for x in tb1["header"]}
-        _ = {x:random.shuffle(sampled_headers[x]) for x in sampled_headers}
-        hs1 = [x + " ‖ " + " | ".join(sampled_headers[x]) for x in sampled_headers]
+        # sampled_headers = {x:random.sample(best_samples[x], min(len(best_samples[x]), 3)) + [val for val in random.sample(set(column_samples[tid1][x]) - best_samples[x], min(len(set(column_samples[tid1][x]) - best_samples[x]), max(0, 3 - len(best_samples[x]))))]
+        #                               for x in tb1["header"]}
+        # _ = {x:random.shuffle(sampled_headers[x]) for x in sampled_headers}
+        hs1 = [x + " ‖ " + " | ".join(random.sample(best_samples[x], min(len(best_samples[x]), 3))) for x in tb1["header"]]
         #print(hs1)
     if config["use_samples_concat"]:
-        hs1 = [x + " ‖ " + " | ".join([val for val in random.sample(column_samples[tid1][x], min(len(column_samples[tid1][x]), 3))]) for x in tb1["header"]]
+        hs1 = [x + " ‖ " + " | ".join([val for val in random.sample(column_samples[tid1][x], min(len(column_samples[tid1][x]), 5))]) for x in tb1["header"]]
     return nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1
 
 def tokenized_len(nlu_t1, hds1, tokenizer):

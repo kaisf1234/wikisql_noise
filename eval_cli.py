@@ -7,7 +7,8 @@
 
 import os, sys, argparse, re, json
 
-from matplotlib.pylab import *
+# from matplotlib.pylab import *
+from numpy import *
 import torch.nn as nn
 import torch
 import torch.nn.functional as F

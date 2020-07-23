@@ -7,7 +7,10 @@
 
 import os, sys, argparse, re, json
 
-from matplotlib.pylab import *
+# from matplotlib.pylab import *
+import numpy as np
+from numpy import *
+import time
 import torch.nn as nn
 import torch
 import torch.nn.functional as F
@@ -25,7 +28,8 @@ from sqlova.utils.utils import load_jsonl
 from sqlova.model.nl2sql.wikisql_models import *
 from sqlnet.dbengine import DBEngine
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda")  # if torch.cuda.is_available() else "cpu")
+print(device)
 
 
 def construct_hyper_param(parser):
@@ -101,7 +105,6 @@ def construct_hyper_param(parser):
                          'mcS': 'multi_cased_L-12_H-768_A-12'}
     args.bert_type = map_bert_type_abb[args.bert_type_abb]
 
-
     print(f"BERT-type: {args.bert_type}")
 
     # Decide whether to use lower_case.
@@ -111,7 +114,7 @@ def construct_hyper_param(parser):
         args.do_lower_case = True
 
     # Seeds for random number generation
-    seed(args.seed)
+    np.random.mtrand.seed(args.seed)
     python_random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -144,14 +147,14 @@ def get_bert(BERT_PT_PATH, bert_type, do_lower_case, no_pretraining):
 
 def get_opt(model, model_bert, fine_tune, pre_trained_path=None):
     if fine_tune:
-        opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
-                               lr=args.lr, amsgrad=True)
+        opt = torch.optim.AdamW(filter(lambda p: p.requires_grad, model.parameters()),
+                                lr=args.lr)
 
-        opt_bert = torch.optim.Adam(filter(lambda p: p.requires_grad, model_bert.parameters()),
-                                    lr=args.lr_bert, amsgrad=True)
+        opt_bert = torch.optim.AdamW(filter(lambda p: p.requires_grad, model_bert.parameters()),
+                                     lr=args.lr_bert)
     else:
-        opt = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()),
-                               lr=args.lr, weight_decay=0)
+        opt = torch.optim.AdamW(filter(lambda p: p.requires_grad, model.parameters()),
+                                lr=args.lr)
         opt_bert = None
     if pre_trained_path:
         print("Loading opt...", pre_trained_path)
@@ -219,7 +222,7 @@ def get_data(path_wikisql, args):
 
 def train(train_loader, train_table, model, model_bert, opt, bert_config, tokenizer,
           max_seq_length, num_target_layers, accumulate_gradients=1, check_grad=True,
-          st_pos=0, opt_bert=None, path_db=None, dset_name='train', column_samples = None):
+          st_pos=0, opt_bert=None, path_db=None, dset_name='train', column_samples=None):
     global scheduler
     model.train()
     model_bert.train()
@@ -248,7 +251,10 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         if cnt < st_pos:
             continue
         # Get fields
-        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, train_table, no_hs_t=True, no_sql_t=True, column_samples=column_samples, tokenizer = tokenizer)
+        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, train_table, no_hs_t=True, no_sql_t=True,
+                                                                    column_samples=column_samples, tokenizer=tokenizer)
+        if len(nlu_t) == 0:
+            continue
         # nlu  : natural language utterance
         # nlu_t: tokenized nlu
         # sql_i: canonical form of SQL query
@@ -298,19 +304,19 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
                 opt.step()
                 if opt_bert:
                     opt_bert.step()
-                    #scheduler.step()
+                    # scheduler.step()
         elif iB % accumulate_gradients == (accumulate_gradients - 1):
             # at the final, take step with accumulated graident
             loss.backward()
             opt.step()
             if opt_bert:
                 opt_bert.step()
-                #scheduler.step()
+                # scheduler.step()
         else:
             # at intermediate stage, just accumulates the gradients
             loss.backward()
-        #torch.nn.utils.clip_grad_norm_(filter(lambda p: p.requires_grad, model_bert.parameters()), 1.0)
-        #torch.nn.utils.clip_grad_norm_(filter(lambda p: p.requires_grad, model.parameters()), 1.0)
+        # torch.nn.utils.clip_grad_norm_(filter(lambda p: p.requires_grad, model_bert.parameters()), 1.0)
+        # torch.nn.utils.clip_grad_norm_(filter(lambda p: p.requires_grad, model.parameters()), 1.0)
 
         # Prediction
         pr_sc, pr_sa, pr_wn, pr_wc, pr_wo, pr_wvi = pred_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, )
@@ -418,7 +424,7 @@ def report_detail(hds, nlu,
 def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
          max_seq_length,
          num_target_layers, detail=False, st_pos=0, cnt_tot=1, EG=False, beam_size=4,
-         path_db=None, dset_name='test', column_samples = None):
+         path_db=None, dset_name='test', column_samples=None):
     model.eval()
     model_bert.eval()
 
@@ -441,7 +447,7 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
     start = time.time()
     l = len(data_loader)
     for iB, t in enumerate(data_loader):
-        if iB % 2 == 1:
+        if iB % 100 == 99:
             print("Done with ", iB, " out of ", l, " time left ", ((time.time() - start) / iB) * (l - iB))
             acc_sc = cnt_sc / cnt
             acc_sa = cnt_sa / cnt
@@ -453,14 +459,16 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
             acc_lx = cnt_lx / cnt
             acc_x = cnt_x / cnt
 
-
             acc = [ave_loss, acc_sc, acc_sa, acc_wn, acc_wc, acc_wo, acc_wvi, acc_wv, acc_lx, acc_x]
             print(acc)
         cnt += len(t)
         if cnt < st_pos:
             continue
         # Get fields
-        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, data_table, no_hs_t=True, no_sql_t=True, column_samples=column_samples, tokenizer=tokenizer)
+        nlu, nlu_t, sql_i, sql_q, sql_t, tb, hs_t, hds = get_fields(t, data_table, no_hs_t=True, no_sql_t=True,
+                                                                    column_samples=column_samples, tokenizer=tokenizer)
+        if len(nlu_t) == 0:
+            continue
 
         g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
         g_wvi_corenlp = get_g_wvi_corenlp(t)
@@ -486,7 +494,7 @@ def test(data_loader, data_table, model, model_bert, bert_config, tokenizer,
 
         # model specific part
         # score
-        if False:
+        if True:
             # No Execution guided decoding
             s_sc, s_sa, s_wn, s_wc, s_wo, s_wv = model(wemb_n, l_n, wemb_h, l_hpu, l_hs)
 
@@ -685,17 +693,14 @@ if __name__ == '__main__':
 
     print("USING : ", path_main)
 
-    if not os.path.exists(path_main+os.path.sep+"train.tables.jsonl"):
+    if not os.path.exists(path_main + os.path.sep + "train.tables.jsonl"):
         print("tables not found, extracting, hopefully zip will be found")
-        with zipfile.ZipFile(path_main+os.path.sep+"train.tables.jsonl.zip", 'r') as zip_ref:
-            zip_ref.extractall(path_main+os.path.sep)
-
-
+        with zipfile.ZipFile(path_main + os.path.sep + "train.tables.jsonl.zip", 'r') as zip_ref:
+            zip_ref.extractall(path_main + os.path.sep)
 
     path_h = path_main  # '/home/wonseok'
     path_wikisql = path_main  # os.path.join(path_h, 'data', 'wikisql_tok')
     BERT_PT_PATH = args.shelf_bert_path
-
 
     path_save_for_evaluation = './'
 
@@ -717,7 +722,7 @@ if __name__ == '__main__':
         # To start from the pre-trained models, un-comment following lines.
         print("Loading pretrained models...")
         path_model_bert = model_store_root + '/' + args.run_key + 'model_bert_best_orig.pt'
-        path_model = model_store_root + '/'+ args.run_key +'model_best_orig.pt'
+        path_model = model_store_root + '/' + args.run_key + 'model_best_orig.pt'
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH, trained=True,
                                                                path_model_bert=path_model_bert, path_model=path_model)
 
@@ -746,7 +751,6 @@ if __name__ == '__main__':
                 train_column_vectors = json.load(f)
             with open(args.column_vector_path + "/dev_vecs.json") as f:
                 dev_column_vectors = json.load(f)
-
 
         for epoch in range(args.tepoch):
             # trainBERT-type
@@ -803,9 +807,10 @@ if __name__ == '__main__':
                 torch.save(state, os.path.join(model_store_root, args.run_key + 'model_bert_best_orig.pt'))
 
                 torch.save(opt.state_dict(), os.path.join(model_store_root, args.run_key + 'opt_best_orig.pt'))
-                torch.save(opt_bert.state_dict(), os.path.join(model_store_root, args.run_key + 'opt_bert_best_orig.pt'))
+                torch.save(opt_bert.state_dict(),
+                           os.path.join(model_store_root, args.run_key + 'opt_bert_best_orig.pt'))
 
-                #----------------------------------------
+                # ----------------------------------------
 
                 state = {'model': model.state_dict()}
                 torch.save(state, os.path.join(model_store_root, args.run_key + str(epoch) + 'model_best_orig.pt'))
@@ -813,10 +818,10 @@ if __name__ == '__main__':
                 state = {'model_bert': model_bert.state_dict()}
                 torch.save(state, os.path.join(model_store_root, args.run_key + str(epoch) + 'model_bert_best_orig.pt'))
 
-                torch.save(opt.state_dict(), os.path.join(model_store_root, args.run_key + str(epoch) + 'opt_best_orig.pt'))
-                torch.save(opt_bert.state_dict(), os.path.join(model_store_root, args.run_key + str(epoch) + 'opt_bert_best_orig.pt'))
-
-
+                torch.save(opt.state_dict(),
+                           os.path.join(model_store_root, args.run_key + str(epoch) + 'opt_best_orig.pt'))
+                torch.save(opt_bert.state_dict(),
+                           os.path.join(model_store_root, args.run_key + str(epoch) + 'opt_bert_best_orig.pt'))
 
             print(f" Best Dev lx acc: {acc_lx_t_best} at epoch: {epoch_best}")
 
@@ -835,7 +840,6 @@ if __name__ == '__main__':
 
         os.environ["CORENLP_HOME"] = './models/stanford-corenlp-4.0.0'
         client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
-
 
         path_db = './data/WikiSQL-1.1/data'
         db_name = 'dev'

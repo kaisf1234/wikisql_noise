@@ -4,8 +4,8 @@
 # Wonseok Hwang
 import os, json
 import random as python_random
-from matplotlib.pylab import *
-
+# from matplotlib.pylab import *
+from numpy import *
 
 def generate_perm_inv(perm):
     # Definitly correct.
