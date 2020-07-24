@@ -13,3 +13,8 @@ data/WikiSQL-1.1/.DS_Store
 /data/WikiSQL-1.1/gtlt_noisy_data/train.tables.jsonl
 /models/col_sample_3/
 /models/col_search_sample_3/
+/models/stanford-corenlp-full-2018-02-27/
+/models/stanford-corenlp-full-2018-10-05/
+/column_rep/outs/sf_vecs.json
+/bench/
+/data/WikiSQL-1.1/benchmarking/
