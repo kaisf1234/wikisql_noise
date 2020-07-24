@@ -715,6 +715,27 @@ if __name__ == '__main__':
     #     num_workers=4,
     #     collate_fn=lambda x: x  # now dictionary values are not merged!
     # )
+
+    simple_data, _ = load_wikisql_data('./data/WikiSQL-1.1/simple', mode='dev', toy_model=args.toy_model,
+                                       toy_size=args.toy_size, no_hs_tok=True)
+    clean_data, _ = load_wikisql_data('./data/WikiSQL-1.1/data', mode='dev', toy_model=args.toy_model,
+                                      toy_size=args.toy_size, no_hs_tok=True)
+    simple_loader = torch.utils.data.DataLoader(
+        batch_size=args.bS,
+        dataset=simple_data,
+        shuffle=False,
+        num_workers=16,
+        collate_fn=lambda x: x  # now dictionary values are not merged!
+    )
+
+    clean_loader = torch.utils.data.DataLoader(
+        batch_size=args.bS,
+        dataset=clean_data,
+        shuffle=False,
+        num_workers=16,
+        collate_fn=lambda x: x  # now dictionary values are not merged!
+    )
+
     ## 4. Build & Load models
     if not args.trained:
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH)
@@ -770,7 +791,22 @@ if __name__ == '__main__':
                                              dset_name='train',
                                              column_samples=train_column_vectors)
 
-            # check DEV
+            with torch.no_grad():
+                acc_dev, results_dev, cnt_list = test(simple_loader,
+                                                      dev_table,
+                                                      model,
+                                                      model_bert,
+                                                      bert_config,
+                                                      tokenizer,
+                                                      args.max_seq_length,
+                                                      args.num_target_layers,
+                                                      detail=False,
+                                                      path_db=path_wikisql,
+                                                      st_pos=0,
+                                                      dset_name='dev', EG=args.EG, column_samples=dev_column_vectors)
+                print("On simple data")
+                print_result(epoch, acc_dev, 'dev')
+
             with torch.no_grad():
                 acc_dev, results_dev, cnt_list = test(dev_loader,
                                                       dev_table,
@@ -784,6 +820,25 @@ if __name__ == '__main__':
                                                       path_db=path_wikisql,
                                                       st_pos=0,
                                                       dset_name='dev', EG=args.EG, column_samples=dev_column_vectors)
+
+                print("On gtlt data")
+                print_result(epoch, acc_dev, 'dev')
+            with torch.no_grad():
+                acc_dev, results_dev, cnt_list = test(clean_loader,
+                                                      dev_table,
+                                                      model,
+                                                      model_bert,
+                                                      bert_config,
+                                                      tokenizer,
+                                                      args.max_seq_length,
+                                                      args.num_target_layers,
+                                                      detail=False,
+                                                      path_db=path_wikisql,
+                                                      st_pos=0,
+                                                      dset_name='dev', EG=args.EG, column_samples=dev_column_vectors)
+
+                print("On clean data")
+                print_result(epoch, acc_dev, 'dev')
 
             print_result(epoch, acc_train, 'train')
             print_result(epoch, acc_dev, 'dev')
