@@ -11,7 +11,7 @@ from copy import deepcopy
 from numpy import *
 
 import torch
-import torchvision.datasets as dsets
+# import torchvision.datasets as dsets
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data.dataloader import DataLoader
@@ -558,11 +558,14 @@ def generate_inputs(tokenizer, nlu1_tok, hds1):
 
     i_hds = []
     # for doc
+
     for i, hds11 in enumerate(hds1):
         i_st_hd = len(tokens)
         sub_tok = tokenizer.tokenize(hds11)
+        print(sub_tok)
+        header_name_end = sub_tok.index(tokenizer.tokenize("‖")[0])
+        i_ed_hd = len(tokens) + (header_name_end)
         tokens += sub_tok
-        i_ed_hd = len(tokens)
         i_hds.append((i_st_hd, i_ed_hd))
         segment_ids += [1] * len(sub_tok)
         if i < len(hds1)-1:
@@ -575,7 +578,8 @@ def generate_inputs(tokenizer, nlu1_tok, hds1):
             raise EnvironmentError
 
     i_nlu = (i_st_nlu, i_ed_nlu)
-
+    print("tokens sent to BERT", tokens)
+    print("Header info", i_hds)
     return tokens, segment_ids, i_nlu, i_hds
 
 def gen_l_hpu(i_hds):
@@ -753,7 +757,6 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
     for b, nlu_t1 in enumerate(nlu_t):
 
         hds1 = hds[b]
-        l_hs.append(len(hds1))
 
 
         # 1. 2nd tokenization using WordPiece
@@ -776,6 +779,8 @@ def get_bert_output(model_bert, tokenizer, nlu_t, hds, max_seq_length):
         # [CLS] nlu [SEP] col1 [SEP] col2 [SEP] ...col-n [SEP]
         # 2. Generate BERT inputs & indices.
         tokens1, segment_ids1, i_nlu1, i_hds1 = generate_inputs(tokenizer, nlu_tt1, hds1)
+        l_hs.append(len(hds1))
+
         input_ids1 = tokenizer.convert_tokens_to_ids(tokens1)
         max_length_in_batch = max(max_length_in_batch, len(input_ids1))
         # Input masks

@@ -942,7 +942,8 @@ def Loss_sc(s_sc, g_sc):
 
 
 def Loss_sa(s_sa, g_sa):
-    loss = F.cross_entropy(s_sa, torch.tensor(g_sa).to(device))
+    #['', 'MAX', 'MIN', 'COUNT', 'SUM', 'AVG']
+    loss = F.cross_entropy(s_sa, torch.tensor(g_sa).to(device), weight=torch.Tensor([1.0000, 1.3737, 1.5696, 1.5336, 1.8485, 1.8610]))
     return loss
 
 def Loss_wn(s_wn, g_wn):

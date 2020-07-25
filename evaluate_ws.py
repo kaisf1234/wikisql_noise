@@ -26,8 +26,8 @@ if __name__ == '__main__':
 
     dset_name = 'wikisql_tok'
     saved_epoch = 'best'  # 30-162
-    key_data = '/gtlt_noisy_data/'
-    key_results = '/sample'
+    key_data = '/simple/'
+    key_results = '/simple_simple_results'
     # Set path
     path_h = './' # change to your home folder
     # path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
@@ -73,8 +73,8 @@ if __name__ == '__main__':
             eg = json.loads(ls)
             ep = json.loads(lp)
             # In case you want to skip real or fake ones
-            if eg.get("is_real", False) == False:
-                continue
+            # if eg.get("is_real", False) == False:
+            #     continue
             # Skip missing entries (Faulty tokenization)
             while eg["question"] != ep["nlu"]:
                 ls = next(fs)
@@ -105,23 +105,23 @@ if __name__ == '__main__':
             if all_meta[eg["table_id"]]["types"][ep["query"]["sel"]] == "real":
                 agg_map[Query.agg_ops[eg["sql"]["agg"]]][Query.agg_ops[ep["query"]["agg"]]] += 1
             if not correct:
-                if ep["query"]["agg"] != eg["sql"]["agg"] :
+                if True:
                 # if  all_meta[eg["table_id"]]["types"][ep["query"]["sel"]] == "real" and eg["sql"]["agg"] == 3 :
                     cc += 1
-                    # print(eg["question"])
-                    # print("GOLD", Query.agg_ops[eg["sql"]["agg"]])
-                    # print("PRED", Query.agg_ops[ep["query"]["agg"]])
-                    # print("GOLD", eg["sql"])
-                    # print("PRED", ep["query"])
-                    # print(all_meta[eg["table_id"]]["header"])
-                    # print(all_meta[eg["table_id"]]["types"])
-                    # print(pred, gold)
-                    # print("table_" + eg["table_id"].replace("-", "_"))
-                    # print("^"*100)
-                    # values = engine.execute_sel_star(eg["table_id"])
-                    #
-                    # print(tabulate(values, headers=all_meta[eg["table_id"]]["header"], tablefmt='fancy_grid'))
-                    # print("*"*100)
+                    print(eg["question"])
+                    print("GOLD", Query.agg_ops[eg["sql"]["agg"]])
+                    print("PRED", Query.agg_ops[ep["query"]["agg"]])
+                    print("GOLD", eg["sql"])
+                    print("PRED", ep["query"])
+                    print(all_meta[eg["table_id"]]["header"])
+                    print(all_meta[eg["table_id"]]["types"])
+                    print(pred, gold)
+                    print("table_" + eg["table_id"].replace("-", "_"))
+                    print("^"*100)
+                    values = engine.execute_sel_star(eg["table_id"])
+
+                    print(tabulate(values, headers=all_meta[eg["table_id"]]["header"], tablefmt='fancy_grid'))
+                    print("*"*100)
                     pass
                 #oprint("Pred" ,pred)
                 #oprint("Gold", gold)
