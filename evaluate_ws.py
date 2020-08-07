@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import copy
 import json
 from argparse import ArgumentParser
 from tqdm import tqdm
@@ -21,13 +22,13 @@ leeway = 0
 if __name__ == '__main__':
 
     # Hyper parameters
-    mode = 'dev'
+    mode = 'test'
     ordered = False
 
     dset_name = 'wikisql_tok'
     saved_epoch = 'best'  # 30-162
-    key_data = '/gtlt_noisy_data/'
-    key_results = '/sample'
+    key_data = '/data/'
+    key_results = '/search_1_test'
     # Set path
     path_h = './' # change to your home folder
     # path_wikisql_tok = os.path.join(path_h, 'data', 'wikisql_tok')
@@ -65,6 +66,10 @@ if __name__ == '__main__':
 
     error_loger = ErrorLogger()
     agg_map = {x : {y: 0 for y in Query.agg_ops} for x in Query.agg_ops}
+    selwhere = 0
+
+    out_file_new = open("wikisql/test_results_searchql.jsonl", "w")
+    dummy = {"query": {"agg": 0, "sel": 0, "conds": []}, "table_id": "", "nlu": ""}
     with open(args.source_file) as fs, open(args.pred_file) as fp:
         grades = []
         c = 0
@@ -73,21 +78,35 @@ if __name__ == '__main__':
             eg = json.loads(ls)
             ep = json.loads(lp)
             # In case you want to skip real or fake ones
-            if eg.get("is_real", False) == False:
-                continue
+            # if eg.get("is_real", False) == False:
+            #     continue
             # Skip missing entries (Faulty tokenization)
             while eg["question"] != ep["nlu"]:
+                print("one skip")
                 ls = next(fs)
                 eg = json.loads(ls)
                 # print(eg["question"])
                 # print(ep["nlu"])
                 # print(c)
+                dummy_copy = copy.deepcopy(dummy)
+                out_file_new.write(json.dumps(dummy_copy)+"\n")
                 grades.append(False)
                 exact_match.append(False)
+
                 #dwdwed
-
+            if ep.get("error", None) == "Skip happened":
+                dummy_copy = copy.deepcopy(dummy)
+                out_file_new.write(json.dumps(dummy_copy) + "\n")
+                grades.append(False)
+                exact_match.append(False)
+                continue
             c += 1
-
+            question = eg["question"]
+            agg_ops = ['', 'MAX', 'MIN', 'COUNT', 'SUM', 'AVG']
+            if "query" in ep and ep["query"]["agg"] in [1, 2, 4, 5] and all_meta[ep["table_id"]]["types"][ep["query"]["sel"]] == "text":
+                # print(ep["query"])
+                ep["query"]["agg"] = 0
+            out_file_new.write(json.dumps(ep)+"\n")
 
             #ep["query"]["agg"] = 3 if ep["query"]["agg"] == 4 else  ep["query"]["agg"] #eg["sql"]["agg"]
             qg = Query.from_dict(eg['sql'], ordered=args.ordered)
@@ -102,10 +121,14 @@ if __name__ == '__main__':
                 except Exception as e:
                     pred = repr(e)
             correct = pred == gold
-            if all_meta[eg["table_id"]]["types"][ep["query"]["sel"]] == "real":
+            if all_meta[ep["table_id"]]["types"][ep["query"]["sel"]] == "real":
                 agg_map[Query.agg_ops[eg["sql"]["agg"]]][Query.agg_ops[ep["query"]["agg"]]] += 1
             if not correct:
-                if ep["query"]["agg"] != eg["sql"]["agg"] :
+                where_cols = [x[0] for x in ep["query"]["conds"]]
+                sel_col = ep["query"]["sel"]
+                if sel_col in where_cols:
+                    selwhere += 1
+                if "query" in ep and ep["query"]["agg"] != eg["sql"]["agg"] :
                 # if  all_meta[eg["table_id"]]["types"][ep["query"]["sel"]] == "real" and eg["sql"]["agg"] == 3 :
                     cc += 1
                     # print(eg["question"])
@@ -126,7 +149,7 @@ if __name__ == '__main__':
                 #oprint("Pred" ,pred)
                 #oprint("Gold", gold)
                 oprint(all_meta[eg["table_id"]]["header"])
-                oprint("Pred", ep["query"])
+                #oprint("Pred", ep["query"])
                 oprint("Gold", eg["sql"])
                 oprint(eg["table_id"])
                 oprint(eg["question"])
@@ -138,7 +161,7 @@ if __name__ == '__main__':
                 match = 1
             grades.append(correct)
             exact_match.append(match)
-            error_loger.log(eg, ep, all_meta[eg["table_id"]]["header"])
+            #error_loger.log(eg, ep, all_meta[eg["table_id"]]["header"])
         print(json.dumps({
             'ex_accuracy': sum(grades) / len(grades),
             'lf_accuracy': sum(exact_match) / len(exact_match),
@@ -146,10 +169,11 @@ if __name__ == '__main__':
 
         print(c)
         print(agg_map)
-        error_loger.display()
+        #error_loger.display()
         error_loger.dump('./errors/' + (key_data+"_"+key_results+"").replace("/", '')+'.log')
         print(cc)
-
+        print("selwhere", selwhere)
+        out_file_new.close()
 '''
 4413
 sel :  0.09358712893723091

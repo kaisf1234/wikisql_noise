@@ -6,14 +6,17 @@ import os
 import records
 import ujson as json
 from stanza.nlp.corenlp import CoreNLPClient
+import os
+
+
+
+os.environ["CORENLP_HOME"] = './models/stanford-corenlp-full-2018-02-27'
+
+client = CoreNLPClient(default_annotators='ssplit,tokenize'.split(','))
 from tqdm import tqdm
 import copy
 from wikisql.lib.common import count_lines, detokenize
 from wikisql.lib.query import Query
-import os
-
-os.environ["CORENLP_HOME"] = './models/stanford-corenlp-4.0.0'
-client = None
 
 
 def annotate(sentence, lower=True):
@@ -158,7 +161,7 @@ if __name__ == '__main__':
     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument('--din', default='./data/WikiSQL-1.1/data', help='data directory')
     parser.add_argument('--dout', default='./data/wikisql_tok', help='output directory')
-    parser.add_argument('--split', default='dev', help='comma=separated list of splits to process')
+    parser.add_argument('--split', default='test', help='comma=separated list of splits to process')
     args = parser.parse_args()
 
     answer_toy = not True
@@ -191,6 +194,7 @@ if __name__ == '__main__':
                 # a = annotate_example(d, tables[d['table_id']])
                 a = annotate_example_ws(d, tables[d['table_id']])
                 if a["wvi_corenlp"] is None:
+                    print("Skipping", line)
                     continue
                 fo.write(json.dumps(a) + '\n')
                 n_written += 1

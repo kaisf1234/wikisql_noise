@@ -8,6 +8,8 @@
 import os, sys, argparse, re, json
 
 # from matplotlib.pylab import *
+import time
+
 from numpy import *
 import torch.nn as nn
 import torch
@@ -16,6 +18,9 @@ import random as python_random
 # import torchvision.datasets as dsets
 
 # BERT
+from numpy.random.mtrand import seed
+import numpy as np
+
 import bert.tokenization as tokenization
 from bert.modeling import BertConfig, BertModel
 from sqlova.utils.utils_wikisql import *
@@ -28,7 +33,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def construct_hyper_param(parser):
     parser.add_argument("--do_train", default=False, action='store_true')
-    parser.add_argument('--do_infer', default=False, action='store_true')
+    parser.add_argument('--do_infer', default=True, action='store_true')
     parser.add_argument('--infer_loop', default=False, action='store_true')
     parser.add_argument("--column_vector_path", type=str, help="column_rep")
 
@@ -693,6 +698,7 @@ if __name__ == '__main__':
     #     collate_fn=lambda x: x  # now dictionary values are not merged!
     # )
     ## 4. Build & Load models
+    args.trained = True
     if not args.trained:
         model, model_bert, tokenizer, bert_config = get_models(args, BERT_PT_PATH)
     else:
@@ -705,6 +711,7 @@ if __name__ == '__main__':
                                                                path_model_bert=path_model_bert, path_model=path_model)
 
     ## 5. Get optimizers
+    args.do_train = False
     if args.do_train:
         pre_trained_path = None
         if args.trained:
@@ -784,7 +791,7 @@ if __name__ == '__main__':
         import corenlp
         import os
 
-        os.environ["CORENLP_HOME"] = './models/stanford-corenlp-4.0.0'
+        os.environ["CORENLP_HOME"] = './models/stanford-corenlp-full-2018-02-27'
         client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
 
         path_db = './data/WikiSQL-1.1/data'

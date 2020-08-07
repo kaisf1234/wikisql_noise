@@ -30,7 +30,7 @@ def get_column_reps(tables):
         for col_idx, header_name in enumerate((table["header"])):
             col = [x[col_idx] for x in rows]
             col = set(col)
-            sample = col #if len(col) < num_sample else random.sample(col, num_sample)
+            sample = col if len(col) < num_sample else random.sample(col, num_sample)
             sample = [str(x) for x in sample]
             samples_to_be_encoded.append(sample)
             # vector = column_encoder.encode_sample([str(x) for x in sample])

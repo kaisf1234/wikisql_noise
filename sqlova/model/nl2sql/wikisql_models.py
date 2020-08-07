@@ -916,6 +916,7 @@ class WVP_se(nn.Module):
         for b, l_n1 in enumerate(l_n):
             if l_n1 < mL_n:
                 s_wv[b, :, l_n1:, :] = -10000000000
+        print(s_wv)
         return s_wv
 
 def Loss_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv, g_sc, g_sa, g_wn, g_wc, g_wo, g_wvi):

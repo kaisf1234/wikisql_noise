@@ -11,7 +11,7 @@ from copy import deepcopy
 from numpy import *
 
 import torch
-import torchvision.datasets as dsets
+#import torchvision.datasets as dsets
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data.dataloader import DataLoader
@@ -168,13 +168,13 @@ def get_fields_1(t1, tables, no_hs_t=False, no_sql_t=False, column_samples = Non
         # print(column_samples[tid1])
         best_samples = get_best_samples(nlu1, column_samples[tid1], tid1)
         #print("%"*100)
-        # sampled_headers = {x:random.sample(best_samples[x], min(len(best_samples[x]), 3)) + [val for val in random.sample(set(column_samples[tid1][x]) - best_samples[x], min(len(set(column_samples[tid1][x]) - best_samples[x]), max(0, 3 - len(best_samples[x]))))]
-        #                               for x in tb1["header"]}
-        # _ = {x:random.shuffle(sampled_headers[x]) for x in sampled_headers}
-        hs1 = [x + " ‖ " + " | ".join(random.sample(best_samples[x], min(len(best_samples[x]), 3))) for x in tb1["header"]]
+        sampled_headers = {x:random.sample(best_samples[x], min(len(best_samples[x]), 3)) + [val for val in random.sample(set(column_samples[tid1][x]) - best_samples[x], min(len(set(column_samples[tid1][x]) - best_samples[x]), max(0, 3 - len(best_samples[x]))))]
+                                      for x in tb1["header"]}
+        _ = {x:random.shuffle(sampled_headers[x]) for x in sampled_headers}
+        hs1 = [x + " ‖ " + " | ".join(random.sample(sampled_headers[x], min(len(sampled_headers[x]), 3))) for x in tb1["header"]]
         #print(hs1)
     if config["use_samples_concat"]:
-        hs1 = [x + " ‖ " + " | ".join([val for val in random.sample(column_samples[tid1][x], min(len(column_samples[tid1][x]), 5))]) for x in tb1["header"]]
+        hs1 = [x + " ‖ " + " | ".join([val for val in column_samples[tid1][x]]) for x in tb1["header"]]
     return nlu1, nlu_t1, tid1, sql_i1, sql_q1, sql_t1, tb1, hs_t1, hs1
 
 def tokenized_len(nlu_t1, hds1, tokenizer):
@@ -940,13 +940,15 @@ def gen_pnt_n(g_wvi, mL_w, mL_nt):
     return pnt_n, l_g_wvi
 
 
-def pred_sc(s_sc):
+def pred_sc(s_sc, pr_wc = None):
     """
     return: [ pr_wc1_i, pr_wc2_i, ...]
     """
     # get g_num
     pr_sc = []
-    for s_sc1 in s_sc:
+    for idx, s_sc1 in enumerate(s_sc):
+        if pr_wc is not None:
+            s_sc1[pr_wc[idx]] = -999999
         pr_sc.append(s_sc1.argmax().item())
 
     return pr_sc
@@ -1182,10 +1184,10 @@ def convert_pr_wvi_to_string(pr_wvi, nlu_t, nlu_wp_t, wp_to_wh_index, nlu):
 
 
 def pred_sw_se(s_sc, s_sa, s_wn, s_wc, s_wo, s_wv):
-    pr_sc = pred_sc(s_sc)
     pr_sa = pred_sa(s_sa)
     pr_wn = pred_wn(s_wn)
     pr_wc = pred_wc(pr_wn, s_wc)
+    pr_sc = pred_sc(s_sc, pr_wc)
     pr_wo = pred_wo(pr_wn, s_wo)
     pr_wvi = pred_wvi_se(pr_wn, s_wv)
 
