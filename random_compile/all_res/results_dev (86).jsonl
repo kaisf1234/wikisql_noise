@@ -1,0 +1,97 @@
+{"query": {"agg": 0, "sel": 3, "conds": [[1, 0, "february 1944"]]}, "table_id": "1-13636-1", "nlu": "what's the computing mechanism from february 1944"}
+{"query": {"agg": 0, "sel": 5, "conds": [[0, 0, "atanasoff–berry computer (us)"]]}, "table_id": "1-13636-1", "nlu": "the turing complete with atanasoff–berry computer (us)"}
+{"query": {"agg": 0, "sel": 1, "conds": [[4, 0, "not programmable—single purpose"]]}, "table_id": "1-13636-1", "nlu": "what's the first operational with not programmable—single purpose"}
+{"query": {"agg": 3, "sel": 8, "conds": [[1, 0, "denmark"]]}, "table_id": "1-13677808-1", "nlu": "how many times is denmark ranked in technology?"}
+{"query": {"agg": 0, "sel": 6, "conds": [[9, 0, "4.7"]]}, "table_id": "1-13677808-1", "nlu": "what is the environment rating with an overall rating 4.7?"}
+{"query": {"agg": 0, "sel": 5, "conds": [[3, 0, "5.7"]]}, "table_id": "1-13677808-1", "nlu": "what is the migration rating for 5.7 trade?"}
+{"query": {"agg": 2, "sel": 4, "conds": []}, "table_id": "1-1370559-1", "nlu": "what is the lowest pf?"}
+{"query": {"agg": 0, "sel": 5, "conds": [[1, 0, "colleen jones"]]}, "table_id": "1-1370559-1", "nlu": "pa for colleen jones?"}
+{"query": {"agg": 2, "sel": 5, "conds": [[7, 0, "45"]]}, "table_id": "1-1370559-1", "nlu": "minimum pa ,  ends lost 45"}
+{"query": {"agg": 0, "sel": 5, "conds": [[4, 0, "77"]]}, "table_id": "1-1370559-1", "nlu": "pa with pf 77"}
+{"query": {"agg": 2, "sel": 6, "conds": [[0, 0, "northwest territories yukon"]]}, "table_id": "1-1370559-1", "nlu": "what is the number of ends won in northwest territories yukon?"}
+{"query": {"agg": 0, "sel": 2, "conds": [[9, 0, "8"]]}, "table_id": "1-13758945-3", "nlu": "what's the won with try bonus 8"}
+{"query": {"agg": 0, "sel": 0, "conds": [[10, 0, "1"]]}, "table_id": "1-13758945-3", "nlu": "what's the club losing bonus 1"}
+{"query": {"agg": 3, "sel": 10, "conds": [[2, 0, "10"], [5, 0, "283"]]}, "table_id": "1-13758945-3", "nlu": "how many losing bonus with won 10 and points 283"}
+{"query": {"agg": 0, "sel": 6, "conds": [[7, 0, "43"]]}, "table_id": "1-13758945-3", "nlu": "how many points against with tries for being 43"}
+{"query": {"agg": 0, "sel": 11, "conds": [[7, 0, "64"]]}, "table_id": "1-13758945-3", "nlu": "what's the points with tries for 64"}
+{"query": {"agg": 0, "sel": 2, "conds": [[6, 0, "597"]]}, "table_id": "1-13758945-3", "nlu": "what's the won with points against 597"}
+{"query": {"agg": 0, "sel": 6, "conds": [[10, 0, "€20m"]]}, "table_id": "1-13770460-3", "nlu": "what is the type of the player fee €20m?"}
+{"query": {"agg": 0, "sel": 3, "conds": [[4, 0, "esp"]]}, "table_id": "1-13770460-3", "nlu": "what eu status for esp?"}
+{"query": {"agg": 3, "sel": 0, "conds": [[9, 0, "1 year"]]}, "table_id": "1-13770460-3", "nlu": "how many numbers end in 1 year?"}
+{"query": {"agg": 0, "sel": 2, "conds": [[1, 0, "billy vaughn"]]}, "table_id": "1-13804825-2", "nlu": "name of song by billy vaughn"}
+{"query": {"agg": 0, "sel": 3, "conds": [[1, 0, "ray adams"]]}, "table_id": "1-13805773-2", "nlu": "what is highest place by ray adams?"}
+{"query": {"agg": 0, "sel": 2, "conds": [[4, 0, "259"]]}, "table_id": "1-13805773-2", "nlu": "title of song 259 points"}
+{"query": {"agg": 3, "sel": 4, "conds": [[2, 0, "1997"]]}, "table_id": "1-1397655-1", "nlu": "how many channels  gained in 1997"}
+{"query": {"agg": 3, "sel": 2, "conds": [[1, 0, "chan"]]}, "table_id": "1-1397655-1", "nlu": "how many gained chan"}
+{"query": {"agg": 2, "sel": 2, "conds": [[1, 0, "citv"]]}, "table_id": "1-1397655-1", "nlu": "minimum year for citv"}
+{"query": {"agg": 0, "sel": 0, "conds": [[1, 0, "citv"]]}, "table_id": "1-1397655-1", "nlu": "where is citv located"}
+{"query": {"agg": 0, "sel": 1, "conds": [[0, 0, "edmonton"]]}, "table_id": "1-1397655-1", "nlu": "which station in edmonton"}
+{"query": {"agg": 0, "sel": 0, "conds": [[1, 0, "1989"]]}, "table_id": "1-1399994-5", "nlu": "what was the outcome in 1989?"}
+{"query": {"agg": 3, "sel": 2, "conds": [[5, 0, "claudia kohde-kilsch eva pfaff"]]}, "table_id": "1-1399994-5", "nlu": "how many locations with opponent claudia kohde-kilsch eva pfaff?"}
+{"query": {"agg": 0, "sel": 5, "conds": [[1, 0, "1984"]]}, "table_id": "1-1399994-5", "nlu": "opponents in 1984?"}
+{"query": {"agg": 3, "sel": 4, "conds": [[1, 0, "1988"]]}, "table_id": "1-1399994-5", "nlu": "how many partners in 1988?"}
+{"query": {"agg": 0, "sel": 4, "conds": [[2, 0, "maksim botin"]]}, "table_id": "1-14038363-1", "nlu": "how tall is maksim botin?"}
+{"query": {"agg": 0, "sel": 5, "conds": [[2, 0, "maksim botin"]]}, "table_id": "1-14038363-1", "nlu": "maksim botin's position?"}
+{"query": {"agg": 0, "sel": 5, "conds": [[2, 0, "roman bragin"]]}, "table_id": "1-14038363-1", "nlu": "roman bragin's position?"}
+{"query": {"agg": 3, "sel": 5, "conds": [[2, 0, "teodor salparov"]]}, "table_id": "1-14038363-1", "nlu": "how many positions teodor salparov"}
+{"query": {"agg": 2, "sel": 5, "conds": [[4, 0, "8-5"]]}, "table_id": "1-14181578-1", "nlu": "what is the minimum points with 8-5"}
+{"query": {"agg": 0, "sel": 3, "conds": [[0, 0, "1"]]}, "table_id": "1-14181578-1", "nlu": "what's w-l-d with position 1"}
+{"query": {"agg": 0, "sel": 1, "conds": [[4, 0, "14-2"]]}, "table_id": "1-14181578-1", "nlu": "who is the the club (city/town) with goals 14-2"}
+{"query": {"agg": 0, "sel": 4, "conds": [[3, 0, "3-1-1"]]}, "table_id": "1-14181578-1", "nlu": "what's the goals with w-l-d 3-1-1"}
+{"query": {"agg": 2, "sel": 2, "conds": [[4, 0, "7-5"]]}, "table_id": "1-14181578-1", "nlu": "what is the minimum games played with goals for/against 7-5"}
+{"query": {"agg": 0, "sel": 4, "conds": [[5, 0, "seattle thunderbirds (whl)"]]}, "table_id": "1-14209245-9", "nlu": "what is the nationality of the player whose league is seattle thunderbirds (whl)?"}
+{"query": {"agg": 0, "sel": 5, "conds": [[1, 0, "130"]]}, "table_id": "1-14209245-9", "nlu": "league of player who was pick number 130?"}
+{"query": {"agg": 0, "sel": 1, "conds": [[0, 0, "2"]]}, "table_id": "1-14209245-9", "nlu": "what is pick number round 2?"}
+{"query": {"agg": 0, "sel": 0, "conds": [[4, 0, "2007-08"]]}, "table_id": "1-14286908-1", "nlu": "what the name of the school win 2007-08?"}
+{"query": {"agg": 0, "sel": 0, "conds": [[2, 0, "2"]]}, "table_id": "1-14286908-1", "nlu": "names that had finalist score 2?"}
+{"query": {"agg": 0, "sel": 4, "conds": [[3, 0, "10"]]}, "table_id": "1-14286908-1", "nlu": "in what year total finals 10?"}
+{"query": {"agg": 0, "sel": 0, "conds": [[4, 0, "1985-86"]]}, "table_id": "1-14286908-1", "nlu": "what is the name of the school where 1985-86?"}
+{"query": {"agg": 0, "sel": 3, "conds": [[4, 0, "2012-13"]]}, "table_id": "1-14286908-1", "nlu": "how many total finals where there, win 2012-13?"}
+{"query": {"agg": 0, "sel": 0, "conds": [[5, 0, "32"]]}, "table_id": "1-14323347-1", "nlu": "name the team for 1993-94 for 32"}
+{"query": {"agg": 1, "sel": 3, "conds": []}, "table_id": "1-14323347-1", "nlu": "most played"}
+{"query": {"agg": 3, "sel": 4, "conds": [[2, 0, "115"]]}, "table_id": "1-14323347-1", "nlu": "number of 1992-93 for 115 points"}
+{"query": {"agg": 1, "sel": 3, "conds": []}, "table_id": "1-14323347-1", "nlu": "most played"}
+{"query": {"agg": 1, "sel": 3, "conds": [[5, 0, "1"]]}, "table_id": "1-14342480-6", "nlu": "most touchdowns for field goals 1"}
+{"query": {"agg": 0, "sel": 2, "conds": [[1, 0, "left end"]]}, "table_id": "1-14342480-6", "nlu": "starter for left end"}
+{"query": {"agg": 2, "sel": 3, "conds": []}, "table_id": "1-14342480-6", "nlu": "name the fewest touchdowns"}
+{"query": {"agg": 1, "sel": 4, "conds": [[1, 0, "right tackle"]]}, "table_id": "1-14342480-6", "nlu": "most extra points for right tackle"}
+{"query": {"agg": 0, "sel": 6, "conds": [[5, 0, "1"]]}, "table_id": "1-14342480-6", "nlu": "points for field goals 1"}
+{"query": {"agg": 1, "sel": 3, "conds": [[0, 0, "becker"]]}, "table_id": "1-14342592-8", "nlu": "most touchdowns for becker"}
+{"query": {"agg": 0, "sel": 4, "conds": [[1, 0, "left guard"]]}, "table_id": "1-14342592-8", "nlu": "name extra points left guard"}
+{"query": {"agg": 2, "sel": 3, "conds": [[6, 0, "11"]]}, "table_id": "1-14342592-8", "nlu": "name the least touchdowns 11 points"}
+{"query": {"agg": 1, "sel": 5, "conds": []}, "table_id": "1-14342592-8", "nlu": "name the most field goals"}
+{"query": {"agg": 3, "sel": 5, "conds": [[4, 0, "19"]]}, "table_id": "1-14342592-8", "nlu": "number of field goals 19 extra points"}
+{"query": {"agg": 1, "sel": 3, "conds": [[0, 0, "norcross"]]}, "table_id": "1-14342592-8", "nlu": "name the most touchdowns for norcross"}
+{"query": {"agg": 0, "sel": 1, "conds": [[4, 0, "9th"]]}, "table_id": "1-14345690-4", "nlu": "name famous for finishing 9th"}
+{"query": {"agg": 0, "sel": 4, "conds": [[3, 0, "day 13"]]}, "table_id": "1-14345690-4", "nlu": "name the finished exited day 13"}
+{"query": {"agg": 0, "sel": 2, "conds": [[1, 0, "page 3"]]}, "table_id": "1-14345690-4", "nlu": "name the entered for page 3 model"}
+{"query": {"agg": 3, "sel": 4, "conds": [[0, 0, "kerry katona"]]}, "table_id": "1-14345690-4", "nlu": "how many finished for kerry katona"}
+{"query": {"agg": 0, "sel": 4, "conds": [[3, 0, "day 13"]]}, "table_id": "1-14345690-4", "nlu": "name the finished when exited on day 13"}
+{"query": {"agg": 3, "sel": 0, "conds": [[1, 0, "athlete"]]}, "table_id": "1-14345690-4", "nlu": "number of celebrity athlete"}
+{"query": {"agg": 3, "sel": 4, "conds": [[0, 0, "35"]]}, "table_id": "1-14346950-1", "nlu": "how many \"teleplay by\" values for series 35?"}
+{"query": {"agg": 0, "sel": 4, "conds": [[5, 0, "rob bailey"]]}, "table_id": "1-14346950-1", "nlu": "who is the teleplay by for director rob bailey?"}
+{"query": {"agg": 0, "sel": 1, "conds": [[4, 0, "richard price"], [5, 0, "steve shill"]]}, "table_id": "1-14346950-1", "nlu": "season # richard price teleplay and director steve shill?"}
+{"query": {"agg": 0, "sel": 4, "conds": [[2, 0, "at denver broncos"]]}, "table_id": "1-14433719-1", "nlu": "time for at denver broncos"}
+{"query": {"agg": 0, "sel": 3, "conds": [[0, 0, "select-string"]]}, "table_id": "1-14465871-1", "nlu": "what are the names of unix shell powershell select-string?"}
+{"query": {"agg": 0, "sel": 2, "conds": [[3, 0, "echo"]]}, "table_id": "1-14465871-1", "nlu": "what are all values of cmd.exe / command.com for the unix shell echo?"}
+{"query": {"agg": 0, "sel": 4, "conds": [[1, 0, "cpi, copy, cp"]]}, "table_id": "1-14465871-1", "nlu": "powershell (alias) is cpi, copy, cp, what are descriptions."}
+{"query": {"agg": 0, "sel": 0, "conds": [[1, 0, "type"]]}, "table_id": "1-14465871-1", "nlu": "the cmd.exe command.com is type, what are values powershell (cmdlet)?"}
+{"query": {"agg": 3, "sel": 0, "conds": [[3, 0, "env, export, set, setenv"]]}, "table_id": "1-14465871-1", "nlu": "How many values of powershell (cmdlet) are valid when unix shell is env, export, set, setenv?"}
+{"query": {"agg": 0, "sel": 2, "conds": [[6, 0, "2053"]]}, "table_id": "1-1447085-1", "nlu": "county 2053 households"}
+{"query": {"agg": 0, "sel": 1, "conds": [[0, 0, "71"]]}, "table_id": "1-1447085-1", "nlu": "which place rank 71?"}
+{"query": {"agg": 0, "sel": 2, "conds": [[4, 0, "$98,090"]]}, "table_id": "1-1447085-1", "nlu": "which county has median household income $98,090?"}
+{"query": {"agg": 0, "sel": 4, "conds": [[1, 0, "woodside"]]}, "table_id": "1-1447085-1", "nlu": "woodside median income"}
+{"query": {"agg": 0, "sel": 3, "conds": [[2, 0, "fayette county"]]}, "table_id": "1-1447085-1", "nlu": "per capita income fayette county?"}
+{"query": {"agg": 1, "sel": 2, "conds": [[1, 0, "galliate"]]}, "table_id": "1-1449169-1", "nlu": "where does galliate rank in population?"}
+{"query": {"agg": 0, "sel": 1, "conds": [[3, 0, "38.38"]]}, "table_id": "1-1449169-1", "nlu": "which common has area 38.38?"}
+{"query": {"agg": 0, "sel": 1, "conds": [[3, 0, "103.02"]]}, "table_id": "1-1449169-1", "nlu": "which common has area 103.02?"}
+{"query": {"agg": 2, "sel": 5, "conds": []}, "table_id": "1-1449169-1", "nlu": "what is the minimum altitude"}
+{"query": {"agg": 0, "sel": 0, "conds": [[3, 0, "47.3"]]}, "table_id": "1-1449176-1", "nlu": "rank of common with 47.3 area"}
+{"query": {"agg": 0, "sel": 4, "conds": [[3, 0, "20.4"]]}, "table_id": "1-1449176-1", "nlu": "what is the density with area 20.4 km^2?"}
+{"query": {"agg": 0, "sel": 5, "conds": [[3, 0, "130.7"]]}, "table_id": "1-1449176-1", "nlu": "how many altitudes does the common with area 130.7 have?"}
+{"query": {"agg": 0, "sel": 2, "conds": [[1, 0, "settimo torinese"]]}, "table_id": "1-1449176-1", "nlu": "count population figures for settimo torinese"}
+{"query": {"agg": 0, "sel": 1, "conds": [[0, 0, "9th"]]}, "table_id": "1-1449176-1", "nlu": "9th ranked common?"}
+{"query": {"agg": 0, "sel": 4, "conds": [[1, 0, "chieri"]]}, "table_id": "1-1449176-1", "nlu": "chieri has what density?"}
+{"query": {"agg": 0, "sel": 6, "conds": [[5, 0, "92.0"]]}, "table_id": "1-145439-1", "nlu": "the economics score with education 92.0"}
+{"query": {"agg": 0, "sel": 4, "conds": [[3, 0, "80.7"]]}, "table_id": "1-145439-1", "nlu": "what's the health score with justice 80.7"}
+{"query": {"agg": 0, "sel": 0, "conds": [[1, 0, "iceland"]]}, "table_id": "1-145439-1", "nlu": "rank for iceland"}
